@@ -1,4 +1,4 @@
-CC=gcc
+CC=g++
 CFLAGS=-Wall -Werror -std=gnu++11
 LIBS=
 

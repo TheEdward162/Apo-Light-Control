@@ -28,5 +28,9 @@ class SocketHandler {
 	SocketHandler::ControlMessage buildControlMessage(int type, int16_t valuesCeiling[], int16_t valuesWall[]);
 
 private:
+	const uint32_t MAGIC_NUMBER = 0xDEADBEEF;
+	const uint32_t VERSION = 0x00010000;
+	const int SOCKET_TIMEOUT = 5;
+
 	int socketFD;
-}
+};
