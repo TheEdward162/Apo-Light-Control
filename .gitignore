@@ -1,2 +1,5 @@
 # ignore binaries
 app
+
+# ignore side stuff
+program.c
