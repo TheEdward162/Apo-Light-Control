@@ -3,3 +3,4 @@ app
 
 # ignore side stuff
 program.c
+.vscode
