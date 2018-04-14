@@ -15,6 +15,8 @@
 
 DeviceInput::DeviceInput() {
         // TODO uncomment this when ready
+    knobs_value = 0;
+    prev_knobs_value = 0;
 //    map_phys_memdev = (char *) "/dev/mem";
 //    mem_base = (unsigned char *) map_phys_address(SPILED_REG_BASE_PHYS, SPILED_REG_SIZE, 0);
 //    if (mem_base == NULL)
@@ -104,19 +106,38 @@ void DeviceInput::handleInput() {
     }
 }
 
-void DeviceInput::getDelta() {
-    RGBDelta[0] = R(knobs_value) - R(prev_knobs_value);
-    RGBDelta[1] = G(knobs_value) - G(prev_knobs_value);
-    RGBDelta[2] = B(knobs_value) - B(prev_knobs_value);
+void DeviceInput::update() {
+    // get delta
+
+    RGBDelta[0] = getDelta(R(knobs_value), R(prev_knobs_value));
+    RGBDelta[1] = getDelta(G(knobs_value), G(prev_knobs_value));
+    RGBDelta[2] = getDelta(B(knobs_value), B(prev_knobs_value));
+    // get press
+    RGBPressed[0] = RPress(knobs_value) ? true : false;
+    RGBPressed[1] = GPress(knobs_value) ? true : false;
+    RGBPressed[2] = BPress(knobs_value) ? true : false;
+}
+
+char DeviceInput::getDelta(uint8_t prev, uint8_t act) {
+    // hadnle overflow
+    if (prev > 220 && act < 35) {
+        return (act - prev + 255);
+    }
+    // handle underflow
+    if (prev < 35 && act > 220) {
+        return (act - prev - 255);
+    }
+    return act - prev;
 }
 
 void DeviceInput::testDI() {
-    DeviceInput::prev_knobs_value = 0xAA8FA601;
-    DeviceInput::knobs_value = 0xBB8FA501;
-    DeviceInput::getDelta();
+    DeviceInput::prev_knobs_value = 0x38FA6FF;
+    DeviceInput::knobs_value = 0x38FA502;
+    DeviceInput::update();
     printf("Prev: R - %#x, G - %#x, B - %#x\n", R(knobs_value), G(knobs_value), B(knobs_value));
     printf("Act: R - %#x, G - %#x, B - %#x\n", R(prev_knobs_value), G(prev_knobs_value), B(prev_knobs_value));
     printf("Delta: R - %d, G - %d, B - %d\n", RGBDelta[0], RGBDelta[1], RGBDelta[2]);
+    printf("Pressed: R - %d, G - %d, B - %d\n", RGBPressed[0], RGBPressed[1], RGBPressed[2]);
 
 }
 

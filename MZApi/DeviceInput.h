@@ -2,12 +2,16 @@
 // Created by klara on 7.4.18.
 //
 
-#ifndef APO_SEM_DEVICEINPUT_H
-#define APO_SEM_DEVICEINPUT_H
+#pragma once
 
 #define R(a) ((a & 0xFF0000) >> 16)
 #define G(a) ((a & 0xFF00) >> 8)
 #define B(a) ((a & 0xFF) >> 0)
+
+#define RPress(a) ((a & 0x4000000) >> 26)
+#define GPress(a) ((a & 0x2000000) >> 25)
+#define BPress(a) ((a & 0x1000000) >> 24)
+
 
 class DeviceInput {
 public:
@@ -18,7 +22,8 @@ public:
     unsigned char *mem_base = NULL;
     uint32_t knobs_value;
     uint32_t prev_knobs_value;
-    int8_t RGBDelta[3];
+    char RGBDelta[3];
+    bool RGBPressed[3];
 
     /* Initialize structure to 0 seconds and 200 milliseconds */
     struct timespec loop_delay = {.tv_sec = 0, .tv_nsec = 200 * 1000 * 1000};
@@ -33,12 +38,11 @@ public:
     //    The main loop
     void handleInput();
 
-    void getDelta();
-
     void testDI();
 
+private:
+    void update();
+
+    char getDelta(uint8_t prev, uint8_t act);
+
 };
-
-
-
-#endif //APO_SEM_DEVICEINPUT_H
