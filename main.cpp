@@ -1,5 +1,5 @@
 #include "Engine.h"
 
 int main(int argc, char** argv) {
-	Engine::run(argc, argv);
+	return Engine::run(argc, argv);
 }
