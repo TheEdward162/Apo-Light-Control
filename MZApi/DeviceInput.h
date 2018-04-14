@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include "Mapper.h"
+
 #define R(a) ((a & 0xFF0000) >> 16)
 #define G(a) ((a & 0xFF00) >> 8)
 #define B(a) ((a & 0xFF) >> 0)
@@ -18,8 +20,8 @@ public:
     DeviceInput();
     ~DeviceInput();
 
-    char *map_phys_memdev;
-    unsigned char *mem_base = NULL;
+    Mapper mapper;
+
     uint32_t knobs_value;
     uint32_t prev_knobs_value;
     char RGBDelta[3];

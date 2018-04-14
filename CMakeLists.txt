@@ -16,6 +16,6 @@ set(SOURCE_FILES
         main.cpp
         test.ppm
         MZApi/DeviceInput.cpp
-        MZApi/DeviceInput.h)
+        MZApi/DeviceInput.h MZApi/Display.cpp MZApi/Display.h MZApi/Mapper.cpp MZApi/Mapper.h)
 
 add_executable(APO_SEM ${SOURCE_FILES})
