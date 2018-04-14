@@ -33,11 +33,12 @@ void checkArguments(int argc, char** argv) {
 LightUnit thisUnit;
 std::thread networkThread;
 
+DeviceInput deviceInput;
+
 void NetworkThreadRun(std::future<void> death) {
 	// init sockets
 	NetworkHandler networkHandler = NetworkHandler();
 
-	int i = 0;
 	while (death.wait_for(std::chrono::seconds(0)) != std::future_status::ready) {
 		// send broadcast
 		// send control messages
@@ -51,7 +52,6 @@ void NetworkThreadRun(std::future<void> death) {
 
 void mainLoop() {
 	// main loop
-
 	while (true) {
 		// poll input events
 		// execute stuff based on user input
@@ -83,6 +83,9 @@ int Engine::run(int argc, char** argv) {
 	// stateless death event, yaay
 	std::promise<void> deathPromise;
 	networkThread = std::thread(NetworkThreadRun, deathPromise.get_future());
+
+	deviceInput = DeviceInput();
+	deviceInput.testDI();
 
 	mainLoop();
 
