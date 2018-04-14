@@ -1,6 +1,12 @@
 # ignore binaries
 app
 
+# cmake side stuff
+cmake-build-debug
+
+# clion stuff
+.idea/
+
 # ignore side stuff
 program.c
 .vscode

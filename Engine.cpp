@@ -12,6 +12,7 @@
 
 #include "Unit/LightUnit.h"
 #include "Network/NetworkHandler.h"
+#include "MZApi/DeviceInput.h"
 
 void checkArguments(int argc, char** argv) {
 	// app DESCRIPTION PATH_TO_IMAGE
