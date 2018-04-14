@@ -9,7 +9,6 @@
 void Display::Display() {
     mapper = Mapper();
     mapper.map_phys_address(SPILED_REG_BASE_PHYS, SPILED_REG_SIZE, 0);
-    buffer = (uint16_t*)malloc(sizeof(uint16_t) * WIDTH * HEIGHT);
 }
 
 void Display::Redraw() {
@@ -25,9 +24,9 @@ void Display::Redraw() {
 }
 
 void Display::parlcd_write_data(uint16_t data) {
-    *(volatile uint16_t *) (parlcd_mem_base_ + PARLCD_REG_DATA_o) = (uint16_t) data;
+    *(volatile uint16_t *) (PARLCD_REG_BASE_PHYS + PARLCD_REG_DATA_o) = (uint16_t) data;
 }
 
 void Display::parlcd_write_cmd(uint16_t cmd) {
-    *(volatile uint16_t *) (parlcd_mem_base_ + PARLCD_REG_CMD_o) = (uint16_t) cmd;
+    *(volatile uint16_t *) (PARLCD_REG_BASE_PHYS + PARLCD_REG_CMD_o) = (uint16_t) cmd;
 }
