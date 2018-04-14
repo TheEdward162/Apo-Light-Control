@@ -7,6 +7,7 @@
 
 #include "Unit/LightUnit.h"
 #include "Network/NetworkHandler.h"
+#include "MZApi/DeviceInput.h"
 
 void checkArguments(int argc, char** argv) {
 	// app DESCRIPTION PATH_TO_IMAGE
@@ -36,11 +37,16 @@ void Engine::run(int argc, char** argv) {
 	// init sockets
 	NetworkHandler networkHandler = NetworkHandler();
 
+	// init input handler
+	DeviceInput deviceInput = DeviceInput();
+
 	// main loop
+
 	// send broadcast
 	// recieve broadcast
 	// poll input events
 	// send control messages
 
 	printf("%x %x %x %x %x\n", thisUnit.image[0], thisUnit.image[1], thisUnit.image[2], thisUnit.image[3], thisUnit.image[4]);
+	deviceInput.testDI();
 }
