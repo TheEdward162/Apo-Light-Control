@@ -50,7 +50,7 @@ NetworkHandler::NetworkHandler() {
 	}
 	
 	// get local IPs to filter when recieving broadcasts
-	localIPs = std::vector<unsigned long>(2);
+	localIPs = std::vector<uint32_t>(2);
 
 	struct ifaddrs *myaddrs, *ifa;
     if (getifaddrs(&myaddrs) != 0) {
@@ -65,10 +65,10 @@ NetworkHandler::NetworkHandler() {
 			struct sockaddr_in *s4 = (struct sockaddr_in *)ifa->ifa_addr;
 			in_addr_t ipAddress = s4->sin_addr.s_addr;
 
-			std::cout << "Local IP: ";
+			printf("Local IP: ");
 			printIP(ipAddress);
 
-			localIPs.push_back(s4->sin_addr.s_addr);
+			localIPs.push_back(ipAddress);
 		}
     }
 
@@ -99,7 +99,7 @@ bool NetworkHandler::broadcastUnit(LightUnit& unit) {
 	return broadcastMessage(&message);
 }
 
-bool NetworkHandler::sendMessage(const NetworkHandler::ControlMessage* message, unsigned long ip) {
+bool NetworkHandler::sendMessage(const NetworkHandler::ControlMessage* message, uint32_t ip) {
 	struct sockaddr_in address;
 
     memset(&address, '\0', sizeof(struct sockaddr_in));
@@ -122,7 +122,8 @@ NetworkHandler::RecievedMessage NetworkHandler::recieveMessage() {
 	char messageBuffer[messageBufferLength];
 
 	struct sockaddr_storage sourceAddress;
-	socklen_t sourceAddressSize;
+	socklen_t sourceAddressSize = sizeof(struct sockaddr_storage);
+	memset(&sourceAddress, 0, sourceAddressSize);
 
 	int recievedBytes = recvfrom(socketFD, messageBuffer, messageBufferLength, 0, (sockaddr*) &sourceAddress, &sourceAddressSize);
 	if (recievedBytes < (int)sizeof(NetworkHandler::Message)) {
@@ -186,12 +187,12 @@ NetworkHandler::ControlMessage NetworkHandler::buildControlMessage(int type, int
 	return message;
 }
 
-unsigned long NetworkHandler::getIPFromStorage(const struct sockaddr_storage* address) {
+uint32_t NetworkHandler::getIPFromStorage(const struct sockaddr_storage* address) {
 	struct sockaddr_in* sin = (struct sockaddr_in*) address;
 	return sin->sin_addr.s_addr;
 }
 
-void NetworkHandler::printIP(unsigned long ip) {
+void NetworkHandler::printIP(uint32_t ip) {
 	unsigned char* pChar = (unsigned char*)&ip;
-	std::cout << (unsigned int)(pChar[0]) << " " << (unsigned int)(pChar[1]) << " " << (unsigned int)(pChar[2]) << " " << (unsigned int)(pChar[3]) << std::endl;
+	printf("%u %u %u %u\n", pChar[0], pChar[1], pChar[2], pChar[3]);
 }

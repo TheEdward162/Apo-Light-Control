@@ -26,7 +26,7 @@ public:
 	} ControlMessage;
 
 	typedef struct RecievedMessage {
-		unsigned long ip;
+		uint32_t ip;
 		std::chrono::steady_clock::time_point timePoint;
 		Message* pMessage;
 
@@ -51,7 +51,7 @@ public:
 	bool broadcastMessage(const BroadcastMessage* message);
 	bool broadcastUnit(LightUnit& unit);
 
-	bool sendMessage(const ControlMessage* message, unsigned long ip);
+	bool sendMessage(const ControlMessage* message, uint32_t ip);
 
 	BroadcastMessage buildBroadcastMessage(LightUnit& unit);
 	ControlMessage buildControlMessage(int type, int16_t valuesCeiling[], int16_t valuesWall[]);
@@ -67,8 +67,8 @@ private:
 	const int SOCKET_PORT = 55555;
 
 	int socketFD;
-	std::vector<unsigned long> localIPs;
+	std::vector<uint32_t> localIPs;
 
-	unsigned long getIPFromStorage(const struct sockaddr_storage* address);
-	void printIP(unsigned long ip);
+	uint32_t getIPFromStorage(const struct sockaddr_storage* address);
+	void printIP(uint32_t ip);
 };
