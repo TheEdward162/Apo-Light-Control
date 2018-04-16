@@ -7,6 +7,8 @@ set(SOURCE_FILES
         MZApi/MZRegisters.h
         Misc/IOTools.cpp
         Misc/IOTools.h
+		Misc/RWMutex.cpp
+		Misc/RWMutex.h
         Network/NetworkHandler.cpp
         Network/NetworkHandler.h
         Unit/LightUnit.cpp

@@ -10,3 +10,5 @@ cmake-build-debug
 # ignore side stuff
 program.c
 .vscode
+alc_monitor
+up.tar
