@@ -7,6 +7,8 @@
 #include <cstdint>
 #include <cstdlib>
 #include "Mapper.h"
+#include "../MZApi/MZRegisters.h"
+
 
 #define WIDTH 480
 #define HEIGHT 320
@@ -16,7 +18,6 @@ public:
     Display();
     ~Display();
 
-    Mapper mapper;
 
 
 private:
@@ -25,6 +26,8 @@ private:
     void parlcd_write_cmd(uint16_t cmd);
 
     void parlcd_write_data(uint16_t data);
+
+    Mapper mapper = Mapper(SPILED_REG_BASE_PHYS, SPILED_REG_SIZE);
 
     void Redraw();
 };

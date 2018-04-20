@@ -14,8 +14,6 @@
 
 
 DeviceInput::DeviceInput() {
-    mapper = Mapper();
-    mapper.map_phys_address(PARLCD_REG_BASE_PHYS, PARLCD_REG_SIZE, 0);
     knobs_value = 0;
     prev_knobs_value = 0;
 }
@@ -34,7 +32,7 @@ void DeviceInput::handleInput() {
          * cannot reuse previously read value of the location.
          */
         prev_knobs_value = knobs_value;
-        knobs_value = *(volatile uint32_t*)(mem_base + SPILED_REG_KNOBS_8BIT_o);
+        knobs_value = *(volatile uint32_t*)(mapper.mem_base + SPILED_REG_KNOBS_8BIT_o);
 
 
         /*
@@ -50,9 +48,9 @@ void DeviceInput::handleInput() {
 void DeviceInput::update() {
     // get delta
 
-    RGBDelta[0] = getDelta(R(knobs_value), R(prev_knobs_value));
-    RGBDelta[1] = getDelta(G(knobs_value), G(prev_knobs_value));
-    RGBDelta[2] = getDelta(B(knobs_value), B(prev_knobs_value));
+    RGBDelta[0] = getDelta(R(knobs_value), R(prev_knobs_value))/4;
+    RGBDelta[1] = getDelta(G(knobs_value), G(prev_knobs_value))/4;
+    RGBDelta[2] = getDelta(B(knobs_value), B(prev_knobs_value))/4;
     // get press
     RGBPressed[0] = RPress(knobs_value) ? true : false;
     RGBPressed[1] = GPress(knobs_value) ? true : false;

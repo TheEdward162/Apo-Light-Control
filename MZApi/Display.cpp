@@ -6,10 +6,7 @@
 #include "Display.h"
 #include "MZRegisters.h"
 
-void Display::Display() {
-    mapper = Mapper();
-    mapper.map_phys_address(SPILED_REG_BASE_PHYS, SPILED_REG_SIZE, 0);
-}
+void Display::Display() {}
 
 void Display::Redraw() {
     //CLean display

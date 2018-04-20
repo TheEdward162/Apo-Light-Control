@@ -10,11 +10,12 @@
 #include <fcntl.h>
 #include <cstdlib>
 #include "Mapper.h"
-#include "../MZApi/MZRegisters.h"
 
-Mapper::Mapper() {
+Mapper::Mapper(off_t base, size_t size) {
+    region_base = base;
+    region_size = size;
     map_phys_memdev = (char *) "/dev/mem";
-    mem_base = (unsigned char *) map_phys_address(SPILED_REG_BASE_PHYS, SPILED_REG_SIZE, 0);
+    mem_base = (unsigned char *) map_phys_address(region_base, region_size, 0);
     if (mem_base == NULL)
         exit(1);
 }

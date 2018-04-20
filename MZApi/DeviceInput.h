@@ -5,6 +5,8 @@
 #pragma once
 
 #include "Mapper.h"
+#include "../MZApi/MZRegisters.h"
+
 
 #define R(a) ((a & 0xFF0000) >> 16)
 #define G(a) ((a & 0xFF00) >> 8)
@@ -20,8 +22,6 @@ public:
     DeviceInput();
     ~DeviceInput();
 
-    Mapper mapper;
-
     uint32_t knobs_value;
     uint32_t prev_knobs_value;
     char RGBDelta[3];
@@ -30,19 +30,14 @@ public:
     /* Initialize structure to 0 seconds and 200 milliseconds */
     struct timespec loop_delay = {.tv_sec = 0, .tv_nsec = 200 * 1000 * 1000};
 
-        /*
-     * The support function which returns pointer to the virtual
-     * address at which starts remapped physical region in the
-     * process virtual memory space.
-     */
-    void *map_phys_address(off_t region_base, size_t region_size, int opt_cached);
-
     //    The main loop
     void handleInput();
 
     void testDI();
 
 private:
+    Mapper mapper = Mapper(PARLCD_REG_BASE_PHYS, PARLCD_REG_SIZE);
+
     void update();
 
     char getDelta(uint8_t prev, uint8_t act);

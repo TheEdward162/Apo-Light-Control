@@ -8,20 +8,22 @@
 
 class Mapper {
 public:
-    Mapper();
+    Mapper(off_t base, size_t size);
     ~Mapper();
 
     char *map_phys_memdev;
+    unsigned char *mem_base = NULL;
 
-
-/*
-* The support function which returns pointer to the virtual
-* address at which starts remapped physical region in the
-* process virtual memory space.
-*/
-void *map_phys_address(off_t region_base, size_t region_size, int opt_cached);
 
 private:
-    unsigned char *mem_base = NULL;
+    off_t region_base;
+    size_t region_size;
+
+    /*
+    * The support function which returns pointer to the virtual
+    * address at which starts remapped physical region in the
+    * process virtual memory space.
+    */
+    void *map_phys_address(off_t region_base, size_t region_size, int opt_cached);
 
 };
