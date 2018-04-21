@@ -20,6 +20,10 @@ public:
 
     void renderScreen();
 
+    void handleKnobChange(char RGBDelta[3]);
+
+    void handleKnobPress(bool RGBPressed[3]);
+
 private:
     LightUnit unit;
 

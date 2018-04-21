@@ -13,6 +13,10 @@ public:
     // pure virtual function
     virtual void renderScreen() = 0;
 
+    virtual void handleKnobChange(char RGBDelta[3]) = 0;
+
+    virtual void handleKnobPress(bool RGBPressed[3]) = 0;
+
 private:
     int selected = 0;
 

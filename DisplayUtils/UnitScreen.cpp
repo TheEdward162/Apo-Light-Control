@@ -9,6 +9,8 @@ UnitScreen::UnitScreen(Display* display_,  LightUnit& unit_) {
     unit = unit_;
 }
 
-void UnitScreen::renderScreen() {
+void UnitScreen::renderScreen() {}
 
-}
+void UnitScreen::handleKnobChange(char *RGBDelta) {}
+
+void UnitScreen::handleKnobPress(bool *RGBPressed) {}

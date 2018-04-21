@@ -28,5 +28,8 @@ void ListScreen::renderUnitList() {
         display->renderText(x, y, unit.description, display->fgColour);
         y += 16;
     }
-
 }
+
+void ListScreen::handleKnobChange(char *RGBDelta) {}
+
+void ListScreen::handleKnobPress(bool *RGBPressed) {}
