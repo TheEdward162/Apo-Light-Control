@@ -6,7 +6,6 @@
 #include <stdio.h>
 #include <sys/mman.h>
 #include <zconf.h>
-#include <bits/fcntl-linux.h>
 #include <fcntl.h>
 #include <cstdlib>
 #include "Mapper.h"
@@ -15,10 +14,13 @@ Mapper::Mapper(off_t base, size_t size) {
     region_base = base;
     region_size = size;
     map_phys_memdev = (char *) "/dev/mem";
-    mem_base = (unsigned char *) map_phys_address(region_base, region_size, 0);
-    if (mem_base == NULL)
-        exit(1);
+    // TODO uncomment this when ready
+//    mem_base = (unsigned char *) map_phys_address(region_base, region_size, 0);
+//    if (mem_base == NULL)
+//        exit(1);
 }
+
+Mapper::~Mapper() {}
 
 void* Mapper::map_phys_address(off_t region_base, size_t region_size, int opt_cached) {
         unsigned long mem_window_size;
