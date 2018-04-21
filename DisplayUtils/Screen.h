@@ -1,0 +1,21 @@
+//
+// Created by klara on 21.4.18.
+//
+
+#pragma once
+
+#include "../MZApi/Display.h"
+
+class Display;
+
+class Screen {
+public:
+    // pure virtual function
+    virtual void renderScreen() = 0;
+
+private:
+    int selected = 0;
+
+protected:
+    Display* display;
+};

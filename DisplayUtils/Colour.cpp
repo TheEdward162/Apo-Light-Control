@@ -30,3 +30,4 @@ uint16_t Colour::rgb888to565(uint32_t rgb888) {
 
     return (uint16_t) (r | g | b);
 }
+

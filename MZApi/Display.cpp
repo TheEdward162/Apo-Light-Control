@@ -7,20 +7,28 @@
 #include <vector>
 #include "Display.h"
 #include "../Misc/IOTools.h"
+#include "../DisplayUtils/ListScreen.h"
 
 Display::Display(uint16_t bgColour_, uint16_t fgColour_, uint16_t selectColour_, font_descriptor_t font_) {
-    font = font_;
     bgColour = bgColour_;
     fgColour = fgColour_;
     selectColour = selectColour_;
-    lineMax = (HEIGHT - 4)/font.height;
     memset(buffer, bgColour, sizeof(uint16_t) * WIDTH * HEIGHT);
+
+    font = font_;
+    lineMax = (HEIGHT - 4)/font.height;
+
+    screen = new ListScreen(this);
 }
 
 Display::~Display() {}
 
+
+// call this whenever you want to actually display sth.
 void Display::redraw() {
-    //CLean display
+    screen->renderScreen();
+
+    // do it all again because why not
     parlcd_write_cmd(0x2c);
 
     for (int y = 0; y < HEIGHT; ++y) {
@@ -28,6 +36,22 @@ void Display::redraw() {
             parlcd_write_data(buffer[y][x]);
         }
     }
+}
+
+void Display::setFont(font_descriptor_t font_) {
+    font = font_;
+    lineMax = (HEIGHT - 4)/font.height;
+}
+
+void Display::setColours(uint16_t bgColour_, uint16_t fgColour_, uint16_t selectColour_) {
+    bgColour = bgColour_;
+    fgColour = fgColour_;
+    selectColour = selectColour_;
+}
+
+
+void Display::setLightUnits(std::vector<LightUnit>& units) {
+    lightUnits = units;
 }
 
 void Display::parlcd_write_data(uint16_t data) {
@@ -39,19 +63,7 @@ void Display::parlcd_write_cmd(uint16_t cmd) {
 }
 
 void Display::testDisplay() {
-    std::vector<LightUnit> lightUnits = {};
-    char tmp_string[16];
-    // create light units
-    for (int i = 1; i < 8; ++i) {
-        sprintf(tmp_string, "LightUnit #%d", i + 1);
-        lightUnits.push_back(LightUnit(tmp_string));
-        sprintf(tmp_string, "icons/%d.ppm", i%7);
-        IOTools::loadImage16x16(tmp_string, lightUnits[i].image);
-    }
-
-    IOTools::loadImage16x16("icons/heart.ppm", lightUnits[1].image);
-
-    renderUnitList(lightUnits);
+    screen->renderScreen();
     printDisplay();
 
 }
@@ -59,6 +71,18 @@ void Display::testDisplay() {
 bool Display::getBit(uint16_t bits, int position) // position in range 0-15
 {
     return (bits >> position) & 0x1;
+}
+
+void Display::renderRectangle(int left, int top, int right, int bottom, uint16_t color) {
+    for (int rectY = top; rectY < bottom; ++rectY) {
+        for (int rectX = left; rectX < right; ++rectX) {
+            buffer[rectY][rectX] = color;
+        }
+    }
+}
+
+void Display::renderColourSquare(int topX, int topY, uint16_t colour) {
+    renderRectangle(topX + 1, topY + 1, topX + 15, topY + 15, colour);
 }
 
 // TODO make it general so that it works for the proportional font too
@@ -88,26 +112,9 @@ void Display::renderText(int topX, int topY, std::string text, uint16_t colour) 
 
 void Display::renderIcon(uint16_t *buffer_, int topX, int topY) {
     for (int iconY = 0; iconY < 16; ++iconY) {
-        for (int iconX = 0; iconX < 16; ++iconX) {
-            buffer[topY + iconY][topX + iconX] = buffer_[iconY * 16 + iconX];
+        for (int icon_x = 0; icon_x < 16; ++icon_x) {
+            buffer[topY + iconY][topX + icon_x] = buffer_[iconY * 16 + icon_x];
         }
-    }
-}
-
-void Display::renderUnitList(std::vector<LightUnit> units) {
-    LightUnit unit;
-    int y = 2;
-    int x = 2;
-    for (int i = 0; i < units.size(); ++i) {
-        if (i == lineMax) {
-            break;
-        }
-        x = 0;
-        unit = units[i];
-        renderIcon(unit.image, x, y);
-        x+= 18;
-        renderText(x, y, unit.description, fgColour);
-        y += 16;
     }
 }
 
@@ -116,6 +123,7 @@ void Display::printDisplay() {
     // show the result
     for (int y = 0; y < HEIGHT; ++ y) {
         for (int x = 0; x < WIDTH; ++x) {
+
             if (buffer[y][x] == fgColour) {
                 tmp = 'F';
             }
@@ -125,7 +133,7 @@ void Display::printDisplay() {
                 }
                 else {
                     if (buffer[y][x] == selectColour) {
-                        tmp = 'S';
+                        tmp = '|';
                     }
                     else {
                         tmp = '?';

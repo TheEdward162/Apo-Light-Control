@@ -41,7 +41,7 @@ namespace IOTools {
 			shortGreen =  (int)((uint8_t)pixelBuffer[1]) * 6 / 8;
 			shortBlue =  (int)((uint8_t)pixelBuffer[2]) * 5 / 8;
 
-			buffer[i] = ((shortRed & 0b11111) << 11) | ((shortGreen & 0b111111) << 5) | (shortBlue & 0b11111);
+			buffer[i] = (((shortRed & 0b11111) << 11) | ((shortGreen & 0b111111) << 5) | (shortBlue & 0b11111));
 		}
 
 		file.close();
