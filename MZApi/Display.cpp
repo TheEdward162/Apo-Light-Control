@@ -6,12 +6,15 @@
 #include <iostream>
 #include <vector>
 #include "Display.h"
-#include "../Misc/Colour.h"
-#include "../Misc/font_rom8x16.h"
+#include "../Misc/IOTools.h"
 
-Display::Display() {
-    memset(buffer, 0, sizeof(uint16_t) * WIDTH * HEIGHT);
-    font = font_rom8x16;
+Display::Display(uint16_t bgColour_, uint16_t fgColour_, uint16_t selectColour_, font_descriptor_t font_) {
+    font = font_;
+    bgColour = bgColour_;
+    fgColour = fgColour_;
+    selectColour = selectColour_;
+    lineMax = (HEIGHT - 4)/font.height;
+    memset(buffer, bgColour, sizeof(uint16_t) * WIDTH * HEIGHT);
 }
 
 Display::~Display() {}
@@ -36,25 +39,21 @@ void Display::parlcd_write_cmd(uint16_t cmd) {
 }
 
 void Display::testDisplay() {
-    int pos_x, pos_y;
-    pos_x = 2;
-    pos_y = 0;
-    std::vector<std::string> text = {"I <3", "APO", "(JUST KIDDING)"};
-    for (int i = 0; i < text.size(); ++i) {
-        renderText(pos_x, pos_y, text[i], Colour::BLUE);
-        pos_y += font.height;
+    std::vector<LightUnit> lightUnits = {};
+    char tmp_string[16];
+    // create light units
+    for (int i = 1; i < 8; ++i) {
+        sprintf(tmp_string, "LightUnit #%d", i + 1);
+        lightUnits.push_back(LightUnit(tmp_string));
+        sprintf(tmp_string, "icons/%d.ppm", i%7);
+        IOTools::loadImage16x16(tmp_string, lightUnits[i].image);
     }
 
+    IOTools::loadImage16x16("icons/heart.ppm", lightUnits[1].image);
 
-    char tmp;
-    // show the result
-    for (int y = 0; y < HEIGHT; ++ y) {
-        for (int x = 0; x < WIDTH; ++x) {
-            tmp = buffer[y][x] > 0 ? '-' : 'x';
-            printf("%c", tmp);
-        }
-        printf("\n");
-    }
+    renderUnitList(lightUnits);
+    printDisplay();
+
 }
 
 bool Display::getBit(uint16_t bits, int position) // position in range 0-15
@@ -63,25 +62,79 @@ bool Display::getBit(uint16_t bits, int position) // position in range 0-15
 }
 
 // TODO make it general so that it works for the proportional font too
-void Display::renderCharacter(char character, int top_x, int top_y, uint16_t color) {
-    int char_index = font.height*character;
+void Display::renderCharacter(char character, int topX, int topY, uint16_t colour) {
+    int charIndex = font.height*character;
     uint16_t line;
-    bool bit;
 
-    for (int char_y = 0; char_y < font.height; ++char_y) {
-        line = font.bits[char_index+char_y];
-        for (int char_x = 0; char_x < font.maxwidth; ++char_x) {
-            bit = getBit(line, 15 - char_x);
-            buffer[top_y + char_y][top_x + char_x] = bit;
+    for (int charY = 0; charY < font.height; ++charY) {
+        line = font.bits[charIndex+charY];
+        for (int charX = 0; charX < font.maxwidth; ++charX) {
+            if (getBit(line, 15 - charX)) {
+                buffer[topY + charY][topX + charX] = colour;
+            }
         }
     }
 }
 
-void Display::renderText(int top_x, int top_y, std::string text, uint16_t color) {
+
+void Display::renderText(int topX, int topY, std::string text, uint16_t colour) {
     char character;
     for (int i = 0; i < text.size(); ++i) {
         character = text[i];
-        renderCharacter(character, top_x, top_y, color);
-        top_x += 16;
+        renderCharacter(character, topX, topY, colour);
+        topX += 16;
     }
+}
+
+void Display::renderIcon(uint16_t *buffer_, int topX, int topY) {
+    for (int iconY = 0; iconY < 16; ++iconY) {
+        for (int iconX = 0; iconX < 16; ++iconX) {
+            buffer[topY + iconY][topX + iconX] = buffer_[iconY * 16 + iconX];
+        }
+    }
+}
+
+void Display::renderUnitList(std::vector<LightUnit> units) {
+    LightUnit unit;
+    int y = 2;
+    int x = 2;
+    for (int i = 0; i < units.size(); ++i) {
+        if (i == lineMax) {
+            break;
+        }
+        x = 0;
+        unit = units[i];
+        renderIcon(unit.image, x, y);
+        x+= 18;
+        renderText(x, y, unit.description, fgColour);
+        y += 16;
+    }
+}
+
+void Display::printDisplay() {
+    char tmp;
+    // show the result
+    for (int y = 0; y < HEIGHT; ++ y) {
+        for (int x = 0; x < WIDTH; ++x) {
+            if (buffer[y][x] == fgColour) {
+                tmp = 'F';
+            }
+            else {
+                if (buffer[y][x] == bgColour) {
+                    tmp = '-';
+                }
+                else {
+                    if (buffer[y][x] == selectColour) {
+                        tmp = 'S';
+                    }
+                    else {
+                        tmp = '?';
+                    }
+                }
+            }
+            printf("%c", tmp);
+        }
+        printf("\n");
+    }
+    printf("\n\n");
 }

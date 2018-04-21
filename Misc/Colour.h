@@ -9,6 +9,7 @@
 namespace Colour {
     enum {
         BLACK = 0,
+        WHITE = 0xFFFF,
         RED = 0xF800,
         YELLOW = 0xFF80,
         LIME = 0xB7E0,

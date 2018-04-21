@@ -7,11 +7,13 @@
 #include <cstdint>
 #include <cstdlib>
 #include <string>
+#include <vector>
 
 #include "Display.h"
 #include "Mapper.h"
 #include "../Misc/font_types.h"
 #include "../MZApi/MZRegisters.h"
+#include "../Unit/LightUnit.h"
 
 
 #define WIDTH 480
@@ -19,7 +21,7 @@
 
 class Display {
 public:
-    Display();
+    Display(uint16_t bgColour, uint16_t fgColour, uint16_t selectColour, font_descriptor_t font);
     ~Display();
 
     void testDisplay();
@@ -27,9 +29,13 @@ public:
 
 
 private:
-    font_descriptor_t font;
-
     uint16_t buffer[HEIGHT][WIDTH];
+
+    uint16_t fgColour, bgColour, selectColour;
+
+    int lineMax;
+
+    font_descriptor_t font;
 
     void parlcd_write_cmd(uint16_t cmd);
 
@@ -41,8 +47,14 @@ private:
 
     bool getBit(uint16_t bits, int position);
 
-    void renderCharacter(char character, int top_x, int top_y, uint16_t color);
+    void renderCharacter(char character, int topX, int topY, uint16_t colour);
 
-    void renderText(int top_x, int top_y, std::string text, uint16_t color);
+    void renderText(int topX, int topY, std::string text, uint16_t colour);
+
+    void renderIcon(uint16_t *buffer, int topX, int topY);
+
+    void renderUnitList(std::vector<LightUnit> units);
+
+    void printDisplay();
 
 };
