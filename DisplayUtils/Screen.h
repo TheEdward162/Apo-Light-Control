@@ -17,9 +17,8 @@ public:
 
     virtual void handleKnobPress(bool RGBPressed[3]) = 0;
 
-private:
-    int selected = 0;
-
 protected:
     Display* display;
+    int selected = 0;
+
 };
