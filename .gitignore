@@ -2,6 +2,7 @@
 app
 
 # cmake side stuff
+CMakeLists.txt
 cmake-build-debug
 
 # clion stuff
@@ -10,5 +11,7 @@ cmake-build-debug
 # ignore side stuff
 program.c
 .vscode
+display_test.cpp
+
 alc_monitor
 *.tar*
