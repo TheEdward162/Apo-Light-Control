@@ -25,4 +25,5 @@ namespace Colour {
     uint8_t getB(uint32_t rgb);
 
     uint16_t rgb888to565(uint32_t rgb888);
+	uint32_t rgb565to888(uint16_t rgb565);
 };

@@ -4,6 +4,7 @@
 #include <fstream>
 
 #include "IOTools.h"
+#include "../DisplayUtils/Colour.h"
 
 namespace IOTools {
 	bool fileExists(const std::string& path) {
@@ -30,18 +31,12 @@ namespace IOTools {
 		file.get();
 
 		char pixelBuffer[3];
-		int shortRed, shortGreen, shortBlue;
 		for (int i = 0; i < 256; i++) {
 			file.read(pixelBuffer, 3);
 			if (file.gcount() != 3)
 				return false;
 
-			// using RGB 565
-			shortRed = (int)((uint8_t)pixelBuffer[0]) * 5 / 8;
-			shortGreen =  (int)((uint8_t)pixelBuffer[1]) * 6 / 8;
-			shortBlue =  (int)((uint8_t)pixelBuffer[2]) * 5 / 8;
-
-			buffer[i] = (((shortRed & 0b11111) << 11) | ((shortGreen & 0b111111) << 5) | (shortBlue & 0b11111));
+			buffer[i] = Colour::rgb888to565(((uint32_t)(pixelBuffer[0]) << 16) | (pixelBuffer[1] << 8) | pixelBuffer[2]);
 		}
 
 		file.close();

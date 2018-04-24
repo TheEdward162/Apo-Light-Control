@@ -170,14 +170,17 @@ void mainLoop() {
 		display.handleInput(deviceInput.RGBDelta, deviceInput.RGBPressed);
 		printf("%hhi %hhi %hhi", deviceInput.RGBDelta[0], deviceInput.RGBDelta[1], deviceInput.RGBDelta[2]);
 		printf(", %hhi %hhi %hhi\n", deviceInput.RGBPressed[0], deviceInput.RGBPressed[1], deviceInput.RGBPressed[2]);
-		display.redraw();
 #else
 		printf("Current status:\n");
 		for (auto it = unitList.begin(); it != unitList.end(); it++) {
 			std::lock_guard<std::mutex> lock(it->mutex_change);
 			printf("Unix 0x%lx CEIL: 0x%x WALL: 0x%x DESC: %s\n\n", it->ip, it->rgbCeiling, it->rgbWall, it->description);
 		}
+
+		display.handleInput(NULL, NULL);
 #endif
+		display.redraw();
+
 		// enqueue control message
 		if (unitList.size() > 1) {
 			ControlMessageQueue::ControlMessageInfo controlInfo;

@@ -16,6 +16,10 @@
 #include "../Unit/LightUnit.h"
 #include "../DisplayUtils/Screen.h"
 
+#ifndef MZ_BOARD
+	#include <SDL.h>
+#endif
+
 class Screen;
 
 #define WIDTH 480
@@ -50,6 +54,11 @@ public:
 
 private:
     font_descriptor_t font;
+#ifndef MZ_BOARD
+	SDL_Window* sdl_win = NULL;
+	int8_t sdl_knobDeltas[3] = {0, 0, 0};
+	bool sdl_knobPresses[3] = {false, false, false};
+#endif
 
     void parlcd_write_cmd(uint16_t cmd);
     void parlcd_write_data(uint16_t data);

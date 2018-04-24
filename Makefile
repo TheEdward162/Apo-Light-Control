@@ -1,16 +1,18 @@
 CC=g++
-CFLAGS=-Wall -Werror -std=gnu++11
-LIBS=-D_REENTRANT -lpthread
+CFLAGS=-Wall -Werror -std=gnu++11 -D_REENTRANT
+PC_FLAGS=-I/usr/include/SDL2
+LIBS=-lpthread
+PC_LIBS=-lSDL2
 
 SRC=main.cpp Engine.cpp Network/*.cpp Unit/*.cpp Misc/*.cpp MZApi/*.cpp DisplayUtils/*.cpp
 
 default_target: all
 
 all:
-	$(CC) $(CFLAGS) $(LIBS) -o app $(SRC)
+	$(CC) $(CFLAGS) $(PC_FLAGS) $(LIBS) $(PC_LIBS) -o app $(SRC)
 
 board:
-	$(CC) $(CFLAGS) $(LIBS) -DMZ_BOARD -o app $(SRC)
+	$(CC) $(CFLAGS) -DMZ_BOARD $(LIBS) -o app $(SRC)
 
 test:
 	./app "OMG room" test.ppm

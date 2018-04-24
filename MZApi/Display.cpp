@@ -8,6 +8,11 @@
 #include "Display.h"
 #include "../Misc/IOTools.h"
 #include "../DisplayUtils/ListScreen.h"
+#include "../DisplayUtils/Colour.h"
+
+#define R(a) ((a & 0xFF0000) >> 16)
+#define G(a) ((a & 0xFF00) >> 8)
+#define B(a) ((a & 0xFF) >> 0)
 
 Display::Display(uint16_t bgColour_, uint16_t fgColour_, uint16_t selectColour_, font_descriptor_t font_, std::vector<LightUnit>& lightUnits_) : lightUnits(lightUnits_) {
     bgColour = bgColour_;
@@ -19,9 +24,20 @@ Display::Display(uint16_t bgColour_, uint16_t fgColour_, uint16_t selectColour_,
     lineMax = (HEIGHT - 4) / font.height;
 
     screen = new ListScreen(this);
+
+#ifndef MZ_BOARD
+	SDL_Init(SDL_INIT_VIDEO);
+	sdl_win = SDL_CreateWindow("apo-alc", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_SHOWN);
+	SDL_SetWindowTitle(sdl_win, "APO-ALC");
+#endif
 }
 
-Display::~Display() {}
+Display::~Display() {
+#ifndef MZ_BOARD
+	SDL_DestroyWindow(sdl_win);
+	SDL_Quit();
+#endif
+}
 
 
 // call this whenever you want to actually display sth.
@@ -31,7 +47,7 @@ void Display::redraw() {
     
     screen->renderScreen();
 
-    // do it all again because why not
+#ifdef MZ_BOARD
     parlcd_write_cmd(0x2c);
 
     for (int y = 0; y < HEIGHT; ++y) {
@@ -39,6 +55,45 @@ void Display::redraw() {
             parlcd_write_data(buffer[y][x]);
         }
     }
+#else
+	memset(sdl_knobDeltas, 0, 3 * sizeof(int8_t));
+	memset(sdl_knobPresses, 0, 3 * sizeof(bool));
+	for (SDL_Event event; SDL_PollEvent(&event);) {
+        if (event.type == SDL_QUIT)
+			exit(0);
+		
+		if (event.type == SDL_KEYDOWN) {
+			switch (event.key.keysym.sym) {
+				case SDLK_UP:
+					sdl_knobDeltas[0] = 1;
+				break;
+				case SDLK_DOWN:
+					sdl_knobDeltas[0] = -1;
+				break;
+				case SDLK_RIGHT:
+					sdl_knobPresses[0] = true;
+				break;
+			}
+        }
+	}
+
+	// use sdl to display the buffer
+	SDL_Surface *scr = SDL_GetWindowSurface(sdl_win);
+	for (int y = 0; y < scr->h; y++) {
+		for (int x = 0; x < scr->w; x++) {
+			const int idx = (y * scr->w + x) * scr->format->BytesPerPixel;
+			uint8_t *px = (uint8_t*) scr->pixels + idx;
+
+			uint32_t rgb888 = Colour::rgb565to888(buffer[y][x]);
+
+			*(px + scr->format->Rshift / 8) = R(rgb888);
+			*(px + scr->format->Gshift / 8) = G(rgb888);
+			*(px + scr->format->Bshift / 8) = B(rgb888);
+		}
+	}
+	
+	SDL_UpdateWindowSurface(sdl_win);
+#endif
 }
 
 void Display::setFont(font_descriptor_t font_) {
@@ -65,8 +120,7 @@ void Display::testDisplay() {
     printDisplay();
 }
 
-bool Display::getBit(uint16_t bits, int position) // position in range 0-15
-{
+bool Display::getBit(uint16_t bits, int position) { // position in range 0-15
     return (bits >> position) & 0x1;
 }
 
@@ -145,6 +199,11 @@ void Display::printDisplay() {
 }
 
 void Display::handleInput(int8_t rgbDelta[3], bool knobsPressed[3]) {
-    screen->handleKnobChange(rgbDelta);
+#ifdef MZ_BOARD
+ 	screen->handleKnobChange(rgbDelta);
     screen->handleKnobPress(knobsPressed);
+#else
+	screen->handleKnobChange(sdl_knobDeltas);
+    screen->handleKnobPress(sdl_knobPresses);
+#endif
 }

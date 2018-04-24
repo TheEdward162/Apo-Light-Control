@@ -24,9 +24,9 @@ void DeviceInput::update() {
     knobs_value = *(volatile uint32_t*)(mapper.mem_base + SPILED_REG_KNOBS_8BIT_o);
 
     // get delta
-    RGBDelta[0] = getDelta(R(knobs_value), R(prev_knobs_value))/4;
-    RGBDelta[1] = getDelta(G(knobs_value), G(prev_knobs_value))/4;
-    RGBDelta[2] = getDelta(B(knobs_value), B(prev_knobs_value))/4;
+    RGBDelta[0] = getDelta(R(knobs_value), R(prev_knobs_value)) / 4;
+    RGBDelta[1] = getDelta(G(knobs_value), G(prev_knobs_value)) / 4;
+    RGBDelta[2] = getDelta(B(knobs_value), B(prev_knobs_value)) / 4;
     // get press
     RGBPressed[0] = RPress(knobs_value) ? true : false;
     RGBPressed[1] = GPress(knobs_value) ? true : false;
