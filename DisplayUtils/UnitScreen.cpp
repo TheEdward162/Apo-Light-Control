@@ -6,9 +6,8 @@
 #include "UnitScreen.h"
 #include "Colour.h"
 
-UnitScreen::UnitScreen(Display* display_,  LightUnit& unit_) {
+UnitScreen::UnitScreen(Display* display_,  LightUnit& unit_) : unit(unit_){
     display = display_;
-    unit = unit_;
 }
 
 void UnitScreen::renderScreen() {

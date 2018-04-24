@@ -25,7 +25,7 @@ public:
     void handleKnobPress(bool RGBPressed[3]);
 
 private:
-    LightUnit unit;
+    LightUnit& unit;
     std::vector<int> positions = {WALL_R, WALL_G, WALL_B, CEILING_R, CEILING_G, CEILING_B};
     void renderUnitDetail();
     void renderWall(int *sx, int *sy);

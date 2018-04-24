@@ -26,7 +26,7 @@ class Display {
 public:
     void renderRectangle(int left, int top, int right, int bottom, uint16_t color);
 
-    Display(uint16_t bgColour_, uint16_t fgColour_, uint16_t selectColour_, font_descriptor_t font_, std::vector& lightUnits_);
+    Display(uint16_t bgColour_, uint16_t fgColour_, uint16_t selectColour_, font_descriptor_t font_, std::vector<LightUnit>& lightUnits_);
     ~Display();
 
     uint16_t buffer[HEIGHT][WIDTH];
@@ -44,7 +44,7 @@ public:
     void setColours(uint16_t bgColour, uint16_t fgColour, uint16_t selectColour);
 
     void setFont(font_descriptor_t font);
-    
+
     void testDisplay();
 
     void renderColourSquare(int topX, int topY, uint16_t colour);

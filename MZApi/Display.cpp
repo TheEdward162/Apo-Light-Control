@@ -9,7 +9,7 @@
 #include "../Misc/IOTools.h"
 #include "../DisplayUtils/ListScreen.h"
 
-Display::Display(uint16_t bgColour_, uint16_t fgColour_, uint16_t selectColour_, font_descriptor_t font_, std::vector& lightUnits_) : lightUnits(lightUnits_) {
+Display::Display(uint16_t bgColour_, uint16_t fgColour_, uint16_t selectColour_, font_descriptor_t font_, std::vector<LightUnit>& lightUnits_) : lightUnits(lightUnits_) {
     bgColour = bgColour_;
     fgColour = fgColour_;
     selectColour = selectColour_;

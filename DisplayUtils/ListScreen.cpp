@@ -14,7 +14,6 @@ void ListScreen::renderScreen() {
 }
 
 void ListScreen::renderUnitList() {
-    LightUnit unit;
     int y = 2;
     int x;
     display->renderRectangle(0, y, WIDTH, y + 16, display->selectColour);
@@ -23,7 +22,7 @@ void ListScreen::renderUnitList() {
             break;
         }
         x = 2;
-        unit = display->lightUnits[i];
+        LightUnit& unit = display->lightUnits[i];
         display->renderIcon(unit.image, x, y);
         x+= 18;
         display->renderText(x, y, unit.description, display->fgColour);
