@@ -12,3 +12,6 @@ cmake-build-debug
 program.c
 .vscode
 display_test.cpp
+
+alc_monitor
+*.tar*
