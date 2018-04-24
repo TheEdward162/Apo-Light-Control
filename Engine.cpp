@@ -171,11 +171,11 @@ void mainLoop() {
 		printf("%hhi %hhi %hhi", deviceInput.RGBDelta[0], deviceInput.RGBDelta[1], deviceInput.RGBDelta[2]);
 		printf(", %hhi %hhi %hhi\n", deviceInput.RGBPressed[0], deviceInput.RGBPressed[1], deviceInput.RGBPressed[2]);
 #else
-		printf("Current status:\n");
-		for (auto it = unitList.begin(); it != unitList.end(); it++) {
-			std::lock_guard<std::mutex> lock(it->mutex_change);
-			printf("Unix 0x%lx CEIL: 0x%x WALL: 0x%x DESC: %s\n\n", it->ip, it->rgbCeiling, it->rgbWall, it->description);
-		}
+		// printf("Current status:\n");
+		// for (auto it = unitList.begin(); it != unitList.end(); it++) {
+		// 	std::lock_guard<std::mutex> lock(it->mutex_change);
+		// 	printf("Unix 0x%lx CEIL: 0x%x WALL: 0x%x DESC: %s\n\n", it->ip, it->rgbCeiling, it->rgbWall, it->description);
+		// }
 
 		display.handleInput(NULL, NULL);
 #endif
@@ -223,12 +223,8 @@ int Engine::run(int argc, char** argv) {
 	unitList.push_back(LightUnit(argv[1]));
 	IOTools::loadImage16x16(argv[2], unitList[0].image);
 
-	// UI thread will handle drawing and input events
-	// Network thread will handle network communication, e.g. broadcasting and control messaging
-	// Synchronization will work with mutexes on shared objects
-	// 
-	// Communication between threads (e.g. send control message, please, etc.) needs to be figured out.
-	// Promises? Sounds... *puts on glasses* ...promising. Check http://en.cppreference.com/w/cpp/thread/promise
+	unitList.push_back(LightUnit("Dummy unit"));
+	IOTools::loadImage16x16("icons/4.ppm", unitList[1].image);
 
 	// stateless death event, yaay
 	std::promise<void> deathPromise;

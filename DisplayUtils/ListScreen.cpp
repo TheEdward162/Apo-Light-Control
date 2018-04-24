@@ -14,34 +14,45 @@ void ListScreen::renderScreen() {
 }
 
 void ListScreen::renderUnitList() {
-    int y = 2;
-    int x;
-    display->renderRectangle(0, y, WIDTH, y + 16, display->selectColour);
-    for (size_t i = selected; i < display->lightUnits.size(); ++i) {
-        if ((i - selected) == display->lineMax) {
-            break;
-        }
-        x = 2;
-		
-        LightUnit& unit = display->lightUnits[i];
-        display->renderIcon(unit.image, x, y);
-        x+= 18;
-        display->renderText(x, y, unit.description, display->fgColour);
+	int x = 0;
+	int y = 2;
+    size_t unitsCount = display->lightUnits.size();
+	size_t shiftCount = 0;
+	if (selected > display->lineMax) {
+		shiftCount = display->lineMax - selected;
+	}
+
+	for (size_t i = shiftCount; i < unitsCount; i++) {
+		x = 2;
+
+		if (i == selected) {
+			display->renderRectangle(0, y, WIDTH, y + 16, display->selectColour);
+		}
+
+		display->renderIcon(display->lightUnits[i].image, x, y);
+		x += 18;
+
+		display->renderText(x, y, display->lightUnits[i].description, display->fgColour);
         y += 16;
-    }
+	}
+
+	renderNagivationLine();
 }
 
 void ListScreen::handleKnobChange(int8_t *RGBDelta) {
-    selected += RGBDelta[0];
-	if (selected < 0) {
-		selected = 0;
-	} else if (selected > display->lightUnits.size() - 1) {
+    int tempSelected = (int)selected + RGBDelta[0];
+	if (tempSelected < 0) {
+		tempSelected = 0;
+	}
+	selected = (size_t)tempSelected;
+	
+	if (selected > display->lightUnits.size() - 1) {
 		selected = display->lightUnits.size() - 1;
 	}
 }
 
 void ListScreen::handleKnobPress(bool *RGBPressed) {
     if (RGBPressed[0]) {
-        display->screen = new UnitScreen(display, display->lightUnits[selected]);
+		display->toUnitScreen(display->lightUnits[selected]);
     }
 }

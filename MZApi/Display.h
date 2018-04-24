@@ -26,20 +26,28 @@ class Screen;
 #define HEIGHT 320
 
 class Display {
-
 public:
+	enum ScreenType {
+		LIST_SCREEN,
+		UNIT_SCREEN
+	};
+
     void renderRectangle(int left, int top, int right, int bottom, uint16_t color);
 
     Display(uint16_t bgColour_, uint16_t fgColour_, uint16_t selectColour_, font_descriptor_t font_, std::vector<LightUnit>& lightUnits_);
     ~Display();
 
-    uint16_t buffer[HEIGHT][WIDTH];
+	std::vector<LightUnit>& lightUnits;
+    
+	uint16_t buffer[HEIGHT][WIDTH];
     uint16_t fgColour, bgColour, selectColour;
-    std::vector<LightUnit>& lightUnits;
     size_t lineMax;
-    Screen* screen;
 
     void handleInput(int8_t rgbDelta[3], bool knobsPressed[3]);
+	
+	void toListScreen();
+	void toUnitScreen(LightUnit& unit);
+	bool toPreviousScreen();
 
     void setColours(uint16_t bgColour, uint16_t fgColour, uint16_t selectColour);
     void setFont(font_descriptor_t font);
@@ -59,6 +67,8 @@ private:
 	int8_t sdl_knobDeltas[3] = {0, 0, 0};
 	bool sdl_knobPresses[3] = {false, false, false};
 #endif
+	Screen* currentScreen = NULL;
+	Screen* previousScreen = NULL;
 
     void parlcd_write_cmd(uint16_t cmd);
     void parlcd_write_data(uint16_t data);

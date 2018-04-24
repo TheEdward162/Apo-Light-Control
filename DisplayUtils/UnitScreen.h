@@ -6,13 +6,12 @@
 
 #include "Screen.h"
 
-#define CEILING_R 3
-#define CEILING_G 4
-#define CEILING_B 5
-#define WALL_R 7
-#define WALL_G 8
-#define WALL_B 9
-
+#define WALL_R 3
+#define WALL_G 4
+#define WALL_B 5
+#define CEILING_R 7
+#define CEILING_G 8
+#define CEILING_B 9
 
 class UnitScreen: public Screen {
 public:

@@ -15,7 +15,7 @@ board:
 	$(CC) $(CFLAGS) -DMZ_BOARD $(LIBS) -o app $(SRC)
 
 test:
-	./app "OMG room" test.ppm
+	./app "OMG room" icons/1.ppm
 
 pack:
 	tar -zcvf pack.tar.gz Makefile *.cpp *.h Network/* Unit/* Misc/* Misc/* MZApi/* DsiplayUtils/* icons/*

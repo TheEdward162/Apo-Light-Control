@@ -4,6 +4,8 @@
 
 #include <cstring>
 #include "UnitScreen.h"
+
+#include "ListScreen.h"
 #include "Colour.h"
 
 UnitScreen::UnitScreen(Display* display,  LightUnit& unit_) : unit(unit_){
@@ -17,15 +19,23 @@ void UnitScreen::renderScreen() {
 
 void UnitScreen::handleKnobChange(int8_t *RGBDelta) {
     if (RGBDelta[0]) {
-        void updateSelected(int delta);
+        updateSelected(RGBDelta[0]);
     }
 }
 
-void UnitScreen::handleKnobPress(bool *RGBPressed) {}
+void UnitScreen::handleKnobPress(bool *RGBPressed) {
+	if (RGBPressed[2]) {
+		display->toPreviousScreen();
+	}
+}
 
 void UnitScreen::renderUnitDetail() {
     int y = 2;
     int x = 0;
+
+	// render selected
+	size_t selectedY = y + positions[selected] * 16;
+	display->renderRectangle(0, selectedY, WIDTH, selectedY + 16, display->selectColour);
 
     // render title
     display->renderText(x, y, unit.description, display->fgColour);

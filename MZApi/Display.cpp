@@ -8,6 +8,7 @@
 #include "Display.h"
 #include "../Misc/IOTools.h"
 #include "../DisplayUtils/ListScreen.h"
+#include "../DisplayUtils/UnitScreen.h"
 #include "../DisplayUtils/Colour.h"
 
 #define R(a) ((a & 0xFF0000) >> 16)
@@ -23,7 +24,7 @@ Display::Display(uint16_t bgColour_, uint16_t fgColour_, uint16_t selectColour_,
     font = font_;
     lineMax = (HEIGHT - 4) / font.height;
 
-    screen = new ListScreen(this);
+    currentScreen = new ListScreen(this);
 
 #ifndef MZ_BOARD
 	SDL_Init(SDL_INIT_VIDEO);
@@ -33,6 +34,9 @@ Display::Display(uint16_t bgColour_, uint16_t fgColour_, uint16_t selectColour_,
 }
 
 Display::~Display() {
+	delete previousScreen;
+	delete currentScreen;
+
 #ifndef MZ_BOARD
 	SDL_DestroyWindow(sdl_win);
 	SDL_Quit();
@@ -45,7 +49,7 @@ void Display::redraw() {
 	// clear buffer
     memset(buffer, bgColour, sizeof(uint16_t) * WIDTH * HEIGHT);
     
-    screen->renderScreen();
+    currentScreen->renderScreen();
 
 #ifdef MZ_BOARD
     parlcd_write_cmd(0x2c);
@@ -57,7 +61,7 @@ void Display::redraw() {
     }
 #else
 	memset(sdl_knobDeltas, 0, 3 * sizeof(int8_t));
-	memset(sdl_knobPresses, 0, 3 * sizeof(bool));
+	memset(sdl_knobPresses, false, 3 * sizeof(bool));
 	for (SDL_Event event; SDL_PollEvent(&event);) {
         if (event.type == SDL_QUIT)
 			exit(0);
@@ -65,13 +69,16 @@ void Display::redraw() {
 		if (event.type == SDL_KEYDOWN) {
 			switch (event.key.keysym.sym) {
 				case SDLK_UP:
-					sdl_knobDeltas[0] = 1;
+					sdl_knobDeltas[0] = -1;
 				break;
 				case SDLK_DOWN:
-					sdl_knobDeltas[0] = -1;
+					sdl_knobDeltas[0] = 1;
 				break;
 				case SDLK_RIGHT:
 					sdl_knobPresses[0] = true;
+				break;
+				case SDLK_LEFT:
+					sdl_knobPresses[2] = true;
 				break;
 			}
         }
@@ -116,7 +123,7 @@ void Display::parlcd_write_cmd(uint16_t cmd) {
 }
 
 void Display::testDisplay() {
-    screen->renderScreen();
+    currentScreen->renderScreen();
     printDisplay();
 }
 
@@ -200,10 +207,36 @@ void Display::printDisplay() {
 
 void Display::handleInput(int8_t rgbDelta[3], bool knobsPressed[3]) {
 #ifdef MZ_BOARD
- 	screen->handleKnobChange(rgbDelta);
-    screen->handleKnobPress(knobsPressed);
+ 	currentScreen->handleKnobChange(rgbDelta);
+    currentScreen->handleKnobPress(knobsPressed);
 #else
-	screen->handleKnobChange(sdl_knobDeltas);
-    screen->handleKnobPress(sdl_knobPresses);
+	currentScreen->handleKnobChange(sdl_knobDeltas);
+    currentScreen->handleKnobPress(sdl_knobPresses);
 #endif
+}
+
+void Display::toListScreen() {
+	if (previousScreen != NULL) {
+		delete previousScreen;
+	}
+	previousScreen = currentScreen;
+	currentScreen = new ListScreen(this);
+}
+void Display::toUnitScreen(LightUnit& unit) {
+	if (previousScreen != NULL) {
+		delete previousScreen;
+	}
+	previousScreen = currentScreen;
+	currentScreen = new UnitScreen(this, unit);
+}
+bool Display::toPreviousScreen() {
+	if (previousScreen != NULL) {
+		Screen* temp = currentScreen;
+		currentScreen = previousScreen;
+		previousScreen = temp;
+
+		return true;
+	}
+
+	return false;
 }

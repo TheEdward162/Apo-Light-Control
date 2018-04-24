@@ -10,6 +10,8 @@ class Display;
 
 class Screen {
 public:
+	virtual ~Screen() = 0;
+
     // pure virtual function
     virtual void renderScreen() = 0;
 
@@ -20,4 +22,5 @@ protected:
     Display* display;
     size_t selected = 0;
 
+	void renderNagivationLine();
 };
