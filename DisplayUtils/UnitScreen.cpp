@@ -21,7 +21,9 @@ void UnitScreen::handleKnobChange(char *RGBDelta) {
     }
 }
 
-void UnitScreen::handleKnobPress(bool *RGBPressed) {}
+void UnitScreen::handleKnobPress(bool *RGBPressed) {
+    printf("%d", RGBPressed[2]);
+}
 
 void UnitScreen::renderUnitDetail() {
     int y = 2;
@@ -46,8 +48,7 @@ void UnitScreen::renderWall(int *sx, int *sy) {
     // title
     display->renderColourSquare(*sx, *sy, Colour::rgb888to565(unit.rgbWall));
     *sx += 16*2;
-    char * text = "Wall RGB:";
-    display->renderText(*sx, *sy, text, display->fgColour);
+    display->renderText(*sx, *sy, "Wall RGB:", display->fgColour);
     *sx = 0;
     *sy += 16;
 
@@ -59,8 +60,7 @@ void UnitScreen::renderCeiling(int *sx, int *sy) {
     // title
     display->renderColourSquare(*sx, *sy, Colour::rgb888to565(unit.rgbCeiling));
     *sx += 16*2;
-    char * text = "Ceiling RGB:";
-    display->renderText(*sx, *sy, text, display->fgColour);
+    display->renderText(*sx, *sy, "Ceiling RGB:", display->fgColour);
     *sx = 0;
     *sy += 16;
 
@@ -90,7 +90,7 @@ void UnitScreen::renderRGBText(int *sx, int *sy, uint32_t rgb) {
 
 void UnitScreen::updateSelected(int delta) {
     if (delta > 0) {
-        if (selected < positions.size() - 1) {
+        if (selected < (int) (positions.size() - 1)) {
             selected++;
         }
     }

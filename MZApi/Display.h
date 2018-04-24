@@ -64,7 +64,7 @@ private:
 
     void renderCharacter(char character, int topX, int topY, uint16_t colour);
 
-    Mapper mapper = Mapper(SPILED_REG_BASE_PHYS, SPILED_REG_SIZE);
+    Mapper mapper = Mapper(PARLCD_REG_BASE_PHYS, PARLCD_REG_SIZE);
 
     void redraw();
 
