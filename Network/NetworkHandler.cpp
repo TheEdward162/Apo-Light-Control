@@ -4,8 +4,6 @@
 // for close
 #include <unistd.h>
 #include <sys/socket.h>
-// for inet_addr, hton, ntoh
-#include <arpa/inet.h>
 #include <ifaddrs.h>
 
 #include <stdexcept>
@@ -108,8 +106,10 @@ bool NetworkHandler::sendMessage(const NetworkHandler::ControlMessage* message, 
     address.sin_addr.s_addr = ip;
 
 	int result = sendto(socketFD, message, sizeof(NetworkHandler::ControlMessage), 0, (struct sockaddr*) &address, sizeof(struct sockaddr_in));
-	if (result < 0)
+	if (result < 0) {
+		perror("Could not send control message");
 		return false;
+	}
 
 	return true;
 }
@@ -181,8 +181,8 @@ NetworkHandler::ControlMessage NetworkHandler::buildControlMessage(int type, int
 	message.version = VERSION;
 	message.msgType = htonl(type);
 
-	memcpy(&message.valuesCeiling, valuesCeiling, 3);
-	memcpy(&message.valuesWall, valuesWall, 3);
+	memcpy(&message.valuesCeiling, valuesCeiling, 3 * sizeof(int16_t));
+	memcpy(&message.valuesWall, valuesWall, 3 * sizeof(int16_t));
 
 	return message;
 }
@@ -194,5 +194,5 @@ uint32_t NetworkHandler::getIPFromStorage(const struct sockaddr_storage* address
 
 void NetworkHandler::printIP(uint32_t ip) {
 	unsigned char* pChar = (unsigned char*)&ip;
-	printf("%u %u %u %u\n", pChar[0], pChar[1], pChar[2], pChar[3]);
+	printf("%u: %u %u %u %u\n", ip, pChar[0], pChar[1], pChar[2], pChar[3]);
 }

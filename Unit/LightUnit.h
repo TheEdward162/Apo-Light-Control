@@ -17,7 +17,7 @@
 class LightUnit {
 public:
 	LightUnit();
-	LightUnit(LightUnit&& move);
+	LightUnit(LightUnit&& other);
 	LightUnit(const char description[16]);
 	LightUnit(unsigned long ip, const char description[16], const uint16_t image[256]);
 	LightUnit(unsigned long ip, const char description[16], const uint16_t image[256], uint32_t rgbCeiling, uint32_t rgbWall);

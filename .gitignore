@@ -11,4 +11,4 @@ cmake-build-debug
 program.c
 .vscode
 alc_monitor
-up.tar
+*.tar*

@@ -12,6 +12,7 @@
 
 #include "Misc/IOTools.h"
 #include "Misc/RWMutex.h"
+#include "Misc/ControlMessageQueue.h"
 
 #include "Unit/LightUnit.h"
 #include "Network/NetworkHandler.h"
@@ -26,6 +27,8 @@ LightUnit thisUnit;
 
 std::vector<LightUnit> unitList;
 RWMutex mutexUnitList;
+
+ControlMessageQueue controlQueue;
 
 std::thread networkThread;
 
@@ -107,9 +110,6 @@ void NetworkThreadHandleControlMessage(NetworkHandler::RecievedMessage* recieved
 }
 
 void NetworkThreadRun(std::future<void> death) {
-	long a = 0x01020304;
-	printf("%hhx %hhx %hhx %hhx\n", ((char*) &a)[0], ((char*) &a)[1], ((char*) &a)[2], ((char*) &a)[3]);
-
 	// init sockets
 	NetworkHandler networkHandler = NetworkHandler();
 
@@ -120,10 +120,27 @@ void NetworkThreadRun(std::future<void> death) {
 
 		// send control messages
 		// this should be done through some kind of a synchronized (mutexed) queue that gets filled from UI thread
-	
+
+		// this loop runs for the rest of the broadcastInterval to use the time between broadcasts
+		// it recieves broadcasts and control messages from the network, checks command message
+		// queue that gets filled from UI thread and sends them
 		auto sinceLastTimePoint = std::chrono::steady_clock::now() - lastTimePoint;
 		while (sinceLastTimePoint < broadcastInterval) {
-			// recieve broadcasts and control messages for some time
+			// send control messages
+			if (controlQueue.hasChanged()) {
+				while (controlQueue.size() > 0) {
+					// fetch controlMessageInfo
+					ControlMessageQueue::ControlMessageInfo controlMessageInfo = controlQueue.dequeue();
+
+					// send control message
+					NetworkHandler::ControlMessage message = networkHandler.buildControlMessage(controlMessageInfo.type, controlMessageInfo.valuesCeiling, controlMessageInfo.valuesWall);
+					if (!networkHandler.sendMessage(&message, controlMessageInfo.ip)) {
+						perror("Could not send control message");
+					}
+				}
+			}
+
+			// recieve broadcasts and control messages
 			NetworkHandler::RecievedMessage recievedMessage = networkHandler.recieveMessage();
 			if (recievedMessage.ip != 0) {
 				std::cout << std::endl << "Recieved message from ";
@@ -151,21 +168,35 @@ void mainLoop() {
 		// draw pretty pictures
 
 		mutexUnitList.lockRead();
-
 		std::cout << "Current status: " << std::endl;
 
 		std::lock_guard<std::mutex> lock(thisUnit.mutex_change);
 		std::cout << "Unit 0x" << std::hex << thisUnit.ip << " CEIL: 0x"  << thisUnit.rgbCeiling << " WALL: 0x" << thisUnit.rgbWall << " DESC: " << thisUnit.description << std::endl;
 		lock.~lock_guard();
 
+		uint32_t lastIP = 0;
 		for (auto it = unitList.begin(); it != unitList.end(); it++) {
 			std::lock_guard<std::mutex> lock(it->mutex_change);
+			lastIP = it->ip;
 			std::cout << "Unit 0x" << it->ip << " CEIL: 0x" << it->rgbCeiling << " WALL: 0x" << it->rgbWall << " DESC: " << it->description << std::endl;
 		}
 		std::cout << std::dec << std::endl;
 
 		mutexUnitList.unlockRead();
 
+		// enqueue control message
+		ControlMessageQueue::ControlMessageInfo controlInfo;
+		memset(&controlInfo, 0, sizeof(ControlMessageQueue::ControlMessageInfo));
+
+		controlInfo.ip = lastIP;
+		controlInfo.type = 1;
+		controlInfo.valuesWall[0] = 0;
+		controlInfo.valuesWall[1] = 255;
+		controlInfo.valuesWall[2] = 1;
+
+		controlQueue.enqueue(controlInfo);
+
+		// sleep
 		std::this_thread::sleep_for(std::chrono::milliseconds(300));
 		if (--iters < 0)
 			break;

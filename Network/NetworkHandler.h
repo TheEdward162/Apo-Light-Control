@@ -1,5 +1,10 @@
 #pragma once
 
+#include <cstdint>
+
+// for inet_addr, hton, ntoh
+#include <arpa/inet.h>
+
 #include <chrono>
 #include <vector>
 
@@ -59,8 +64,8 @@ public:
 	RecievedMessage recieveMessage();
 
 private:
-	const uint32_t MAGIC_NUMBER = 0xDEADBEEF;
-	const uint32_t VERSION = 0x00010000;
+	const uint32_t MAGIC_NUMBER = htonl(0xDEADBEEF);
+	const uint32_t VERSION = htonl(0x00010000);
 
 	const int SOCKET_TIMEOUT_SECONDS = 0;
 	const int SOCKET_TIMEOUT_uSECONDS = 100;
