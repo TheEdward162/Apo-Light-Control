@@ -1,8 +1,8 @@
 CC=g++
 CFLAGS=-Wall -Werror -std=gnu++11
-LIBS=
+LIBS=-D_REENTRANT -lpthread
 
-SRC=main.cpp Engine.cpp Network/NetworkHandler.cpp Unit/LightUnit.cpp Misc/IOTools.cpp
+SRC=main.cpp Engine.cpp Network/NetworkHandler.cpp Unit/LightUnit.cpp Misc/IOTools.cpp MZApi/DeviceInput.cpp
 
 default_target: all
 

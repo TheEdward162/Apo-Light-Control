@@ -1,5 +1,5 @@
 #pragma once
 
 namespace Engine {
-	void run(int argc, char** argv);
+	int run(int argc, char** argv);
 }
