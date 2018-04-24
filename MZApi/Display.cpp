@@ -9,7 +9,7 @@
 #include "../Misc/IOTools.h"
 #include "../DisplayUtils/ListScreen.h"
 
-Display::Display(uint16_t bgColour_, uint16_t fgColour_, uint16_t selectColour_, font_descriptor_t font_) {
+Display::Display(uint16_t bgColour_, uint16_t fgColour_, uint16_t selectColour_, font_descriptor_t font_, std::vector& lightUnits_) : lightUnits(lightUnits_) {
     bgColour = bgColour_;
     fgColour = fgColour_;
     selectColour = selectColour_;
@@ -47,11 +47,6 @@ void Display::setColours(uint16_t bgColour_, uint16_t fgColour_, uint16_t select
     bgColour = bgColour_;
     fgColour = fgColour_;
     selectColour = selectColour_;
-}
-
-
-void Display::setLightUnits(std::vector<LightUnit>& units) {
-    lightUnits = units;
 }
 
 void Display::parlcd_write_data(uint16_t data) {
