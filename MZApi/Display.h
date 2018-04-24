@@ -30,46 +30,33 @@ public:
     ~Display();
 
     uint16_t buffer[HEIGHT][WIDTH];
-
     uint16_t fgColour, bgColour, selectColour;
-
     std::vector<LightUnit>& lightUnits;
-
-    int lineMax;
-
+    size_t lineMax;
     Screen* screen;
 
-    void handleInput(char rgbDelta[3],bool knobsPressed[3]);
+    void handleInput(int8_t rgbDelta[3], bool knobsPressed[3]);
 
     void setColours(uint16_t bgColour, uint16_t fgColour, uint16_t selectColour);
-
     void setFont(font_descriptor_t font);
 
     void testDisplay();
 
     void renderColourSquare(int topX, int topY, uint16_t colour);
-
     void renderText(int topX, int topY, std::string text, uint16_t colour);
-
     void renderIcon(uint16_t *buffer, int topX, int topY);
 
-
+    void redraw();
 
 private:
     font_descriptor_t font;
 
     void parlcd_write_cmd(uint16_t cmd);
-
     void parlcd_write_data(uint16_t data);
-
     void renderCharacter(char character, int topX, int topY, uint16_t colour);
 
     Mapper mapper = Mapper(PARLCD_REG_BASE_PHYS, PARLCD_REG_SIZE);
 
-    void redraw();
-
     bool getBit(uint16_t bits, int position);
-
     void printDisplay();
-
 };

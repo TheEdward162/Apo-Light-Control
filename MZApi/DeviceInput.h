@@ -22,24 +22,15 @@ public:
     DeviceInput();
     ~DeviceInput();
 
-    uint32_t knobs_value;
-    uint32_t prev_knobs_value;
-    char RGBDelta[3];
+    int8_t RGBDelta[3];
     bool RGBPressed[3];
-
-    /* Initialize structure to 0 seconds and 200 milliseconds */
-    struct timespec loop_delay = {.tv_sec = 0, .tv_nsec = 200 * 1000 * 1000};
-
-    //    The main loop
-    void handleInput();
-
-    void testDI();
-
-private:
-    Mapper mapper = Mapper(PARLCD_REG_BASE_PHYS, PARLCD_REG_SIZE);
 
     void update();
 
-    char getDelta(uint8_t prev, uint8_t act);
+private:
+	uint32_t knobs_value;
+    uint32_t prev_knobs_value;
+    Mapper mapper = Mapper(SPILED_REG_BASE_PHYS, SPILED_REG_SIZE);
 
+    int8_t getDelta(uint8_t prev, uint8_t act);
 };

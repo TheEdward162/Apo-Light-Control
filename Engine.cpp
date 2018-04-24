@@ -18,13 +18,17 @@
 #include "Network/NetworkHandler.h"
 #include "MZApi/DeviceInput.h"
 
+#include "MZApi/Display.h"
+#include "DisplayUtils/Colour.h"
+#include "DisplayUtils/font_rom8x16.h"
+
+// #define MZ_BOARD 1
+
 // constants
 const auto broadcastInterval = std::chrono::seconds(1);
 const auto broadcastDeleteInterval = std::chrono::seconds(5);
 
 // variables
-LightUnit thisUnit;
-
 std::vector<LightUnit> unitList;
 RWMutex mutexUnitList;
 
@@ -33,14 +37,10 @@ ControlMessageQueue controlQueue;
 std::thread networkThread;
 
 DeviceInput deviceInput;
+Display display = Display(Colour::WHITE, Colour::BLACK, Colour::LIME, font_rom8x16, unitList);
 
 void NetworkThreadHandleBroadcastMessage(NetworkHandler::RecievedMessage* recievedMessage) {
 	NetworkHandler::BroadcastMessage* bMessage = (NetworkHandler::BroadcastMessage*) recievedMessage->pMessage;
-	std::cout << "Description: ";
-	for (int i = 0; i < 16; i++) {
-		std::cout << bMessage->description[i];
-	}
-	std::cout << std::endl;
 
 	mutexUnitList.lockRead();
 	// find out if this unit is in the list
@@ -49,7 +49,8 @@ void NetworkThreadHandleBroadcastMessage(NetworkHandler::RecievedMessage* reciev
 	bool hasAnyToRemove = false;
 	auto timeNow = std::chrono::steady_clock::now();
 
-	for (size_t i = 0; i < unitList.size(); i++) {
+	// start at one, skipping thisUnit
+	for (size_t i = 1; i < unitList.size(); i++) {
 		if (unitList[i].ip == recievedMessage->ip) {
 			contextUnit = &unitList[i];
 			
@@ -88,8 +89,8 @@ void NetworkThreadHandleBroadcastMessage(NetworkHandler::RecievedMessage* reciev
 	if (hasAnyToRemove) {
 		mutexUnitList.lockWrite();
 
-		unitList.erase(std::remove_if(unitList.begin(), unitList.end(),
-			[timeNow](const LightUnit &u) { return timeNow -  u.lastNetworkBroadcastTimePoint >= broadcastDeleteInterval; }),
+		unitList.erase(std::remove_if(unitList.begin() + 1, unitList.end(),
+			[timeNow](const LightUnit &u) { return timeNow - u.lastNetworkBroadcastTimePoint >= broadcastDeleteInterval; }),
 			unitList.end());
 
 		mutexUnitList.unlockWrite();
@@ -98,15 +99,12 @@ void NetworkThreadHandleBroadcastMessage(NetworkHandler::RecievedMessage* reciev
 void NetworkThreadHandleControlMessage(NetworkHandler::RecievedMessage* recievedMessage) {
 	NetworkHandler::ControlMessage* cMessage = (NetworkHandler::ControlMessage*) recievedMessage->pMessage;
 	if (cMessage->msgType == 1) {
-		std::cout << "Changes: " << std::endl;
+		printf("Changes:\n");
 	} else {
-		std::cout << "Sets: " << std::endl;
+		printf("Sets:\n");
 	}
-	std::cout << "Ceiling: " << "R: " << cMessage->valuesCeiling[0] << "G: " << cMessage->valuesCeiling[1] << "B: " << cMessage->valuesCeiling[2] << std::endl;
-	std::cout << "Wall: " << "R: " << cMessage->valuesWall[0] << "G: " << cMessage->valuesWall[1] << "B: " << cMessage->valuesWall[2] << std::endl;
-	std::cout << std::endl;
-	
-	std::cout << std::endl;
+	printf("Ceiling: R: %d G: %d B: %d\n", cMessage->valuesCeiling[0], cMessage->valuesCeiling[1], cMessage->valuesCeiling[2]);
+	printf("Wall: R: %d G: %d B: %d\n\n", cMessage->valuesWall[0], cMessage->valuesWall[1], cMessage->valuesWall[2]);
 }
 
 void NetworkThreadRun(std::future<void> death) {
@@ -115,7 +113,7 @@ void NetworkThreadRun(std::future<void> death) {
 
 	while (death.wait_for(std::chrono::seconds(0)) != std::future_status::ready) {
 		// send broadcast
-		networkHandler.broadcastUnit(thisUnit);
+		networkHandler.broadcastUnit(unitList[0]);
 		auto lastTimePoint = std::chrono::steady_clock::now();
 
 		// send control messages
@@ -161,48 +159,44 @@ void NetworkThreadRun(std::future<void> death) {
 
 void mainLoop() {
 	// main loop
-	int iters = 20;
 	while (true) {
-		// poll input events
-		// execute stuff based on user input
-		// draw pretty pictures
 
 		mutexUnitList.lockRead();
-		std::cout << "Current status: " << std::endl;
+#ifdef MZ_BOARD
+		// input
+		deviceInput.update();
 
-		std::lock_guard<std::mutex> lock(thisUnit.mutex_change);
-		std::cout << "Unit 0x" << std::hex << thisUnit.ip << " CEIL: 0x"  << thisUnit.rgbCeiling << " WALL: 0x" << thisUnit.rgbWall << " DESC: " << thisUnit.description << std::endl;
-		lock.~lock_guard();
-
-		uint32_t lastIP = 0;
+		// draw pretty pictures
+		display.handleInput(deviceInput.RGBDelta, deviceInput.RGBPressed);
+		printf("%hhi %hhi %hhi", deviceInput.RGBDelta[0], deviceInput.RGBDelta[1], deviceInput.RGBDelta[2]);
+		printf(", %hhi %hhi %hhi\n", deviceInput.RGBPressed[0], deviceInput.RGBPressed[1], deviceInput.RGBPressed[2]);
+		display.redraw();
+#else
+		printf("Current status:\n");
 		for (auto it = unitList.begin(); it != unitList.end(); it++) {
 			std::lock_guard<std::mutex> lock(it->mutex_change);
-			lastIP = it->ip;
-			std::cout << "Unit 0x" << it->ip << " CEIL: 0x" << it->rgbCeiling << " WALL: 0x" << it->rgbWall << " DESC: " << it->description << std::endl;
+			printf("Unix 0x%lx CEIL: 0x%x WALL: 0x%x DESC: %s\n\n", it->ip, it->rgbCeiling, it->rgbWall, it->description);
 		}
-		std::cout << std::dec << std::endl;
+#endif
+		// enqueue control message
+		if (unitList.size() > 1) {
+			ControlMessageQueue::ControlMessageInfo controlInfo;
+			memset(&controlInfo, 0, sizeof(ControlMessageQueue::ControlMessageInfo));
+
+			controlInfo.ip = unitList[1].ip;
+			controlInfo.type = 1;
+			controlInfo.valuesWall[0] = 0;
+			controlInfo.valuesWall[1] = 255;
+			controlInfo.valuesWall[2] = 126;
+
+			controlQueue.enqueue(controlInfo);
+		}
 
 		mutexUnitList.unlockRead();
 
-		// enqueue control message
-		ControlMessageQueue::ControlMessageInfo controlInfo;
-		memset(&controlInfo, 0, sizeof(ControlMessageQueue::ControlMessageInfo));
-
-		controlInfo.ip = lastIP;
-		controlInfo.type = 1;
-		controlInfo.valuesWall[0] = 0;
-		controlInfo.valuesWall[1] = 255;
-		controlInfo.valuesWall[2] = 1;
-
-		controlQueue.enqueue(controlInfo);
-
 		// sleep
-		std::this_thread::sleep_for(std::chrono::milliseconds(300));
-		if (--iters < 0)
-			break;
+		// std::this_thread::sleep_for(std::chrono::milliseconds(10));
 	}
-
-	// Boss is coming around. Quick, pretend to be working...
 }
 
 void checkArguments(int argc, char** argv) {
@@ -222,12 +216,9 @@ void checkArguments(int argc, char** argv) {
 int Engine::run(int argc, char** argv) {
 	checkArguments(argc, argv);
 	
-	// init this unit object
-	thisUnit = LightUnit(argv[1]);
-	IOTools::loadImage16x16(argv[2], thisUnit.image);
-
-	// for test.ppm this should be 0000 f800 07e0 001f ffff
-	// printf("%x %x %x %x %x\n", thisUnit.image[0], thisUnit.image[1], thisUnit.image[2], thisUnit.image[3], thisUnit.image[4]);
+	// init this unit object which will be always the first element of the unitList vector
+	unitList.push_back(LightUnit(argv[1]));
+	IOTools::loadImage16x16(argv[2], unitList[0].image);
 
 	// UI thread will handle drawing and input events
 	// Network thread will handle network communication, e.g. broadcasting and control messaging
@@ -239,9 +230,8 @@ int Engine::run(int argc, char** argv) {
 	// stateless death event, yaay
 	std::promise<void> deathPromise;
 	networkThread = std::thread(NetworkThreadRun, deathPromise.get_future());
-
+	
 	deviceInput = DeviceInput();
-	deviceInput.testDI();
 
 	mainLoop();
 

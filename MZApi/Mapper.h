@@ -11,9 +11,7 @@ public:
     Mapper(off_t base, size_t size);
     ~Mapper();
 
-    char *map_phys_memdev;
     unsigned char *mem_base = NULL;
-
 
 private:
     off_t region_base;
@@ -24,6 +22,6 @@ private:
     * address at which starts remapped physical region in the
     * process virtual memory space.
     */
-    void *map_phys_address(off_t region_base, size_t region_size, int opt_cached);
+    void map_phys_address(off_t region_base, size_t region_size, int opt_cached);
 
 };

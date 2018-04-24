@@ -8,21 +8,22 @@
 #include <zconf.h>
 #include <fcntl.h>
 #include <cstdlib>
+#include <stdexcept>
+
 #include "Mapper.h"
 
 Mapper::Mapper(off_t base, size_t size) {
     region_base = base;
     region_size = size;
-    map_phys_memdev = (char *) "/dev/mem";
-    // TODO uncomment this when ready
-//    mem_base = (unsigned char *) map_phys_address(region_base, region_size, 0);
-//    if (mem_base == NULL)
-//        exit(1);
+
+#ifdef MZ_BOARD
+    map_phys_address(region_base, region_size, 0);
+#endif
 }
 
 Mapper::~Mapper() {}
 
-void* Mapper::map_phys_address(off_t region_base, size_t region_size, int opt_cached) {
+void Mapper::map_phys_address(off_t region_base, size_t region_size, int opt_cached) {
         unsigned long mem_window_size;
         unsigned long pagesize;
         unsigned char *mm;
@@ -33,10 +34,9 @@ void* Mapper::map_phys_address(off_t region_base, size_t region_size, int opt_ca
          * Open a device ("/dev/mem") representing physical address space
          * in POSIX systems
          */
-        fd = open(map_phys_memdev, O_RDWR | (!opt_cached? O_SYNC: 0));
+        fd = open("/dev/mem", O_RDWR | (!opt_cached? O_SYNC: 0));
         if (fd < 0) {
-            fprintf(stderr, "cannot open %s\n", map_phys_memdev);
-            return NULL;
+			throw std::runtime_error("Could not open /dev/mem");
         }
 
         /*
@@ -45,7 +45,7 @@ void* Mapper::map_phys_address(off_t region_base, size_t region_size, int opt_ca
          * size used by running operating system at given CPU architecture.
          * 4kB are used by Linux running on ARM, ARM64, x86 and x86_64 systems.
          */
-        pagesize=sysconf(_SC_PAGESIZE);
+        pagesize = sysconf(_SC_PAGESIZE);
 
         /*
          * Extend physical region start address and size to page size boundaries
@@ -63,8 +63,7 @@ void* Mapper::map_phys_address(off_t region_base, size_t region_size, int opt_ca
 
         /* Report failure if the mmap is not allowed for given file or its region */
         if (mm == MAP_FAILED) {
-            fprintf(stderr,"mmap error\n");
-            return NULL;
+            throw std::runtime_error("Could not mmap");
         }
 
         /*
@@ -73,5 +72,5 @@ void* Mapper::map_phys_address(off_t region_base, size_t region_size, int opt_ca
          */
         mem = mm + (region_base & (pagesize-1));
 
-        return mem;
+       mem_base = mem;
 }

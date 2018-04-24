@@ -6,8 +6,8 @@
 #include "UnitScreen.h"
 #include "Colour.h"
 
-UnitScreen::UnitScreen(Display* display_,  LightUnit& unit_) : unit(unit_){
-    display = display_;
+UnitScreen::UnitScreen(Display* display,  LightUnit& unit_) : unit(unit_){
+    this->display = display;
 }
 
 void UnitScreen::renderScreen() {
@@ -15,15 +15,13 @@ void UnitScreen::renderScreen() {
 }
 
 
-void UnitScreen::handleKnobChange(char *RGBDelta) {
+void UnitScreen::handleKnobChange(int8_t *RGBDelta) {
     if (RGBDelta[0]) {
         void updateSelected(int delta);
     }
 }
 
-void UnitScreen::handleKnobPress(bool *RGBPressed) {
-    printf("%d", RGBPressed[2]);
-}
+void UnitScreen::handleKnobPress(bool *RGBPressed) {}
 
 void UnitScreen::renderUnitDetail() {
     int y = 2;
@@ -47,7 +45,7 @@ void UnitScreen::renderUnitDetail() {
 void UnitScreen::renderWall(int *sx, int *sy) {
     // title
     display->renderColourSquare(*sx, *sy, Colour::rgb888to565(unit.rgbWall));
-    *sx += 16*2;
+    *sx += 16 * 2;
     display->renderText(*sx, *sy, "Wall RGB:", display->fgColour);
     *sx = 0;
     *sy += 16;
@@ -59,7 +57,7 @@ void UnitScreen::renderWall(int *sx, int *sy) {
 void UnitScreen::renderCeiling(int *sx, int *sy) {
     // title
     display->renderColourSquare(*sx, *sy, Colour::rgb888to565(unit.rgbCeiling));
-    *sx += 16*2;
+    *sx += 16 * 2;
     display->renderText(*sx, *sy, "Ceiling RGB:", display->fgColour);
     *sx = 0;
     *sy += 16;
@@ -90,7 +88,7 @@ void UnitScreen::renderRGBText(int *sx, int *sy, uint32_t rgb) {
 
 void UnitScreen::updateSelected(int delta) {
     if (delta > 0) {
-        if (selected < (int) (positions.size() - 1)) {
+        if (selected < positions.size() - 1) {
             selected++;
         }
     }

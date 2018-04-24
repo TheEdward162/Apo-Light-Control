@@ -5,8 +5,8 @@
 #include "ListScreen.h"
 #include "UnitScreen.h"
 
-ListScreen::ListScreen(Display *display_) {
-    display = display_;
+ListScreen::ListScreen(Display* display) {
+    this->display = display;
 }
 
 void ListScreen::renderScreen() {
@@ -17,11 +17,12 @@ void ListScreen::renderUnitList() {
     int y = 2;
     int x;
     display->renderRectangle(0, y, WIDTH, y + 16, display->selectColour);
-    for (int i = selected; i < display->lightUnits.size(); ++i) {
+    for (size_t i = selected; i < display->lightUnits.size(); ++i) {
         if ((i - selected) == display->lineMax) {
             break;
         }
         x = 2;
+		
         LightUnit& unit = display->lightUnits[i];
         display->renderIcon(unit.image, x, y);
         x+= 18;
@@ -30,10 +31,13 @@ void ListScreen::renderUnitList() {
     }
 }
 
-void ListScreen::handleKnobChange(char *RGBDelta) {
-    selected+= RGBDelta[0];
-    selected = selected < 0 ? 0 : selected;
-    selected = selected > display->lightUnits.size() - 1 ?  display->lightUnits.size() - 1 : selected;
+void ListScreen::handleKnobChange(int8_t *RGBDelta) {
+    selected += RGBDelta[0];
+	if (selected < 0) {
+		selected = 0;
+	} else if (selected > display->lightUnits.size() - 1) {
+		selected = display->lightUnits.size() - 1;
+	}
 }
 
 void ListScreen::handleKnobPress(bool *RGBPressed) {

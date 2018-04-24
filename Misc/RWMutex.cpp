@@ -23,8 +23,8 @@ void RWMutex::lockRead() {
 void RWMutex::unlockRead() {
 	if (counter == 1) {
 		write.unlock();
-		counter--;
 	}
+	counter--;
 }
 
 void RWMutex::lockWrite() {

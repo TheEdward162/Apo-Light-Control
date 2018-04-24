@@ -16,7 +16,7 @@ Display::Display(uint16_t bgColour_, uint16_t fgColour_, uint16_t selectColour_,
     memset(buffer, bgColour, sizeof(uint16_t) * WIDTH * HEIGHT);
 
     font = font_;
-    lineMax = (HEIGHT - 4)/font.height;
+    lineMax = (HEIGHT - 4) / font.height;
 
     screen = new ListScreen(this);
 }
@@ -26,6 +26,9 @@ Display::~Display() {}
 
 // call this whenever you want to actually display sth.
 void Display::redraw() {
+	// clear buffer
+    memset(buffer, bgColour, sizeof(uint16_t) * WIDTH * HEIGHT);
+    
     screen->renderScreen();
 
     // do it all again because why not
@@ -50,17 +53,16 @@ void Display::setColours(uint16_t bgColour_, uint16_t fgColour_, uint16_t select
 }
 
 void Display::parlcd_write_data(uint16_t data) {
-    *(volatile uint16_t *) (PARLCD_REG_BASE_PHYS + PARLCD_REG_DATA_o) = (uint16_t) data;
+    *(volatile uint16_t *) (mapper.mem_base + PARLCD_REG_DATA_o) = (uint16_t) data;
 }
 
 void Display::parlcd_write_cmd(uint16_t cmd) {
-    *(volatile uint16_t *) (PARLCD_REG_BASE_PHYS + PARLCD_REG_CMD_o) = (uint16_t) cmd;
+    *(volatile uint16_t *) (mapper.mem_base + PARLCD_REG_CMD_o) = (uint16_t) cmd;
 }
 
 void Display::testDisplay() {
     screen->renderScreen();
     printDisplay();
-
 }
 
 bool Display::getBit(uint16_t bits, int position) // position in range 0-15
@@ -85,7 +87,7 @@ void Display::renderCharacter(char character, int topX, int topY, uint16_t colou
     int charIndex = font.height*character;
     uint16_t line;
 
-    for (int charY = 0; charY < font.height; ++charY) {
+    for (size_t charY = 0; charY < font.height; ++charY) {
         line = font.bits[charIndex+charY];
         for (int charX = 0; charX < font.maxwidth; ++charX) {
             if (getBit(line, 15 - charX)) {
@@ -98,7 +100,7 @@ void Display::renderCharacter(char character, int topX, int topY, uint16_t colou
 
 void Display::renderText(int topX, int topY, std::string text, uint16_t colour) {
     char character;
-    for (int i = 0; i < text.size(); ++i) {
+    for (size_t i = 0; i < text.size(); ++i) {
         character = text[i];
         renderCharacter(character, topX, topY, colour);
         topX += 16;
@@ -142,7 +144,7 @@ void Display::printDisplay() {
     printf("\n\n");
 }
 
-void Display::handleInput(char rgbDelta[3], bool knobsPressed[3]) {
+void Display::handleInput(int8_t rgbDelta[3], bool knobsPressed[3]) {
     screen->handleKnobChange(rgbDelta);
     screen->handleKnobPress(knobsPressed);
 }
