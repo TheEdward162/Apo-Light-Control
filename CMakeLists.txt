@@ -43,14 +43,18 @@ set(SOURCE_FILES_DISPLAY
         MZApi/Mapper.h
         MZApi/DeviceInput.cpp
         MZApi/DeviceInput.h
-        MZApi/Display.cpp
-        MZApi/Display.h
         DisplayUtils/Colour.h
         DisplayUtils/Colour.cpp
+        MZApi/Display.cpp
+        MZApi/Display.h
         DisplayUtils/font_types.h
         DisplayUtils/font_rom8x16.h
         DisplayUtils/font_prop14x16.h
-        DisplayUtils/Screen.h DisplayUtils/ListScreen.h DisplayUtils/UnitScreen.h DisplayUtils/ListScreen.cpp DisplayUtils/UnitScreen.cpp)
+        DisplayUtils/Screen.h
+        DisplayUtils/ListScreen.h
+        DisplayUtils/UnitScreen.h
+        DisplayUtils/ListScreen.cpp
+        DisplayUtils/UnitScreen.cpp)
 
 add_executable(APO_SEM ${SOURCE_FILES})
 add_executable(DISPLAY_TEST ${SOURCE_FILES_DISPLAY})

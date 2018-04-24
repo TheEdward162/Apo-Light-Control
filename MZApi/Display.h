@@ -39,6 +39,8 @@ public:
 
     Screen* screen;
 
+    void handleInput(char rgbDelta[3],bool knobsPressed[3]);
+
     void setColours(uint16_t bgColour, uint16_t fgColour, uint16_t selectColour);
 
     void setFont(font_descriptor_t font);

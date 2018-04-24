@@ -20,5 +20,9 @@ namespace Colour {
         BROWN = 0x9260
     };
 
+    uint8_t getR(uint32_t rgb);
+    uint8_t getG(uint32_t rgb);
+    uint8_t getB(uint32_t rgb);
+
     uint16_t rgb888to565(uint32_t rgb888);
 };

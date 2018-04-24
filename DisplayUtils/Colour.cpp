@@ -8,17 +8,6 @@
 #define G(a) ((a & 0xFF00) >> 8)
 #define B(a) ((a & 0xFF) >> 0)
 
-//Colour::BLACK = 0;
-//Colour::WHITE = 0xFFFF;
-//Colour::RED = 0xF800;
-//Colour::YELLOW = 0xFF80;
-//Colour::LIME = 0xB7E0;
-//Colour::GREEN = 0x4FE0;
-//Colour::DARK_GREEN = 0x4D24;
-//Colour::BLUE = 0x051F;
-//Colour::PURPLE = 0x881F;
-//Colour::BROWN = 0x9260;
-
 uint16_t Colour::rgb888to565(uint32_t rgb888) {
     uint8_t red = R(rgb888);
     uint8_t green = G(rgb888);
@@ -31,3 +20,14 @@ uint16_t Colour::rgb888to565(uint32_t rgb888) {
     return (uint16_t) (r | g | b);
 }
 
+uint8_t Colour::getR(uint32_t rgb) {
+    return R(rgb);
+}
+
+uint8_t Colour::getG(uint32_t rgb) {
+    return G(rgb);
+}
+
+uint8_t Colour::getB(uint32_t rgb) {
+    return B(rgb);
+}

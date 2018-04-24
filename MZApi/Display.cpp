@@ -146,3 +146,8 @@ void Display::printDisplay() {
     }
     printf("\n\n");
 }
+
+void Display::handleInput(char rgbDelta[3], bool knobsPressed[3]) {
+    screen->handleKnobChange(rgbDelta);
+    screen->handleKnobPress(knobsPressed);
+}
