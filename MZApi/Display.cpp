@@ -11,17 +11,13 @@
 #include "../DisplayUtils/UnitScreen.h"
 #include "../DisplayUtils/Colour.h"
 
-#define R(a) ((a & 0xFF0000) >> 16)
-#define G(a) ((a & 0xFF00) >> 8)
-#define B(a) ((a & 0xFF) >> 0)
-
-Display::Display(uint16_t bgColour_, uint16_t fgColour_, uint16_t selectColour_, font_descriptor_t font_, std::vector<LightUnit>& lightUnits_) : lightUnits(lightUnits_) {
-    bgColour = bgColour_;
-    fgColour = fgColour_;
-    selectColour = selectColour_;
+Display::Display(uint16_t bgColour, uint16_t fgColour, uint16_t selectColour, font_descriptor_t font) {
+    this->bgColour = bgColour;
+    this->fgColour = fgColour;
+    this->selectColour = selectColour;
     memset(buffer, bgColour, sizeof(uint16_t) * WIDTH * HEIGHT);
 
-    font = font_;
+    this->font = font;
     lineMax = (HEIGHT - 4) / font.height;
 
     currentScreen = new ListScreen(this);
@@ -68,6 +64,7 @@ void Display::redraw() {
 		
 		if (event.type == SDL_KEYDOWN) {
 			switch (event.key.keysym.sym) {
+				// most intuitive mapping for arrow keys
 				case SDLK_UP:
 					sdl_knobDeltas[0] = -1;
 				break;
@@ -79,6 +76,39 @@ void Display::redraw() {
 				break;
 				case SDLK_LEFT:
 					sdl_knobPresses[2] = true;
+				break;
+
+				// simulate red knob
+				case SDLK_KP_1:
+					sdl_knobDeltas[0] = -1;
+				break;
+				case SDLK_KP_2:
+					sdl_knobPresses[0] = true;
+				break;
+				case SDLK_KP_3:
+					sdl_knobDeltas[0] = 1;
+				break;
+
+				// simulate green knob
+				case SDLK_KP_4:
+					sdl_knobDeltas[1] = -1;
+				break;
+				case SDLK_KP_5:
+					sdl_knobPresses[1] = true;
+				break;
+				case SDLK_KP_6:
+					sdl_knobDeltas[1] = 1;
+				break;
+
+				// simulate blue knob
+				case SDLK_KP_7:
+					sdl_knobDeltas[2] = -1;
+				break;
+				case SDLK_KP_8:
+					sdl_knobPresses[2] = true;
+				break;
+				case SDLK_KP_9:
+					sdl_knobDeltas[2] = 1;
 				break;
 			}
         }
@@ -93,9 +123,9 @@ void Display::redraw() {
 
 			uint32_t rgb888 = Colour::rgb565to888(buffer[y][x]);
 
-			*(px + scr->format->Rshift / 8) = R(rgb888);
-			*(px + scr->format->Gshift / 8) = G(rgb888);
-			*(px + scr->format->Bshift / 8) = B(rgb888);
+			*(px + scr->format->Rshift / 8) = Colour::getR(rgb888);
+			*(px + scr->format->Gshift / 8) = Colour::getG(rgb888);
+			*(px + scr->format->Bshift / 8) = Colour::getB(rgb888);
 		}
 	}
 	
@@ -103,15 +133,15 @@ void Display::redraw() {
 #endif
 }
 
-void Display::setFont(font_descriptor_t font_) {
-    font = font_;
-    lineMax = (HEIGHT - 4)/font.height;
+void Display::setFont(font_descriptor_t font) {
+    this->font = font;
+    lineMax = (HEIGHT - 4) / font.height;
 }
 
-void Display::setColours(uint16_t bgColour_, uint16_t fgColour_, uint16_t selectColour_) {
-    bgColour = bgColour_;
-    fgColour = fgColour_;
-    selectColour = selectColour_;
+void Display::setColours(uint16_t bgColour, uint16_t fgColour, uint16_t selectColour) {
+    this->bgColour = bgColour;
+    this->fgColour = fgColour;
+    this->selectColour = selectColour;
 }
 
 void Display::parlcd_write_data(uint16_t data) {
@@ -140,7 +170,7 @@ void Display::renderRectangle(int left, int top, int right, int bottom, uint16_t
 }
 
 void Display::renderColourSquare(int topX, int topY, uint16_t colour) {
-    renderRectangle(topX + 1, topY + 1, topX + 15, topY + 15, colour);
+    renderRectangle(topX + 1, topY + 1, topX + 14, topY + 14, colour);
 }
 
 // TODO make it general so that it works for the proportional font too
@@ -216,24 +246,26 @@ void Display::handleInput(int8_t rgbDelta[3], bool knobsPressed[3]) {
 }
 
 void Display::toListScreen() {
-	if (previousScreen != NULL) {
-		delete previousScreen;
-	}
+	delete previousScreen;
 	previousScreen = currentScreen;
 	currentScreen = new ListScreen(this);
 }
 void Display::toUnitScreen(LightUnit& unit) {
-	if (previousScreen != NULL) {
-		delete previousScreen;
-	}
+	delete previousScreen;
 	previousScreen = currentScreen;
 	currentScreen = new UnitScreen(this, unit);
 }
-bool Display::toPreviousScreen() {
+bool Display::toPreviousScreen(bool keepAlive) {
 	if (previousScreen != NULL) {
-		Screen* temp = currentScreen;
-		currentScreen = previousScreen;
-		previousScreen = temp;
+		if (keepAlive) {
+			Screen* temp = currentScreen;
+			currentScreen = previousScreen;
+			previousScreen = temp;
+		} else {
+			delete currentScreen;
+			currentScreen = previousScreen;
+			previousScreen = NULL;
+		}
 
 		return true;
 	}

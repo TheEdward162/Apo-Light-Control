@@ -3,7 +3,6 @@
 
 #include <algorithm>
 #include <iostream>
-#include <vector>
 #include <chrono>
 #include <thread>
 #include <future>
@@ -12,9 +11,7 @@
 
 #include "Misc/IOTools.h"
 #include "Misc/RWMutex.h"
-#include "Misc/ControlMessageQueue.h"
 
-#include "Unit/LightUnit.h"
 #include "Network/NetworkHandler.h"
 #include "MZApi/DeviceInput.h"
 
@@ -28,16 +25,18 @@
 const auto broadcastInterval = std::chrono::seconds(1);
 const auto broadcastDeleteInterval = std::chrono::seconds(5);
 
+using namespace Engine;
+
 // variables
-std::vector<LightUnit> unitList;
+std::vector<LightUnit> Engine::unitList;
 RWMutex mutexUnitList;
 
-ControlMessageQueue controlQueue;
+ControlMessageQueue Engine::controlQueue;
 
 std::thread networkThread;
 
 DeviceInput deviceInput;
-Display display = Display(Colour::WHITE, Colour::BLACK, Colour::LIME, font_rom8x16, unitList);
+Display display = Display(Colour::WHITE, Colour::BLACK, Colour::LIME, font_rom8x16);
 
 void NetworkThreadHandleBroadcastMessage(NetworkHandler::RecievedMessage* recievedMessage) {
 	NetworkHandler::BroadcastMessage* bMessage = (NetworkHandler::BroadcastMessage*) recievedMessage->pMessage;
@@ -45,23 +44,14 @@ void NetworkThreadHandleBroadcastMessage(NetworkHandler::RecievedMessage* reciev
 	mutexUnitList.lockRead();
 	// find out if this unit is in the list
 	LightUnit* contextUnit = NULL;
-	// also check if there are any old units that need to be removed
-	bool hasAnyToRemove = false;
-	auto timeNow = std::chrono::steady_clock::now();
 
 	// start at one, skipping thisUnit
 	for (size_t i = 1; i < unitList.size(); i++) {
 		if (unitList[i].ip == recievedMessage->ip) {
 			contextUnit = &unitList[i];
-			
-			if (hasAnyToRemove)
-				break;
-		} else if (timeNow - unitList[i].lastNetworkBroadcastTimePoint >= broadcastDeleteInterval) {
-			hasAnyToRemove = true;
-
-			if (contextUnit != NULL)
-				break;
+			break;
 		}
+
 	}
 	
 	if (contextUnit == NULL) {
@@ -85,16 +75,6 @@ void NetworkThreadHandleBroadcastMessage(NetworkHandler::RecievedMessage* reciev
 	}
 
 	mutexUnitList.unlockRead();
-
-	if (hasAnyToRemove) {
-		mutexUnitList.lockWrite();
-
-		unitList.erase(std::remove_if(unitList.begin() + 1, unitList.end(),
-			[timeNow](const LightUnit &u) { return timeNow - u.lastNetworkBroadcastTimePoint >= broadcastDeleteInterval; }),
-			unitList.end());
-
-		mutexUnitList.unlockWrite();
-	}
 }
 void NetworkThreadHandleControlMessage(NetworkHandler::RecievedMessage* recievedMessage) {
 	NetworkHandler::ControlMessage* cMessage = (NetworkHandler::ControlMessage*) recievedMessage->pMessage;
@@ -116,8 +96,30 @@ void NetworkThreadRun(std::future<void> death) {
 		networkHandler.broadcastUnit(unitList[0]);
 		auto lastTimePoint = std::chrono::steady_clock::now();
 
-		// send control messages
-		// this should be done through some kind of a synchronized (mutexed) queue that gets filled from UI thread
+		// check for units to remove
+		mutexUnitList.lockRead();
+		bool hasAnyToRemove = false;
+		auto timeNow = std::chrono::steady_clock::now();
+		auto timePast = timeNow - broadcastDeleteInterval;
+		for (size_t i = 1; i < unitList.size(); i++) {
+			if (unitList[i].counter_readers == 0 && unitList[i].lastNetworkBroadcastTimePoint <= timePast) {
+				hasAnyToRemove = true;
+				break;
+			}
+		}
+		mutexUnitList.unlockRead();
+
+		if (hasAnyToRemove) {
+			mutexUnitList.lockWrite();
+
+			unitList.erase(std::remove_if(unitList.begin() + 1, unitList.end(),
+				[timePast](const LightUnit &u) {
+						return u.counter_readers == 0 && u.lastNetworkBroadcastTimePoint <= timePast;
+					}),
+				unitList.end());
+
+			mutexUnitList.unlockWrite();
+		}
 
 		// this loop runs for the rest of the broadcastInterval to use the time between broadcasts
 		// it recieves broadcasts and control messages from the network, checks command message
@@ -181,20 +183,6 @@ void mainLoop() {
 #endif
 		display.redraw();
 
-		// enqueue control message
-		if (unitList.size() > 1) {
-			ControlMessageQueue::ControlMessageInfo controlInfo;
-			memset(&controlInfo, 0, sizeof(ControlMessageQueue::ControlMessageInfo));
-
-			controlInfo.ip = unitList[1].ip;
-			controlInfo.type = 1;
-			controlInfo.valuesWall[0] = 0;
-			controlInfo.valuesWall[1] = 255;
-			controlInfo.valuesWall[2] = 126;
-
-			controlQueue.enqueue(controlInfo);
-		}
-
 		mutexUnitList.unlockRead();
 
 		// sleep
@@ -218,13 +206,18 @@ void checkArguments(int argc, char** argv) {
 }
 int Engine::run(int argc, char** argv) {
 	checkArguments(argc, argv);
+
+	unitList.reserve(5);
 	
 	// init this unit object which will be always the first element of the unitList vector
-	unitList.push_back(LightUnit(argv[1]));
+	unitList.emplace_back(argv[1]);
 	IOTools::loadImage16x16(argv[2], unitList[0].image);
 
-	unitList.push_back(LightUnit("Dummy unit"));
-	IOTools::loadImage16x16("icons/4.ppm", unitList[1].image);
+	for (int i = 0; i < 20; i++) {
+		unitList.emplace_back( ("Dummy unit " + std::to_string(i + 1)).c_str() );
+		IOTools::loadImage16x16("icons/" + std::to_string((i + 1) % 7) + ".ppm", unitList[i + 1].image);
+		unitList[i + 1].rgbWall = (uint32_t)std::chrono::steady_clock::now().time_since_epoch().count();
+	}
 
 	// stateless death event, yaay
 	std::promise<void> deathPromise;

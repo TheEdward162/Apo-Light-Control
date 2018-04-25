@@ -34,10 +34,8 @@ public:
 
     void renderRectangle(int left, int top, int right, int bottom, uint16_t color);
 
-    Display(uint16_t bgColour_, uint16_t fgColour_, uint16_t selectColour_, font_descriptor_t font_, std::vector<LightUnit>& lightUnits_);
+    Display(uint16_t bgColour, uint16_t fgColour, uint16_t selectColour, font_descriptor_t font);
     ~Display();
-
-	std::vector<LightUnit>& lightUnits;
     
 	uint16_t buffer[HEIGHT][WIDTH];
     uint16_t fgColour, bgColour, selectColour;
@@ -47,7 +45,7 @@ public:
 	
 	void toListScreen();
 	void toUnitScreen(LightUnit& unit);
-	bool toPreviousScreen();
+	bool toPreviousScreen(bool keepAlive=false);
 
     void setColours(uint16_t bgColour, uint16_t fgColour, uint16_t selectColour);
     void setFont(font_descriptor_t font);

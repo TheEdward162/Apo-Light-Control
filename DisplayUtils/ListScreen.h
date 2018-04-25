@@ -18,4 +18,6 @@ public:
 
 private:
     void renderUnitList();
+
+	size_t scrollOffset = 0;
 };
