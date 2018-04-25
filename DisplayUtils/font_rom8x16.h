@@ -9480,6 +9480,7 @@ static font_bits_t rom8x16_bits[] = {
 
 };
 
+#pragma GCC diagnostic ignored "-Wwrite-strings"
 /* Exported structure definition. */
 font_descriptor_t font_rom8x16 = {
 	"rom8x16",
@@ -9492,3 +9493,4 @@ font_descriptor_t font_rom8x16 = {
 	0,
 	0
 };
+#pragma GCC diagnostic pop

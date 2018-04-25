@@ -4,15 +4,7 @@
 
 #include <chrono>
 #include <mutex>
-
-#define R(a) ((a & 0xFF0000) >> 16)
-#define G(a) ((a & 0xFF00) >> 8)
-#define B(a) ((a & 0xFF) >> 0)
-
-#define setR(a, v) (a = ((a & ~0xFF0000) | (v << 16)))
-#define setG(a, v) (a = ((a & ~0xFF00) | (v << 8)))
-#define setB(a, v) (a = ((a & ~0xFF) | (v << 0)))
-
+#include <atomic>
 
 class LightUnit {
 public:
@@ -35,4 +27,5 @@ public:
 	std::chrono::steady_clock::time_point lastNetworkBroadcastTimePoint;
 	// prevents both networking and UI from changing this simultaneously
 	mutable std::mutex mutex_change;
+	std::atomic_uint32_t counter_readers;
 };

@@ -170,7 +170,7 @@ NetworkHandler::BroadcastMessage NetworkHandler::buildBroadcastMessage(LightUnit
 	message.rgbWall = unit.rgbWall;
 
 	memcpy(&message.description, &unit.description, 16);
-	memcpy(&message.image, &unit.image, 256);
+	memcpy(&message.image, &unit.image, 256 * sizeof(uint16_t));
 
 	return message;
 }
