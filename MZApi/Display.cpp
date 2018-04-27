@@ -5,26 +5,28 @@
 #include <cstring>
 #include <iostream>
 #include <vector>
+#include <algorithm>
+
 #include "Display.h"
 #include "../Misc/IOTools.h"
+#include "../DisplayUtils/Colour.h"
 #include "../DisplayUtils/ListScreen.h"
 #include "../DisplayUtils/UnitScreen.h"
-#include "../DisplayUtils/Colour.h"
+#include "../DisplayUtils/NyanScreen.h"
 
 Display::Display(uint16_t bgColour, uint16_t fgColour, uint16_t selectColour, font_descriptor_t font) {
     this->bgColour = bgColour;
     this->fgColour = fgColour;
     this->selectColour = selectColour;
-    memset(buffer, bgColour, sizeof(uint16_t) * WIDTH * HEIGHT);
+    memset(buffer, bgColour, sizeof(uint16_t) * Display::width * Display::height);
 
-    this->font = font;
-    lineMax = (HEIGHT - 4) / font.height;
+	setFont(font);
 
     currentScreen = new ListScreen(this);
 
 #ifndef MZ_BOARD
 	SDL_Init(SDL_INIT_VIDEO);
-	sdl_win = SDL_CreateWindow("apo-alc", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_SHOWN);
+	sdl_win = SDL_CreateWindow("apo-alc", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, Display::width, Display::height, SDL_WINDOW_SHOWN);
 	SDL_SetWindowTitle(sdl_win, "APO-ALC");
 #endif
 }
@@ -42,16 +44,13 @@ Display::~Display() {
 
 // call this whenever you want to actually display sth.
 void Display::redraw() {
-	// clear buffer
-    memset(buffer, bgColour, sizeof(uint16_t) * WIDTH * HEIGHT);
-    
     currentScreen->renderScreen();
 
 #ifdef MZ_BOARD
     parlcd_write_cmd(0x2c);
 
-    for (int y = 0; y < HEIGHT; ++y) {
-        for (int x = 0; x < WIDTH; ++x) {
+    for (int y = 0; y < Display::height; ++y) {
+        for (int x = 0; x < Display::width; ++x) {
             parlcd_write_data(buffer[y][x]);
         }
     }
@@ -135,7 +134,7 @@ void Display::redraw() {
 
 void Display::setFont(font_descriptor_t font) {
     this->font = font;
-    lineMax = (HEIGHT - 4) / font.height;
+    lineMax = (Display::height - 4) / font.height;
 }
 
 void Display::setColours(uint16_t bgColour, uint16_t fgColour, uint16_t selectColour) {
@@ -161,7 +160,44 @@ bool Display::getBit(uint16_t bits, int position) { // position in range 0-15
     return (bits >> position) & 0x1;
 }
 
+bool Display::checkBounds(int* x, int* y) {
+	bool changed = false;
+
+	if (*x < 0) {
+		*x = 0;
+		changed = true;
+	} else if (*x >= (int)width) {
+		*x = width - 1;
+		changed = true;
+	}
+
+	if (*y < 0) {
+		*y = 0;
+		changed = true;
+	} else if (*y >= (int)height) {
+		*y = height - 1;
+		changed = true;
+	}
+
+	return changed;
+}
+
+void Display::clearScreen(uint16_t color) {
+	uint16_t* b = (uint16_t*)buffer;
+	for (size_t i = 0; i < width * height; i++) {
+		*(b++) = color;
+	}
+}
+
+void Display::setPixel(int x, int y, uint16_t color) {
+	checkBounds(&x, &y);
+	buffer[y][x] = color;
+}
+
 void Display::renderRectangle(int left, int top, int right, int bottom, uint16_t color) {
+	checkBounds(&left, &top);
+	checkBounds(&right, &bottom);
+
     for (int rectY = top; rectY < bottom; ++rectY) {
         for (int rectX = left; rectX < right; ++rectX) {
             buffer[rectY][rectX] = color;
@@ -170,19 +206,33 @@ void Display::renderRectangle(int left, int top, int right, int bottom, uint16_t
 }
 
 void Display::renderColourSquare(int topX, int topY, uint16_t colour) {
-    renderRectangle(topX + 1, topY + 1, topX + 14, topY + 14, colour);
+	topX++;
+	topY++;
+
+	checkBounds(&topX, &topY);
+	int bottomX = topX + 14;
+	int bottomY = topY + 14;
+	checkBounds(&topX, &topY);
+
+    renderRectangle(topX, topY, bottomX, bottomY, colour);
 }
 
 // TODO make it general so that it works for the proportional font too
 void Display::renderCharacter(char character, int topX, int topY, uint16_t colour) {
-    int charIndex = font.height*character;
+    checkBounds(&topX, &topY);
+	
+	int charIndex = font.height * character;
     uint16_t line;
 
     for (size_t charY = 0; charY < font.height; ++charY) {
         line = font.bits[charIndex+charY];
         for (int charX = 0; charX < font.maxwidth; ++charX) {
             if (getBit(line, 15 - charX)) {
-                buffer[topY + charY][topX + charX] = colour;
+				int bottomX = topX + charX;
+				int bottomY = topY + charY;
+				checkBounds(&bottomX, &bottomY);
+
+                buffer[bottomY][bottomX] = colour;
             }
         }
     }
@@ -199,9 +249,15 @@ void Display::renderText(int topX, int topY, std::string text, uint16_t colour) 
 }
 
 void Display::renderIcon(uint16_t *buffer_, int topX, int topY) {
-    for (int iconY = 0; iconY < 16; ++iconY) {
-        for (int icon_x = 0; icon_x < 16; ++icon_x) {
-            buffer[topY + iconY][topX + icon_x] = buffer_[iconY * 16 + icon_x];
+    checkBounds(&topX, &topY);
+	
+	for (int iconY = 0; iconY < 16; ++iconY) {
+        for (int iconX = 0; iconX < 16; ++iconX) {
+			int bottomX = topX + iconX;
+			int bottomY = topY + iconY;
+			checkBounds(&bottomX, &bottomY);
+
+            buffer[bottomY][bottomX] = buffer_[iconY * 16 + iconX];
         }
     }
 }
@@ -209,8 +265,8 @@ void Display::renderIcon(uint16_t *buffer_, int topX, int topY) {
 void Display::printDisplay() {
     char tmp;
     // show the result
-    for (int y = 0; y < HEIGHT; ++ y) {
-        for (int x = 0; x < WIDTH; ++x) {
+    for (size_t y = 0; y < Display::height; ++ y) {
+        for (size_t x = 0; x < Display::width; ++x) {
 
             if (buffer[y][x] == fgColour) {
                 tmp = 'F';
@@ -245,16 +301,11 @@ void Display::handleInput(int8_t rgbDelta[3], bool knobsPressed[3]) {
 #endif
 }
 
-void Display::toListScreen() {
+void Display::switchScreen(Screen* newScreen) {
 	delete previousScreen;
 	previousScreen = currentScreen;
-	currentScreen = new ListScreen(this);
-}
-void Display::toUnitScreen(LightUnit& unit) {
-	delete previousScreen;
-	previousScreen = currentScreen;
-	currentScreen = new UnitScreen(this, unit);
-}
+	currentScreen = newScreen;
+} 
 bool Display::toPreviousScreen(bool keepAlive) {
 	if (previousScreen != NULL) {
 		if (keepAlive) {

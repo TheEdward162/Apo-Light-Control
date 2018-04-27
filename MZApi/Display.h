@@ -22,29 +22,20 @@
 
 class Screen;
 
-#define WIDTH 480
-#define HEIGHT 320
-
 class Display {
 public:
-	enum ScreenType {
-		LIST_SCREEN,
-		UNIT_SCREEN
-	};
-
-    void renderRectangle(int left, int top, int right, int bottom, uint16_t color);
+	static const size_t width = 480;
+	static const size_t height = 320;
 
     Display(uint16_t bgColour, uint16_t fgColour, uint16_t selectColour, font_descriptor_t font);
     ~Display();
     
-	uint16_t buffer[HEIGHT][WIDTH];
     uint16_t fgColour, bgColour, selectColour;
     size_t lineMax;
 
     void handleInput(int8_t rgbDelta[3], bool knobsPressed[3]);
 	
-	void toListScreen();
-	void toUnitScreen(LightUnit& unit);
+	void switchScreen(Screen* newScreen);
 	bool toPreviousScreen(bool keepAlive=false);
 
     void setColours(uint16_t bgColour, uint16_t fgColour, uint16_t selectColour);
@@ -52,6 +43,9 @@ public:
 
     void testDisplay();
 
+	void clearScreen(uint16_t colour);
+	void setPixel(int x, int y, uint16_t color);
+	void renderRectangle(int left, int top, int right, int bottom, uint16_t color);
     void renderColourSquare(int topX, int topY, uint16_t colour);
     void renderText(int topX, int topY, std::string text, uint16_t colour);
     void renderIcon(uint16_t *buffer, int topX, int topY);
@@ -59,6 +53,7 @@ public:
     void redraw();
 
 private:
+	uint16_t buffer[height][width];
     font_descriptor_t font;
 #ifndef MZ_BOARD
 	SDL_Window* sdl_win = NULL;
@@ -73,6 +68,8 @@ private:
     void renderCharacter(char character, int topX, int topY, uint16_t colour);
 
     Mapper mapper = Mapper(PARLCD_REG_BASE_PHYS, PARLCD_REG_SIZE);
+
+	bool checkBounds(int* x, int* y);
 
     bool getBit(uint16_t bits, int position);
     void printDisplay();

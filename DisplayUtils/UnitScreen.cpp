@@ -9,9 +9,8 @@
 #include "ListScreen.h"
 #include "Colour.h"
 
-UnitScreen::UnitScreen(Display* display,  LightUnit& unit_) : unit(unit_){
+UnitScreen::UnitScreen(Display* display,  LightUnit& unit_) : Screen(display), unit(unit_) {
 	unit.counter_readers++;
-    this->display = display;
 	lastTimePacketSent = std::chrono::steady_clock::now() - maxControlPacketSendFrequency;
 }
 
@@ -20,6 +19,8 @@ UnitScreen::~UnitScreen() {
 }
 
 void UnitScreen::renderScreen() {
+	display->clearScreen(display->bgColour);
+
     renderUnitDetail();
 }
 
@@ -44,7 +45,7 @@ void UnitScreen::renderUnitDetail() {
 
 	// render selected
 	size_t selectedY = y + positions[selected] * 16;
-	display->renderRectangle(0, selectedY, WIDTH, selectedY + 16, display->selectColour);
+	display->renderRectangle(0, selectedY, Display::width, selectedY + 16, display->selectColour);
 
     // render title
     display->renderText(x, y, unit.description, display->fgColour);
@@ -64,7 +65,7 @@ void UnitScreen::renderUnitDetail() {
 		char strBuffer[4];
 		sprintf(strBuffer, "%d", selectedValue);
 		size_t textWidth = strlen(strBuffer) * 16;
-		display->renderText(WIDTH - textWidth - 16, selectedY, strBuffer, display->fgColour);
+		display->renderText(Display::width - textWidth - 16, selectedY, strBuffer, display->fgColour);
 	}
 }
 

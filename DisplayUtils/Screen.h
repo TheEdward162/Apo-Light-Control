@@ -19,6 +19,8 @@ public:
     virtual void handleKnobPress(bool RGBPressed[3]) = 0;
 
 protected:
+	Screen(Display* display);
+
     Display* display;
     size_t selected = 0;
 

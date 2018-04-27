@@ -4,14 +4,18 @@
 
 #include "ListScreen.h"
 #include "UnitScreen.h"
+#include "NyanScreen.h"
+
 #include "../Engine.h"
 #include "Colour.h"
 
-ListScreen::ListScreen(Display* display) {
-    this->display = display;
+ListScreen::ListScreen(Display* display) : Screen(display) {
+
 }
 
 void ListScreen::renderScreen() {
+	display->clearScreen(display->bgColour);
+
     renderUnitList();
 }
 
@@ -30,7 +34,7 @@ void ListScreen::renderUnitList() {
 		x = 2;
 
 		if (i == selected) {
-			display->renderRectangle(0, y, WIDTH, y + 16, display->selectColour);
+			display->renderRectangle(0, y, Display::width, y + 16, display->selectColour);
 		}
 
 		display->renderIcon(unit.image, x, y);
@@ -39,8 +43,8 @@ void ListScreen::renderUnitList() {
 		display->renderText(x, y, unit.description, display->fgColour);
 
 		// render current colors
-		display->renderColourSquare(WIDTH - 32, y, Colour::rgb888to565(unit.rgbWall));
-		display->renderColourSquare(WIDTH - 16, y, Colour::rgb888to565(unit.rgbCeiling));
+		display->renderColourSquare(Display::width - 32, y, Colour::rgb888to565(unit.rgbWall));
+		display->renderColourSquare(Display::width - 16, y, Colour::rgb888to565(unit.rgbCeiling));
 
         y += 16;
 	}
@@ -69,7 +73,9 @@ void ListScreen::handleKnobChange(int8_t *RGBDelta) {
 }
 
 void ListScreen::handleKnobPress(bool *RGBPressed) {
-    if (RGBPressed[0]) {
-		display->toUnitScreen(Engine::unitList[selected]);
+    if (RGBPressed[0] && RGBPressed[1] && RGBPressed[2]) {
+		display->switchScreen(new NyanScreen(display));
+	} else if (RGBPressed[0]) {
+		display->switchScreen(new UnitScreen(display, Engine::unitList[selected]));
     }
 }
