@@ -36,7 +36,8 @@ private:
     void renderWall(int *sx, int *sy);
     void renderCeiling(int *sx, int *sy);
     void renderRGBText(int *sx, int *sy, uint32_t rgb);
-    
+	
+	uint8_t getCurrentRealValue();
 	void updateSelected(int delta);
 	
 	void updateSelectedValue(int delta);

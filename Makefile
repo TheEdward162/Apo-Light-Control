@@ -1,8 +1,8 @@
 CC=g++
 CFLAGS=-Wall -Werror -std=gnu++11 -D_REENTRANT
-PC_FLAGS=-I/usr/include/SDL2
+PC_FLAGS=$(shell sdl2-config --cflags)
 LIBS=-lpthread
-PC_LIBS=-lSDL2
+PC_LIBS=$(shell sdl2-config --libs)
 
 SRC=main.cpp Engine.cpp Network/*.cpp Unit/*.cpp Misc/*.cpp MZApi/*.cpp DisplayUtils/*.cpp
 
@@ -18,4 +18,10 @@ test:
 	./app "OMG room" icons/1.ppm
 
 pack:
-	tar -zcvf pack.tar.gz Makefile *.cpp *.h Network/* Unit/* Misc/* Misc/* MZApi/* DsiplayUtils/* icons/*
+	tar -zcvf pack.tar.gz Makefile *.cpp *.h Network/* Unit/* Misc/* Misc/* MZApi/* DisplayUtils/* icons/*
+
+zip:
+	zip pack.zip Makefile *.cpp *.h Network/* Unit/* Misc/* Misc/* MZApi/* DisplayUtils/* icons/*
+
+tar:
+	tar -cvf pack.tar Makefile *.cpp *.h Network/* Unit/* Misc/* Misc/* MZApi/* DisplayUtils/* icons/*

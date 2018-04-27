@@ -51,7 +51,6 @@ void NetworkThreadHandleBroadcastMessage(NetworkHandler::RecievedMessage* reciev
 			contextUnit = &unitList[i];
 			break;
 		}
-
 	}
 	
 	if (contextUnit == NULL) {
@@ -78,13 +77,39 @@ void NetworkThreadHandleBroadcastMessage(NetworkHandler::RecievedMessage* reciev
 }
 void NetworkThreadHandleControlMessage(NetworkHandler::RecievedMessage* recievedMessage) {
 	NetworkHandler::ControlMessage* cMessage = (NetworkHandler::ControlMessage*) recievedMessage->pMessage;
+	
+	mutexUnitList.lockRead();
+	std::lock_guard<std::mutex> lock(unitList[0].mutex_change);
+
 	if (cMessage->msgType == 1) {
-		printf("Changes:\n");
+		unitList[0].rgbWall = Colour::changeR(unitList[0].rgbWall, cMessage->valuesWall[0]);
+		unitList[0].rgbWall = Colour::changeR(unitList[0].rgbWall, cMessage->valuesWall[1]);
+		unitList[0].rgbWall = Colour::changeR(unitList[0].rgbWall, cMessage->valuesWall[2]);
+
+		unitList[0].rgbCeiling = Colour::changeR(unitList[0].rgbCeiling, cMessage->valuesCeiling[0]);
+		unitList[0].rgbCeiling = Colour::changeR(unitList[0].rgbCeiling, cMessage->valuesCeiling[1]);
+		unitList[0].rgbCeiling = Colour::changeR(unitList[0].rgbCeiling, cMessage->valuesCeiling[2]);
 	} else {
-		printf("Sets:\n");
+		if (cMessage->valuesWall[0] >= 0)
+			unitList[0].rgbWall = Colour::setR(unitList[0].rgbWall, cMessage->valuesWall[0]);
+
+		if (cMessage->valuesWall[1] >= 0)
+			unitList[0].rgbWall = Colour::setG(unitList[0].rgbWall, cMessage->valuesWall[1]);
+
+		if (cMessage->valuesWall[2] >= 0)
+			unitList[0].rgbWall = Colour::setB(unitList[0].rgbWall, cMessage->valuesWall[2]);
+
+		if (cMessage->valuesCeiling[0] >= 0)
+			unitList[0].rgbCeiling = Colour::setR(unitList[0].rgbCeiling, cMessage->valuesCeiling[0]);
+
+		if (cMessage->valuesCeiling[1] >= 0)
+			unitList[0].rgbCeiling = Colour::setG(unitList[0].rgbCeiling, cMessage->valuesCeiling[1]);
+
+		if (cMessage->valuesCeiling[2] >= 0)
+			unitList[0].rgbCeiling = Colour::setB(unitList[0].rgbCeiling, cMessage->valuesCeiling[2]);
 	}
-	printf("Ceiling: R: %d G: %d B: %d\n", cMessage->valuesCeiling[0], cMessage->valuesCeiling[1], cMessage->valuesCeiling[2]);
-	printf("Wall: R: %d G: %d B: %d\n\n", cMessage->valuesWall[0], cMessage->valuesWall[1], cMessage->valuesWall[2]);
+
+	mutexUnitList.unlockRead();
 }
 
 void NetworkThreadRun(std::future<void> death) {
@@ -167,26 +192,13 @@ void mainLoop() {
 #ifdef MZ_BOARD
 		// input
 		deviceInput.update();
-
-		// draw pretty pictures
 		display.handleInput(deviceInput.RGBDelta, deviceInput.RGBPressed);
-		printf("%hhi %hhi %hhi", deviceInput.RGBDelta[0], deviceInput.RGBDelta[1], deviceInput.RGBDelta[2]);
-		printf(", %hhi %hhi %hhi\n", deviceInput.RGBPressed[0], deviceInput.RGBPressed[1], deviceInput.RGBPressed[2]);
 #else
-		// printf("Current status:\n");
-		// for (auto it = unitList.begin(); it != unitList.end(); it++) {
-		// 	std::lock_guard<std::mutex> lock(it->mutex_change);
-		// 	printf("Unix 0x%lx CEIL: 0x%x WALL: 0x%x DESC: %s\n\n", it->ip, it->rgbCeiling, it->rgbWall, it->description);
-		// }
-
 		display.handleInput(NULL, NULL);
 #endif
 		display.redraw();
 
 		mutexUnitList.unlockRead();
-
-		// sleep
-		// std::this_thread::sleep_for(std::chrono::milliseconds(10));
 	}
 }
 

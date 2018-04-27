@@ -30,6 +30,8 @@ void UnitScreen::handleKnobChange(int8_t *RGBDelta) {
     } else if (RGBDelta[1]) {
 		updateSelectedValue(RGBDelta[1]);
 	}
+
+	updateUnitValue();
 }
 void UnitScreen::handleKnobPress(bool *RGBPressed) {
 	if (RGBPressed[2]) {
@@ -112,7 +114,8 @@ void UnitScreen::renderRGBText(int *sx, int *sy, uint32_t rgb) {
 
 void UnitScreen::updateSelected(int delta) {
     if (selectedValue >= 0) {
-		updateUnitValue(true);
+		if (getCurrentRealValue != selectedValue)
+			updateUnitValue(true);
 		selectedValue = -1;
 	}
 	
@@ -128,31 +131,36 @@ void UnitScreen::updateSelected(int delta) {
     }
 }
 
+uint8_t UnitScreen::getCurrentRealValue() {
+	uint8_t realValue;
+	switch (positions[selected]) {
+		case WALL_R:
+			realValue = Colour::getR(unit.rgbWall);
+		break;
+		case WALL_G:
+			realValue = Colour::getG(unit.rgbWall);
+		break;
+		case WALL_B:
+			realValue = Colour::getB(unit.rgbWall);
+		break;
+
+		case CEILING_R:
+			realValue = Colour::getR(unit.rgbCeiling);
+		break;
+		case CEILING_G:
+			realValue = Colour::getG(unit.rgbCeiling);
+		break;
+		case CEILING_B:
+			realValue = Colour::getB(unit.rgbCeiling);
+		break;
+	}
+
+	return realValue;
+}
+
 void UnitScreen::updateSelectedValue(int delta) {
 	if (selectedValue == -1) {
-		uint8_t realValue;
-		switch (positions[selected]) {
-			case WALL_R:
-				realValue = Colour::getR(unit.rgbWall);
-			break;
-			case WALL_G:
-				realValue = Colour::getG(unit.rgbWall);
-			break;
-			case WALL_B:
-				realValue = Colour::getB(unit.rgbWall);
-			break;
-
-			case CEILING_R:
-				realValue = Colour::getR(unit.rgbCeiling);
-			break;
-			case CEILING_G:
-				realValue = Colour::getG(unit.rgbCeiling);
-			break;
-			case CEILING_B:
-				realValue = Colour::getB(unit.rgbCeiling);
-			break;
-		}
-		selectedValue = realValue;
+		selectedValue = getCurrentRealValue();
 	}
 	selectedValue += delta;
 
@@ -161,21 +169,15 @@ void UnitScreen::updateSelectedValue(int delta) {
 	} else if (selectedValue < 0) {
 		selectedValue = 0;
 	}
-
-	updateUnitValue();
 }
 void UnitScreen::updateUnitValue(bool force) {
 	if (selectedValue >= 0) {
-		if (force || unit.ip == 0 || std::chrono::steady_clock::now() - lastTimePacketSent >= maxControlPacketSendFrequency) {
+		if (force || unit.ip == 0 || (getCurrentRealValue() != selectedValue && std::chrono::steady_clock::now() - lastTimePacketSent >= maxControlPacketSendFrequency)) {
 			lastTimePacketSent = std::chrono::steady_clock::now();
 
 			if (unit.ip > 0) {
 				// remote unit
-				ControlMessageQueue::ControlMessageInfo controlInfo;
-				memset(&controlInfo, 0, sizeof(ControlMessageQueue::ControlMessageInfo));
-
-				controlInfo.ip = unit.ip;
-				controlInfo.type = 2;
+				ControlMessageQueue::ControlMessageInfo controlInfo(unit.ip, 2);
 				
 				switch (positions[selected]) {
 					case WALL_R:
