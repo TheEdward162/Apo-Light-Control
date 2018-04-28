@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$structNetworkHandler_1_1Message.html" title="NetworkHandler::Message" alt="" coords="5,42,183,69"/>
+<area shape="rect" id="node2" href="$structNetworkHandler_1_1BroadcastMessage.html" title="NetworkHandler::Broadcast\lMessage" alt="" coords="249,5,431,47"/>
+<area shape="rect" id="node3" href="$structNetworkHandler_1_1ControlMessage.html" title="NetworkHandler::ControlMessage" alt="" coords="231,71,449,98"/>
+</map>

@@ -14,10 +14,10 @@
 #include "../DisplayUtils/UnitScreen.h"
 #include "../DisplayUtils/NyanScreen.h"
 
-Display::Display(uint16_t bgColour, uint16_t fgColour, uint16_t selectColour, font_descriptor_t font) {
+Display::Display(uint16_t bgColour, uint16_t fgColour, uint16_t highlightColour, font_descriptor_t font) {
     this->bgColour = bgColour;
     this->fgColour = fgColour;
-    this->selectColour = selectColour;
+    this->selectColour = highlightColour;
     memset(buffer, bgColour, sizeof(uint16_t) * Display::width * Display::height);
 
 	setFont(font);
@@ -137,10 +137,10 @@ void Display::setFont(font_descriptor_t font) {
     lineMax = (Display::height - 4) / font.height;
 }
 
-void Display::setColours(uint16_t bgColour, uint16_t fgColour, uint16_t selectColour) {
+void Display::setColours(uint16_t bgColour, uint16_t fgColour, uint16_t highlightColour) {
     this->bgColour = bgColour;
     this->fgColour = fgColour;
-    this->selectColour = selectColour;
+    this->selectColour = highlightColour;
 }
 
 void Display::parlcd_write_data(uint16_t data) {
@@ -189,18 +189,18 @@ void Display::clearScreen(uint16_t color) {
 	}
 }
 
-void Display::setPixel(int x, int y, uint16_t color) {
+void Display::setPixel(int x, int y, uint16_t colour) {
 	checkBounds(&x, &y);
-	buffer[y][x] = color;
+	buffer[y][x] = colour;
 }
 
-void Display::renderRectangle(int left, int top, int right, int bottom, uint16_t color) {
+void Display::renderRectangle(int left, int top, int right, int bottom, uint16_t colour) {
 	checkBounds(&left, &top);
 	checkBounds(&right, &bottom);
 
     for (int rectY = top; rectY < bottom; ++rectY) {
         for (int rectX = left; rectX < right; ++rectX) {
-            buffer[rectY][rectX] = color;
+            buffer[rectY][rectX] = colour;
         }
     }
 }

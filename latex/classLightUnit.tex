@@ -1,0 +1,53 @@
+\hypertarget{classLightUnit}{}\section{Light\+Unit Class Reference}
+\label{classLightUnit}\index{Light\+Unit@{Light\+Unit}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Light\+Unit} (\hyperlink{classLightUnit}{Light\+Unit} \&\&other)\hypertarget{classLightUnit_a171818bc7fbf21a112582ab66c39dedc}{}\label{classLightUnit_a171818bc7fbf21a112582ab66c39dedc}
+
+\item 
+{\bfseries Light\+Unit} (const char description\mbox{[}16\mbox{]})\hypertarget{classLightUnit_aa44c2d7b6e764c9bbca0f5ab19a31553}{}\label{classLightUnit_aa44c2d7b6e764c9bbca0f5ab19a31553}
+
+\item 
+{\bfseries Light\+Unit} (unsigned long ip, const char description\mbox{[}16\mbox{]}, const uint16\+\_\+t image\mbox{[}256\mbox{]})\hypertarget{classLightUnit_afb696351f25e3766eb18d6ce31f97fa6}{}\label{classLightUnit_afb696351f25e3766eb18d6ce31f97fa6}
+
+\item 
+{\bfseries Light\+Unit} (unsigned long ip, const char description\mbox{[}16\mbox{]}, const uint16\+\_\+t image\mbox{[}256\mbox{]}, uint32\+\_\+t rgb\+Ceiling, uint32\+\_\+t rgb\+Wall)\hypertarget{classLightUnit_ab91f948d033d6982b4b981aea104b1d7}{}\label{classLightUnit_ab91f948d033d6982b4b981aea104b1d7}
+
+\item 
+\hyperlink{classLightUnit}{Light\+Unit} \& {\bfseries operator=} (\hyperlink{classLightUnit}{Light\+Unit} \&\&other)\hypertarget{classLightUnit_a8c06848d212e79eecdada6751284a484}{}\label{classLightUnit_a8c06848d212e79eecdada6751284a484}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t {\bfseries rgb\+Ceiling} = 0\hypertarget{classLightUnit_ae688f610193b69a2f390bd2a44dc2a7c}{}\label{classLightUnit_ae688f610193b69a2f390bd2a44dc2a7c}
+
+\item 
+uint32\+\_\+t {\bfseries rgb\+Wall} = 0\hypertarget{classLightUnit_a9927e4bcf968e043883688e87935fb4a}{}\label{classLightUnit_a9927e4bcf968e043883688e87935fb4a}
+
+\item 
+char {\bfseries description} \mbox{[}17\mbox{]}\hypertarget{classLightUnit_aad36ad5ba65b93a30ee35ef1f6895b5a}{}\label{classLightUnit_aad36ad5ba65b93a30ee35ef1f6895b5a}
+
+\item 
+uint16\+\_\+t {\bfseries image} \mbox{[}256\mbox{]}\hypertarget{classLightUnit_a01f65fda0c55ecd8b1d62911cfa688d2}{}\label{classLightUnit_a01f65fda0c55ecd8b1d62911cfa688d2}
+
+\item 
+unsigned long {\bfseries ip} = 0\hypertarget{classLightUnit_a7d490bbccb134d200628eee46ab8fb3d}{}\label{classLightUnit_a7d490bbccb134d200628eee46ab8fb3d}
+
+\item 
+std\+::chrono\+::steady\+\_\+clock\+::time\+\_\+point {\bfseries last\+Network\+Broadcast\+Time\+Point}\hypertarget{classLightUnit_ac5f86e26fe02c192736cddd1d06af583}{}\label{classLightUnit_ac5f86e26fe02c192736cddd1d06af583}
+
+\item 
+std\+::mutex {\bfseries mutex\+\_\+change}\hypertarget{classLightUnit_a4380f5dead3b35443b09f1dbbe44af55}{}\label{classLightUnit_a4380f5dead3b35443b09f1dbbe44af55}
+
+\item 
+std\+::atomic$<$ std\+::uint32\+\_\+t $>$ {\bfseries counter\+\_\+readers}\hypertarget{classLightUnit_aba39125324f42994fd370a25aa276de7}{}\label{classLightUnit_aba39125324f42994fd370a25aa276de7}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Unit/Light\+Unit.\+h\item 
+Unit/Light\+Unit.\+cpp\end{DoxyCompactItemize}

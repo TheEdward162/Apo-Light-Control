@@ -1,0 +1,55 @@
+\hypertarget{classNetworkHandler}{}\section{Network\+Handler Class Reference}
+\label{classNetworkHandler}\index{Network\+Handler@{Network\+Handler}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structNetworkHandler_1_1BroadcastMessage}{Broadcast\+Message}
+\item 
+struct \hyperlink{structNetworkHandler_1_1ControlMessage}{Control\+Message}
+\item 
+struct \hyperlink{structNetworkHandler_1_1Message}{Message}
+\item 
+struct \hyperlink{structNetworkHandler_1_1RecievedMessage}{Recieved\+Message}
+\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structNetworkHandler_1_1Message}{Network\+Handler\+::\+Message} {\bfseries Message}\hypertarget{classNetworkHandler_a40a384ea43787b06682a000b015add29}{}\label{classNetworkHandler_a40a384ea43787b06682a000b015add29}
+
+\item 
+typedef \hyperlink{structNetworkHandler_1_1BroadcastMessage}{Network\+Handler\+::\+Broadcast\+Message} {\bfseries Broadcast\+Message}\hypertarget{classNetworkHandler_a5efffc9f48abe8087c6f756e33d5eb9e}{}\label{classNetworkHandler_a5efffc9f48abe8087c6f756e33d5eb9e}
+
+\item 
+typedef \hyperlink{structNetworkHandler_1_1ControlMessage}{Network\+Handler\+::\+Control\+Message} {\bfseries Control\+Message}\hypertarget{classNetworkHandler_a29cb429e8069fa3c00b8317aec0b735a}{}\label{classNetworkHandler_a29cb429e8069fa3c00b8317aec0b735a}
+
+\item 
+typedef struct \hyperlink{structNetworkHandler_1_1RecievedMessage}{Network\+Handler\+::\+Recieved\+Message} {\bfseries Recieved\+Message}\hypertarget{classNetworkHandler_a558eabe1d275787ab92e63c7bbabf19c}{}\label{classNetworkHandler_a558eabe1d275787ab92e63c7bbabf19c}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries broadcast\+Message} (const \hyperlink{structNetworkHandler_1_1BroadcastMessage}{Broadcast\+Message} $\ast$message)\hypertarget{classNetworkHandler_a3296b0356692982086aacad3f34b7c12}{}\label{classNetworkHandler_a3296b0356692982086aacad3f34b7c12}
+
+\item 
+bool {\bfseries broadcast\+Unit} (\hyperlink{classLightUnit}{Light\+Unit} \&unit)\hypertarget{classNetworkHandler_a515ae3ef779f2244cfdcccbbb24c8cb2}{}\label{classNetworkHandler_a515ae3ef779f2244cfdcccbbb24c8cb2}
+
+\item 
+bool {\bfseries send\+Message} (const \hyperlink{structNetworkHandler_1_1ControlMessage}{Control\+Message} $\ast$message, uint32\+\_\+t ip)\hypertarget{classNetworkHandler_ae424a6a062dd0244560908d8de1798d0}{}\label{classNetworkHandler_ae424a6a062dd0244560908d8de1798d0}
+
+\item 
+\hyperlink{structNetworkHandler_1_1BroadcastMessage}{Broadcast\+Message} {\bfseries build\+Broadcast\+Message} (\hyperlink{classLightUnit}{Light\+Unit} \&unit)\hypertarget{classNetworkHandler_a0e8984b42f72b35466d409319c938e4d}{}\label{classNetworkHandler_a0e8984b42f72b35466d409319c938e4d}
+
+\item 
+\hyperlink{structNetworkHandler_1_1ControlMessage}{Control\+Message} {\bfseries build\+Control\+Message} (int type, int16\+\_\+t values\+Ceiling\mbox{[}$\,$\mbox{]}, int16\+\_\+t values\+Wall\mbox{[}$\,$\mbox{]})\hypertarget{classNetworkHandler_ac43127d9c50aeba5c9bbc853bef447a9}{}\label{classNetworkHandler_ac43127d9c50aeba5c9bbc853bef447a9}
+
+\item 
+\hyperlink{structNetworkHandler_1_1RecievedMessage}{Recieved\+Message} {\bfseries recieve\+Message} ()\hypertarget{classNetworkHandler_a0c605f9d3c9ae3d7d55c1edffdba7d84}{}\label{classNetworkHandler_a0c605f9d3c9ae3d7d55c1edffdba7d84}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Network/Network\+Handler.\+h\item 
+Network/Network\+Handler.\+cpp\end{DoxyCompactItemize}

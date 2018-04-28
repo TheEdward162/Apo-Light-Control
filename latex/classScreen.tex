@@ -1,0 +1,56 @@
+\hypertarget{classScreen}{}\section{Screen Class Reference}
+\label{classScreen}\index{Screen@{Screen}}
+
+
+Inheritance diagram for Screen\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=315pt]{classScreen__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Screen\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=139pt]{classScreen__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries render\+Screen} ()=0\hypertarget{classScreen_afd1cb4a4bfbbec56cc64c973a9242110}{}\label{classScreen_afd1cb4a4bfbbec56cc64c973a9242110}
+
+\item 
+virtual void {\bfseries handle\+Knob\+Change} (int8\+\_\+t R\+G\+B\+Delta\mbox{[}3\mbox{]})=0\hypertarget{classScreen_a4c3869a19704ec2530a377618b3f6104}{}\label{classScreen_a4c3869a19704ec2530a377618b3f6104}
+
+\item 
+virtual void {\bfseries handle\+Knob\+Press} (bool R\+G\+B\+Pressed\mbox{[}3\mbox{]})=0\hypertarget{classScreen_a1b9547f8f48c3ceae2024b58e0746e94}{}\label{classScreen_a1b9547f8f48c3ceae2024b58e0746e94}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Screen} (\hyperlink{classDisplay}{Display} $\ast$display)\hypertarget{classScreen_a596e7fffdfafd57fb5385c299863f31d}{}\label{classScreen_a596e7fffdfafd57fb5385c299863f31d}
+
+\item 
+void {\bfseries render\+Nagivation\+Line} ()\hypertarget{classScreen_a2f4dd14ae5816c033084b2e83f725afe}{}\label{classScreen_a2f4dd14ae5816c033084b2e83f725afe}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classDisplay}{Display} $\ast$ {\bfseries display}\hypertarget{classScreen_aad713267725e8aa8a8def951a07de641}{}\label{classScreen_aad713267725e8aa8a8def951a07de641}
+
+\item 
+size\+\_\+t {\bfseries selected} = 0\hypertarget{classScreen_ae66538a4cf9fd681495f28acb12be732}{}\label{classScreen_ae66538a4cf9fd681495f28acb12be732}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Display\+Utils/Screen.\+h\item 
+Display\+Utils/Screen.\+cpp\end{DoxyCompactItemize}

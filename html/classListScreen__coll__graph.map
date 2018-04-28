@@ -1,0 +1,4 @@
+<map id="ListScreen" name="ListScreen">
+<area shape="rect" id="node2" href="$classScreen.html" title="Screen" alt="" coords="16,95,79,121"/>
+<area shape="rect" id="node3" href="$classDisplay.html" title="Display" alt="" coords="14,5,81,32"/>
+</map>

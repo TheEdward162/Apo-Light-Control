@@ -1,0 +1,4 @@
+<map id="NyanScreen" name="NyanScreen">
+<area shape="rect" id="node2" href="$classScreen.html" title="Screen" alt="" coords="21,95,84,121"/>
+<area shape="rect" id="node3" href="$classDisplay.html" title="Display" alt="" coords="19,5,86,32"/>
+</map>

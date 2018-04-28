@@ -1,0 +1,4 @@
+<map id="UnitScreen" name="UnitScreen">
+<area shape="rect" id="node2" href="$classScreen.html" title="Screen" alt="" coords="17,95,80,121"/>
+<area shape="rect" id="node3" href="$classDisplay.html" title="Display" alt="" coords="15,5,82,32"/>
+</map>

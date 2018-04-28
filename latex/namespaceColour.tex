@@ -1,0 +1,306 @@
+\hypertarget{namespaceColour}{}\section{Colour Namespace Reference}
+\label{namespaceColour}\index{Colour@{Colour}}
+
+
+Anything related to handling colours.  
+
+
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \\*
+{\bfseries B\+L\+A\+CK} = 0, 
+{\bfseries W\+H\+I\+TE} = 0x\+F\+F\+FF, 
+{\bfseries R\+ED} = 0x\+F800, 
+{\bfseries O\+R\+A\+N\+GE} = 0x\+F\+C00, 
+\\*
+{\bfseries Y\+E\+L\+L\+OW} = 0x\+F\+F80, 
+{\bfseries L\+I\+ME} = 0x\+B7\+E0, 
+{\bfseries G\+R\+E\+EN} = 0x4\+F\+E0, 
+{\bfseries D\+A\+R\+K\+\_\+\+G\+R\+E\+EN} = 0x4\+D24, 
+\\*
+{\bfseries B\+L\+UE} = 0x051F, 
+{\bfseries P\+U\+R\+P\+LE} = 0x881F, 
+{\bfseries B\+R\+O\+WN} = 0x9260, 
+{\bfseries D\+A\+R\+K\+\_\+\+B\+L\+UE} = 0x08\+CB, 
+\\*
+{\bfseries T\+U\+R\+U\+O\+I\+SE} = 0x6694, 
+{\bfseries U\+G\+LY} = 0x\+E\+C1A, 
+{\bfseries W\+E\+I\+R\+D\+\_\+\+R\+ED} = 0x\+A165, 
+{\bfseries D\+A\+R\+K\+\_\+\+G\+R\+EY} = 0x2945, 
+\\*
+{\bfseries L\+I\+G\+H\+T\+\_\+\+G\+R\+EY} = 0x\+D69A, 
+{\bfseries A\+L\+M\+O\+S\+T\+\_\+\+G\+O\+LD} = 0x\+F\+E03
+ \}\hypertarget{namespaceColour_a7eacc5e4e794b134ef740aa5426df245}{}\label{namespaceColour_a7eacc5e4e794b134ef740aa5426df245}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \hyperlink{namespaceColour_abad9ffef17d0d47b94a80a834e3b061e}{getR} (uint32\+\_\+t rgb)
+\begin{DoxyCompactList}\small\item\em Extracts the red component from R\+G\+B888. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{namespaceColour_afe62e2366d29eab29349e53694cf04c2}{getG} (uint32\+\_\+t rgb)
+\begin{DoxyCompactList}\small\item\em Extracts the green component from R\+G\+B888. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{namespaceColour_a217843f90fd11c5632683125e19bef08}{getB} (uint32\+\_\+t rgb)
+\begin{DoxyCompactList}\small\item\em Extracts the blue component from R\+G\+B888. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{namespaceColour_aafcc8ab12acc526fa93bee12b961edab}{setR} (uint32\+\_\+t value, uint8\+\_\+t new\+Value)
+\begin{DoxyCompactList}\small\item\em Sets the red component of R\+G\+B888. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{namespaceColour_a059504956471e6a07df579f59cec6e22}{setG} (uint32\+\_\+t value, uint8\+\_\+t new\+Value)
+\begin{DoxyCompactList}\small\item\em Sets the green component of R\+G\+B888. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{namespaceColour_a0b181bcc3bc52f87504d8f1cf3d0289a}{setB} (uint32\+\_\+t value, uint8\+\_\+t new\+Value)
+\begin{DoxyCompactList}\small\item\em Sets the blue component of R\+G\+B888. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{namespaceColour_ad2740cc3e6b9f1d65d6cfe085ec2f1bf}{changeR} (uint32\+\_\+t value, int16\+\_\+t change)
+\begin{DoxyCompactList}\small\item\em Changes the red component of R\+G\+B888. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{namespaceColour_a944d058dabcf1f24a5093a04656efc60}{changeG} (uint32\+\_\+t value, int16\+\_\+t change)
+\begin{DoxyCompactList}\small\item\em Changes the green component of R\+G\+B888. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{namespaceColour_a8e854e6a656f9d7c53dbd46eccba1816}{changeB} (uint32\+\_\+t value, int16\+\_\+t change)
+\begin{DoxyCompactList}\small\item\em Changes the blue component of R\+G\+B888. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{namespaceColour_a2ee4192ca3c1535351e57f223e5fb65d}{from\+R\+GB} (uint8\+\_\+t r, uint8\+\_\+t g, uint8\+\_\+t b)
+\begin{DoxyCompactList}\small\item\em Creates an R\+G\+B888 colour from its separate components. \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{namespaceColour_a5311fafb2011e62db5d600badee72ee9}{rgb888to565} (uint32\+\_\+t rgb888)
+\begin{DoxyCompactList}\small\item\em Converts an R\+G\+B888 colour to an R\+G\+B565 colour. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{namespaceColour_aa7b3de65f5d56d88b13863de9aa5641a}{rgb565to888} (uint16\+\_\+t rgb565)
+\begin{DoxyCompactList}\small\item\em Converts an R\+G\+B565 colour to an R\+G\+B888 colour. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Anything related to handling colours. 
+
+\subsection{Function Documentation}
+\index{Colour@{Colour}!changeB@{changeB}}
+\index{changeB@{changeB}!Colour@{Colour}}
+\subsubsection[{\texorpdfstring{change\+B(uint32\+\_\+t value, int16\+\_\+t change)}{changeB(uint32_t value, int16_t change)}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t Colour\+::changeB (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{value, }
+\item[{int16\+\_\+t}]{change}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceColour_a8e854e6a656f9d7c53dbd46eccba1816}{}\label{namespaceColour_a8e854e6a656f9d7c53dbd46eccba1816}
+
+
+Changes the blue component of R\+G\+B888. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The R\+G\+B888 colour to be changed. \\
+\hline
+{\em change} & The change in the blue component. \\
+\hline
+\end{DoxyParams}
+\index{Colour@{Colour}!changeG@{changeG}}
+\index{changeG@{changeG}!Colour@{Colour}}
+\subsubsection[{\texorpdfstring{change\+G(uint32\+\_\+t value, int16\+\_\+t change)}{changeG(uint32_t value, int16_t change)}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t Colour\+::changeG (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{value, }
+\item[{int16\+\_\+t}]{change}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceColour_a944d058dabcf1f24a5093a04656efc60}{}\label{namespaceColour_a944d058dabcf1f24a5093a04656efc60}
+
+
+Changes the green component of R\+G\+B888. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The R\+G\+B888 colour to be changed. \\
+\hline
+{\em change} & The change in the green component. \\
+\hline
+\end{DoxyParams}
+\index{Colour@{Colour}!changeR@{changeR}}
+\index{changeR@{changeR}!Colour@{Colour}}
+\subsubsection[{\texorpdfstring{change\+R(uint32\+\_\+t value, int16\+\_\+t change)}{changeR(uint32_t value, int16_t change)}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t Colour\+::changeR (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{value, }
+\item[{int16\+\_\+t}]{change}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceColour_ad2740cc3e6b9f1d65d6cfe085ec2f1bf}{}\label{namespaceColour_ad2740cc3e6b9f1d65d6cfe085ec2f1bf}
+
+
+Changes the red component of R\+G\+B888. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The R\+G\+B888 colour to be changed. \\
+\hline
+{\em change} & The change of the red component. \\
+\hline
+\end{DoxyParams}
+\index{Colour@{Colour}!from\+R\+GB@{from\+R\+GB}}
+\index{from\+R\+GB@{from\+R\+GB}!Colour@{Colour}}
+\subsubsection[{\texorpdfstring{from\+R\+G\+B(uint8\+\_\+t r, uint8\+\_\+t g, uint8\+\_\+t b)}{fromRGB(uint8_t r, uint8_t g, uint8_t b)}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t Colour\+::from\+R\+GB (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{r, }
+\item[{uint8\+\_\+t}]{g, }
+\item[{uint8\+\_\+t}]{b}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceColour_a2ee4192ca3c1535351e57f223e5fb65d}{}\label{namespaceColour_a2ee4192ca3c1535351e57f223e5fb65d}
+
+
+Creates an R\+G\+B888 colour from its separate components. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The red component. \\
+\hline
+{\em g} & The green component. \\
+\hline
+{\em b} & The blue component. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The resulting R\+G\+B888 colour. 
+\end{DoxyReturn}
+\index{Colour@{Colour}!getB@{getB}}
+\index{getB@{getB}!Colour@{Colour}}
+\subsubsection[{\texorpdfstring{get\+B(uint32\+\_\+t rgb)}{getB(uint32_t rgb)}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t Colour\+::getB (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{rgb}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceColour_a217843f90fd11c5632683125e19bef08}{}\label{namespaceColour_a217843f90fd11c5632683125e19bef08}
+
+
+Extracts the blue component from R\+G\+B888. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rgb} & The rgb colour. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The blue component. 
+\end{DoxyReturn}
+\index{Colour@{Colour}!getG@{getG}}
+\index{getG@{getG}!Colour@{Colour}}
+\subsubsection[{\texorpdfstring{get\+G(uint32\+\_\+t rgb)}{getG(uint32_t rgb)}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t Colour\+::getG (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{rgb}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceColour_afe62e2366d29eab29349e53694cf04c2}{}\label{namespaceColour_afe62e2366d29eab29349e53694cf04c2}
+
+
+Extracts the green component from R\+G\+B888. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rgb} & The rgb colour. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The green component. 
+\end{DoxyReturn}
+\index{Colour@{Colour}!getR@{getR}}
+\index{getR@{getR}!Colour@{Colour}}
+\subsubsection[{\texorpdfstring{get\+R(uint32\+\_\+t rgb)}{getR(uint32_t rgb)}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t Colour\+::getR (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{rgb}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceColour_abad9ffef17d0d47b94a80a834e3b061e}{}\label{namespaceColour_abad9ffef17d0d47b94a80a834e3b061e}
+
+
+Extracts the red component from R\+G\+B888. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rgb} & The rgb colour. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The red component. 
+\end{DoxyReturn}
+\index{Colour@{Colour}!rgb565to888@{rgb565to888}}
+\index{rgb565to888@{rgb565to888}!Colour@{Colour}}
+\subsubsection[{\texorpdfstring{rgb565to888(uint16\+\_\+t rgb565)}{rgb565to888(uint16_t rgb565)}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t Colour\+::rgb565to888 (
+\begin{DoxyParamCaption}
+\item[{uint16\+\_\+t}]{rgb565}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceColour_aa7b3de65f5d56d88b13863de9aa5641a}{}\label{namespaceColour_aa7b3de65f5d56d88b13863de9aa5641a}
+
+
+Converts an R\+G\+B565 colour to an R\+G\+B888 colour. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rgb565} & The R\+G\+B565 colour. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The resulting R\+G\+B888 colour. 
+\end{DoxyReturn}
+\index{Colour@{Colour}!rgb888to565@{rgb888to565}}
+\index{rgb888to565@{rgb888to565}!Colour@{Colour}}
+\subsubsection[{\texorpdfstring{rgb888to565(uint32\+\_\+t rgb888)}{rgb888to565(uint32_t rgb888)}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Colour\+::rgb888to565 (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{rgb888}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceColour_a5311fafb2011e62db5d600badee72ee9}{}\label{namespaceColour_a5311fafb2011e62db5d600badee72ee9}
+
+
+Converts an R\+G\+B888 colour to an R\+G\+B565 colour. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rgb888} & The R\+G\+B888 colour. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The resulting R\+G\+B565 colour. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceColour_a5311fafb2011e62db5d600badee72ee9}{rgb888to565} 
+\end{DoxySeeAlso}
+\index{Colour@{Colour}!setB@{setB}}
+\index{setB@{setB}!Colour@{Colour}}
+\subsubsection[{\texorpdfstring{set\+B(uint32\+\_\+t value, uint8\+\_\+t new\+Value)}{setB(uint32_t value, uint8_t newValue)}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t Colour\+::setB (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{value, }
+\item[{uint8\+\_\+t}]{new\+Value}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceColour_a0b181bcc3bc52f87504d8f1cf3d0289a}{}\label{namespaceColour_a0b181bcc3bc52f87504d8f1cf3d0289a}
+
+
+Sets the blue component of R\+G\+B888. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The R\+G\+B888 colour to be changed. \\
+\hline
+{\em new\+Value} & The blue component. \\
+\hline
+\end{DoxyParams}
+\index{Colour@{Colour}!setG@{setG}}
+\index{setG@{setG}!Colour@{Colour}}
+\subsubsection[{\texorpdfstring{set\+G(uint32\+\_\+t value, uint8\+\_\+t new\+Value)}{setG(uint32_t value, uint8_t newValue)}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t Colour\+::setG (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{value, }
+\item[{uint8\+\_\+t}]{new\+Value}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceColour_a059504956471e6a07df579f59cec6e22}{}\label{namespaceColour_a059504956471e6a07df579f59cec6e22}
+
+
+Sets the green component of R\+G\+B888. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The R\+G\+B888 colour to be changed. \\
+\hline
+{\em new\+Value} & The green component. \\
+\hline
+\end{DoxyParams}
+\index{Colour@{Colour}!setR@{setR}}
+\index{setR@{setR}!Colour@{Colour}}
+\subsubsection[{\texorpdfstring{set\+R(uint32\+\_\+t value, uint8\+\_\+t new\+Value)}{setR(uint32_t value, uint8_t newValue)}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t Colour\+::setR (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{value, }
+\item[{uint8\+\_\+t}]{new\+Value}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceColour_aafcc8ab12acc526fa93bee12b961edab}{}\label{namespaceColour_aafcc8ab12acc526fa93bee12b961edab}
+
+
+Sets the red component of R\+G\+B888. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The R\+G\+B888 colour to be changed. \\
+\hline
+{\em new\+Value} & The red component. \\
+\hline
+\end{DoxyParams}
