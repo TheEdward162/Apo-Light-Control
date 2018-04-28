@@ -9,7 +9,7 @@ SRC=main.cpp Engine.cpp Network/*.cpp Unit/*.cpp Misc/*.cpp MZApi/*.cpp DisplayU
 default_target: all
 
 all:
-	$(CC) $(CFLAGS) $(PC_FLAGS) $(LIBS) $(PC_LIBS) -o app $(SRC)
+	$(CC) $(CFLAGS) $(PC_FLAGS) -o app $(SRC) $(LIBS) $(PC_LIBS)
 
 board:
 	$(CC) $(CFLAGS) -DMZ_BOARD $(LIBS) -o app $(SRC)
