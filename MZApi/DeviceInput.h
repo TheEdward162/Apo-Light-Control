@@ -19,12 +19,21 @@
 
 class DeviceInput {
 public:
+    /**
+     * Constructor.
+     * */
     DeviceInput();
+    /**
+     * Destructor.
+     * */
     ~DeviceInput();
 
-    int8_t RGBDelta[3];
-    bool RGBPressed[3];
+    int8_t RGBDelta[3]; /**< The change in the device knobs position. */
+    bool RGBPressed[3]; /**< The high/low state of the device knobs */
 
+    /**
+     * @brief Gets the input (knobs state) from the device.
+     * */
     void update();
 
 private:

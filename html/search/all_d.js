@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['width',['width',['../classDisplay.html#a6f1dec624224569510e05c937d33ac4d',1,'Display']]]
+  ['unitscreen',['UnitScreen',['../classUnitScreen.html',1,'']]],
+  ['update',['update',['../classDeviceInput.html#ae6af261f4e6fa656dad4bd4a1efddbc6',1,'DeviceInput']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['height',['height',['../classDisplay.html#ac677f0db63e8eef2373fe84791cad17c',1,'Display']]]
+  ['description',['description',['../classLightUnit.html#aad36ad5ba65b93a30ee35ef1f6895b5a',1,'LightUnit']]]
 ];

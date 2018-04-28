@@ -1,12 +1,16 @@
 var searchData=
 [
-  ['screen',['Screen',['../classScreen.html',1,'']]],
-  ['selectcolour',['selectColour',['../classDisplay.html#a1487285b39c53295e92cad6b3074a924',1,'Display']]],
-  ['setb',['setB',['../namespaceColour.html#a0b181bcc3bc52f87504d8f1cf3d0289a',1,'Colour']]],
-  ['setcolours',['setColours',['../classDisplay.html#a8292ad87dddbf7090e074bcff5968d93',1,'Display']]],
-  ['setfont',['setFont',['../classDisplay.html#afb2154f5edc1c2784ef43d0ddae9cd6d',1,'Display']]],
-  ['setg',['setG',['../namespaceColour.html#a059504956471e6a07df579f59cec6e22',1,'Colour']]],
-  ['setpixel',['setPixel',['../classDisplay.html#a34d1063149dc9f36c43afd5066b0b3ce',1,'Display']]],
-  ['setr',['setR',['../namespaceColour.html#aafcc8ab12acc526fa93bee12b961edab',1,'Colour']]],
-  ['switchscreen',['switchScreen',['../classDisplay.html#a566e7cbce9f606a20787c6d42c189dc2',1,'Display']]]
+  ['recievedmessage',['RecievedMessage',['../structNetworkHandler_1_1RecievedMessage.html',1,'NetworkHandler']]],
+  ['redraw',['redraw',['../classDisplay.html#a4fe6059ab67f9a11469ea53f4a5ddb0d',1,'Display']]],
+  ['rendercoloursquare',['renderColourSquare',['../classDisplay.html#a94ad8f357b5fffdd4711a593e29003a8',1,'Display']]],
+  ['rendericon',['renderIcon',['../classDisplay.html#ad50ca28eb1147af9d31316bd2ad8ef6e',1,'Display']]],
+  ['renderrectangle',['renderRectangle',['../classDisplay.html#aeadae3356ab6ef6bc101dd5c3ee1317d',1,'Display']]],
+  ['rendertext',['renderText',['../classDisplay.html#a9e72ead0a3cb23753b1fba042926ce88',1,'Display']]],
+  ['rgb565to888',['rgb565to888',['../namespaceColour.html#aa7b3de65f5d56d88b13863de9aa5641a',1,'Colour']]],
+  ['rgb888to565',['rgb888to565',['../namespaceColour.html#a5311fafb2011e62db5d600badee72ee9',1,'Colour']]],
+  ['rgbceiling',['rgbCeiling',['../classLightUnit.html#ae688f610193b69a2f390bd2a44dc2a7c',1,'LightUnit']]],
+  ['rgbdelta',['RGBDelta',['../classDeviceInput.html#a2dae4108527f110262644b6a2609a213',1,'DeviceInput']]],
+  ['rgbpressed',['RGBPressed',['../classDeviceInput.html#a27dd22c6d022b77c645899a8793d511a',1,'DeviceInput']]],
+  ['rgbwall',['rgbWall',['../classLightUnit.html#a9927e4bcf968e043883688e87935fb4a',1,'LightUnit']]],
+  ['rwmutex',['RWMutex',['../classRWMutex.html',1,'']]]
 ];

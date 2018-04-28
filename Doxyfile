@@ -772,7 +772,6 @@ WARN_LOGFILE           =
 # Note: If this tag is empty the current directory is searched.
 
 
-# I thought this might work but no...
 
 INPUT                  = DisplayUtils Misc MZApi Network Unit
 

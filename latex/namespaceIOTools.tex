@@ -1,0 +1,64 @@
+\hypertarget{namespaceIOTools}{}\section{I\+O\+Tools Namespace Reference}
+\label{namespaceIOTools}\index{I\+O\+Tools@{I\+O\+Tools}}
+
+
+Tools connected to IO..  
+
+
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{namespaceIOTools_a60e05eba5733bd6f46f2800267c9217b}{file\+Exists} (const std\+::string \&path)
+\begin{DoxyCompactList}\small\item\em Checks whether a file exists. \end{DoxyCompactList}\item 
+bool {\bfseries load\+Image16x16} (const std\+::string \&path, uint16\+\_\+t buffer\mbox{[}256\mbox{]})\hypertarget{namespaceIOTools_a16f1ccfbedc7a4a792ffcbf3d8f0a148}{}\label{namespaceIOTools_a16f1ccfbedc7a4a792ffcbf3d8f0a148}
+
+\item 
+bool \hyperlink{namespaceIOTools_a7c6c0a4261e8bd4f7d75509875719ea2}{load\+Image16x16} (const std\+::string \&path, uint16\+\_\+t buffer\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Loads a ppm 16x16 image. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Tools connected to IO.. 
+
+\subsection{Function Documentation}
+\index{I\+O\+Tools@{I\+O\+Tools}!file\+Exists@{file\+Exists}}
+\index{file\+Exists@{file\+Exists}!I\+O\+Tools@{I\+O\+Tools}}
+\subsubsection[{\texorpdfstring{file\+Exists(const std\+::string \&path)}{fileExists(const std::string &path)}}]{\setlength{\rightskip}{0pt plus 5cm}bool I\+O\+Tools\+::file\+Exists (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{path}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceIOTools_a60e05eba5733bd6f46f2800267c9217b}{}\label{namespaceIOTools_a60e05eba5733bd6f46f2800267c9217b}
+
+
+Checks whether a file exists. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Path to file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the file exists, false otherwise. 
+\end{DoxyReturn}
+\index{I\+O\+Tools@{I\+O\+Tools}!load\+Image16x16@{load\+Image16x16}}
+\index{load\+Image16x16@{load\+Image16x16}!I\+O\+Tools@{I\+O\+Tools}}
+\subsubsection[{\texorpdfstring{load\+Image16x16(const std\+::string \&path, uint16\+\_\+t buffer[])}{loadImage16x16(const std::string &path, uint16_t buffer[])}}]{\setlength{\rightskip}{0pt plus 5cm}bool I\+O\+Tools\+::load\+Image16x16 (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{path, }
+\item[{uint16\+\_\+t}]{buffer\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceIOTools_a7c6c0a4261e8bd4f7d75509875719ea2}{}\label{namespaceIOTools_a7c6c0a4261e8bd4f7d75509875719ea2}
+
+
+Loads a ppm 16x16 image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Path to file. \\
+\hline
+{\em buffer} & An array to store the image into. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the image was loaded successfully, false otherwise. 
+\end{DoxyReturn}

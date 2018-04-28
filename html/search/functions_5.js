@@ -1,10 +1,5 @@
 var searchData=
 [
-  ['redraw',['redraw',['../classDisplay.html#a4fe6059ab67f9a11469ea53f4a5ddb0d',1,'Display']]],
-  ['rendercoloursquare',['renderColourSquare',['../classDisplay.html#a94ad8f357b5fffdd4711a593e29003a8',1,'Display']]],
-  ['rendericon',['renderIcon',['../classDisplay.html#ad50ca28eb1147af9d31316bd2ad8ef6e',1,'Display']]],
-  ['renderrectangle',['renderRectangle',['../classDisplay.html#aeadae3356ab6ef6bc101dd5c3ee1317d',1,'Display']]],
-  ['rendertext',['renderText',['../classDisplay.html#a9e72ead0a3cb23753b1fba042926ce88',1,'Display']]],
-  ['rgb565to888',['rgb565to888',['../namespaceColour.html#aa7b3de65f5d56d88b13863de9aa5641a',1,'Colour']]],
-  ['rgb888to565',['rgb888to565',['../namespaceColour.html#a5311fafb2011e62db5d600badee72ee9',1,'Colour']]]
+  ['lightunit',['LightUnit',['../classLightUnit.html#a28169090402e0a891c35a881760e14bd',1,'LightUnit::LightUnit()'],['../classLightUnit.html#a171818bc7fbf21a112582ab66c39dedc',1,'LightUnit::LightUnit(LightUnit &amp;&amp;other)'],['../classLightUnit.html#aa44c2d7b6e764c9bbca0f5ab19a31553',1,'LightUnit::LightUnit(const char description[16])'],['../classLightUnit.html#afb696351f25e3766eb18d6ce31f97fa6',1,'LightUnit::LightUnit(unsigned long ip, const char description[16], const uint16_t image[256])'],['../classLightUnit.html#ab91f948d033d6982b4b981aea104b1d7',1,'LightUnit::LightUnit(unsigned long ip, const char description[16], const uint16_t image[256], uint32_t rgbCeiling, uint32_t rgbWall)']]],
+  ['loadimage16x16',['loadImage16x16',['../namespaceIOTools.html#a7c6c0a4261e8bd4f7d75509875719ea2',1,'IOTools']]]
 ];
