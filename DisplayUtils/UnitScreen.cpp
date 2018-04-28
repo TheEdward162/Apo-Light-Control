@@ -114,7 +114,7 @@ void UnitScreen::renderRGBText(int *sx, int *sy, uint32_t rgb) {
 
 void UnitScreen::updateSelected(int delta) {
     if (selectedValue >= 0) {
-		if (getCurrentRealValue != selectedValue)
+		if (getCurrentRealValue() != selectedValue)
 			updateUnitValue(true);
 		selectedValue = -1;
 	}
