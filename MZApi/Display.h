@@ -67,6 +67,7 @@ public:
      * @param bgColour The colour used for background.
      * @param fgColour The colour used for foreground.
      * @param highlightColour The colour used for highlighted items, such as the sleected ones.
+     * @return True if there was a previous screen, false otherwise.
      **/
     void setColours(uint16_t bgColour, uint16_t fgColour, uint16_t highlightColour);
 
