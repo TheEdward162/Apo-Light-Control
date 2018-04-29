@@ -31,7 +31,7 @@ public:
 	*/
     int8_t RGBDelta[3];
 	/**
-		@brief Wether given device knob is pressed or not.
+		@brief Whether given device knob is pressed or not.
 	*/
     bool RGBPressed[3]; 
 

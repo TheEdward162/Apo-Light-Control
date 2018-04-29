@@ -73,7 +73,7 @@ protected:
 		*/
 		virtual int renderSelf(Display* display, int x, int y) = 0;
 		/**
-			@brief Wether to align left or right. 
+			@brief Whether to align left or right. 
 		*/
 		bool alignRight;
 

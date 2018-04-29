@@ -76,7 +76,7 @@ public:
 
 	/**
 		@brief Checks if the queue has changed.
-		@returns Value indicating wether the queue has changed since the last call to this function.
+		@returns Value indicating whether the queue has changed since the last call to this function.
 	*/
 	bool hasChanged();
 
