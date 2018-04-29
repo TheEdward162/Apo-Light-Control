@@ -14,6 +14,7 @@
 
 #include "Network/NetworkHandler.h"
 #include "MZApi/DeviceInput.h"
+#include "MZApi/LedController.h"
 
 #include "MZApi/Display.h"
 #include "DisplayUtils/Colour.h"
@@ -58,7 +59,7 @@ void NetworkThreadHandleBroadcastMessage(NetworkHandler::RecievedMessage* reciev
 		mutexUnitList.unlockRead();
 		mutexUnitList.lockWrite();
 
-		unitList.push_back(LightUnit(recievedMessage->ip, bMessage->description, bMessage->image, bMessage->rgbCeiling, bMessage->rgbWall));
+		unitList.emplace_back(recievedMessage->ip, bMessage->description, bMessage->image, bMessage->rgbCeiling, bMessage->rgbWall);
 
 		mutexUnitList.unlockWrite();
 		mutexUnitList.lockRead();
@@ -181,6 +182,10 @@ void NetworkThreadRun(std::future<void> death) {
 }
 
 void mainLoop() {
+#ifdef MZ_BOARD
+	LightUnit& thisUnit = *unitList.begin();
+#endif
+
 	// main loop
 	while (true) {
 
@@ -189,6 +194,10 @@ void mainLoop() {
 		// input
 		deviceInput.update();
 		display.handleInput(deviceInput.RGBDelta, deviceInput.RGBPressed);
+
+		// update leds
+		LedController::setLED1(thisUnit.rgbWall);
+		LedController::setLED2(thisUnit.rgbCeiling);
 #else
 		display.handleInput(NULL, NULL);
 #endif
@@ -234,8 +243,6 @@ void loadUIIcons() {
 int Engine::run(int argc, char** argv) {
 	checkArguments(argc, argv);
 	loadUIIcons();
-
-	//unitList.reserve(5);
 	
 	// init this unit object which will be always the first element of the unitList vector
 	unitList.emplace_back(argv[1]);
