@@ -6,6 +6,8 @@
 
 #include <cstdint>
 
+#include <string>
+
 /**
  * @brief Anything related to handling colours.
  *
@@ -96,6 +98,18 @@ namespace Colour {
      * @return The resulting RGB888 colour.
      **/
     uint32_t fromRGB(uint8_t r, uint8_t g, uint8_t b);
+
+	/** @brief Creates an rgb string representation of the colour.
+     * @param rgb The RGB888 colour.
+     * @return The resulting string.
+     **/
+	std::string toRGBString(uint32_t rgb);
+
+	/** @brief Creates a hex string representation of the colour.
+     * @param rgb The RGB888 colour.
+     * @return The resulting string.
+     **/
+	std::string toHexString(uint32_t rgb);
 
     /** @brief Converts an RGB888 colour to an RGB565 colour.
      * @param rgb888 The RGB888 colour.

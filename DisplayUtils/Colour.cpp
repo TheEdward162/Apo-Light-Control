@@ -2,6 +2,8 @@
 // Created by klara on 21.4.18.
 //
 
+#include <sstream>
+
 #include "Colour.h"
 
 #define R(a) ((a & 0xFF0000) >> 16)
@@ -83,4 +85,17 @@ uint32_t Colour::changeB(uint32_t value, int16_t changeB) {
 
 uint32_t Colour::fromRGB(uint8_t r, uint8_t g, uint8_t b) {
 	return (r << 16) | (g << 8) | b;
+}
+
+std::string Colour::toRGBString(uint32_t rgb) {
+	std::ostringstream outStream;
+	outStream << "rgb(" << (int)getR(rgb) << ", " << (int)getG(rgb) << ", " << (int)getB(rgb) << ")";
+	return outStream.str();
+}
+
+std::string Colour::toHexString(uint32_t rgb) {
+	std::ostringstream outStream;
+	outStream << "#" << std::hex << rgb;
+
+	return outStream.str();
 }

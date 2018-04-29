@@ -17,39 +17,35 @@ void ListScreen::renderScreen() {
 	display->clearScreen(display->bgColour);
 
     renderUnitList();
+	renderNagivationLine(uiInputPairs);
 }
 
 void ListScreen::renderUnitList() {
-	int x = 0;
 	int y = 0;
     size_t unitsCount = Engine::unitList.size();
 
 	size_t listStart = scrollOffset;
 	size_t listEnd = std::min(unitsCount, listStart + display->lineMax);
 
+	Screen::PLineElementVector lineElements;
+
+	auto unitListIterator = Engine::unitList.begin();
+	std::advance(unitListIterator, listStart);
+
 	for (size_t i = listStart; i < listEnd; i++) {
-		LightUnit& unit = Engine::unitList[i];
+		LightUnit& unit = *unitListIterator;
 		std::lock_guard<std::mutex> lock(unit.mutex_change);
 
-		x = 2;
+		lineElements.clear();
+		lineElements.emplace_back(new Screen::IconLineElement(unit.image, 0, 2));
+		lineElements.emplace_back(new Screen::TextLineElement(unit.description, display->fgColour));
+		lineElements.emplace_back(new Screen::ColorSquareLineElement(Colour::rgb888to565(unit.rgbCeiling), 0, true));
+		lineElements.emplace_back(new Screen::ColorSquareLineElement(Colour::rgb888to565(unit.rgbWall), 0, true));
 
-		if (i == selected) {
-			display->renderRectangle(0, y, Display::width, y + 16, display->selectColour);
-		}
-
-		display->renderIcon(unit.image, x, y);
-		x += 18;
-
-		display->renderText(x, y, unit.description, display->fgColour);
-
-		// render current colors
-		display->renderColourSquare(Display::width - 32, y, Colour::rgb888to565(unit.rgbWall));
-		display->renderColourSquare(Display::width - 16, y, Colour::rgb888to565(unit.rgbCeiling));
-
-        y += 16;
+		Screen::renderLine(y, lineElements, i == selected ? display->selectColour : -1);
+		y += 16;
+		unitListIterator++;
 	}
-
-	renderNagivationLine();
 }
 
 void ListScreen::handleKnobChange(int8_t *RGBDelta) {
@@ -68,7 +64,7 @@ void ListScreen::handleKnobChange(int8_t *RGBDelta) {
 	if (selected < scrollOffset) {
 		scrollOffset = selected;
 	} else if (selected > scrollOffset + display->lineMax - 1) {
-		scrollOffset += selected - scrollOffset - display->lineMax + 1;
+		scrollOffset += selected - (scrollOffset + display->lineMax - 1);
 	}
 }
 
@@ -76,6 +72,8 @@ void ListScreen::handleKnobPress(bool *RGBPressed) {
     if (RGBPressed[0] && RGBPressed[1] && RGBPressed[2]) {
 		display->switchScreen(new NyanScreen(display));
 	} else if (RGBPressed[0]) {
-		display->switchScreen(new UnitScreen(display, Engine::unitList[selected]));
+		auto lightUnitIt = Engine::unitList.begin();
+		std::advance(lightUnitIt, selected);
+		display->switchScreen(new UnitScreen(display, *lightUnitIt));
     }
 }

@@ -14,11 +14,13 @@
 #include "../DisplayUtils/UnitScreen.h"
 #include "../DisplayUtils/NyanScreen.h"
 
-Display::Display(uint16_t bgColour, uint16_t fgColour, uint16_t highlightColour, font_descriptor_t font) {
+#define CHAR_SPACING 10
+
+Display::Display(uint16_t bgColour, uint16_t fgColour, uint16_t selectColour, font_descriptor_t font) {
     this->bgColour = bgColour;
     this->fgColour = fgColour;
-    this->selectColour = highlightColour;
-    memset(buffer, bgColour, sizeof(uint16_t) * Display::width * Display::height);
+    this->selectColour = selectColour;
+    memset(frameBuffer, bgColour, sizeof(uint16_t) * Display::width * Display::height);
 
 	setFont(font);
 
@@ -51,7 +53,7 @@ void Display::redraw() {
 
     for (int y = 0; y < Display::height; ++y) {
         for (int x = 0; x < Display::width; ++x) {
-            parlcd_write_data(buffer[y][x]);
+            parlcd_write_data(frameBuffer[y][x]);
         }
     }
 #else
@@ -113,14 +115,14 @@ void Display::redraw() {
         }
 	}
 
-	// use sdl to display the buffer
+	// use sdl to display the frameBuffer
 	SDL_Surface *scr = SDL_GetWindowSurface(sdl_win);
 	for (int y = 0; y < scr->h; y++) {
 		for (int x = 0; x < scr->w; x++) {
 			const int idx = (y * scr->w + x) * scr->format->BytesPerPixel;
 			uint8_t *px = (uint8_t*) scr->pixels + idx;
 
-			uint32_t rgb888 = Colour::rgb565to888(buffer[y][x]);
+			uint32_t rgb888 = Colour::rgb565to888(frameBuffer[y][x]);
 
 			*(px + scr->format->Rshift / 8) = Colour::getR(rgb888);
 			*(px + scr->format->Gshift / 8) = Colour::getG(rgb888);
@@ -151,11 +153,6 @@ void Display::parlcd_write_cmd(uint16_t cmd) {
     *(volatile uint16_t *) (mapper.mem_base + PARLCD_REG_CMD_o) = (uint16_t) cmd;
 }
 
-void Display::testDisplay() {
-    currentScreen->renderScreen();
-    printDisplay();
-}
-
 bool Display::getBit(uint16_t bits, int position) { // position in range 0-15
     return (bits >> position) & 0x1;
 }
@@ -183,7 +180,7 @@ bool Display::checkBounds(int* x, int* y) {
 }
 
 void Display::clearScreen(uint16_t color) {
-	uint16_t* b = (uint16_t*)buffer;
+	uint16_t* b = (uint16_t*)frameBuffer;
 	for (size_t i = 0; i < width * height; i++) {
 		*(b++) = color;
 	}
@@ -191,16 +188,16 @@ void Display::clearScreen(uint16_t color) {
 
 void Display::setPixel(int x, int y, uint16_t colour) {
 	checkBounds(&x, &y);
-	buffer[y][x] = colour;
+	frameBuffer[y][x] = color;
 }
 
 void Display::renderRectangle(int left, int top, int right, int bottom, uint16_t colour) {
 	checkBounds(&left, &top);
 	checkBounds(&right, &bottom);
 
-    for (int rectY = top; rectY < bottom; ++rectY) {
-        for (int rectX = left; rectX < right; ++rectX) {
-            buffer[rectY][rectX] = colour;
+    for (int rectY = top; rectY < bottom + 1; ++rectY) {
+        for (int rectX = left; rectX < right + 1; ++rectX) {
+            frameBuffer[rectY][rectX] = color;
         }
     }
 }
@@ -218,77 +215,68 @@ void Display::renderColourSquare(int topX, int topY, uint16_t colour) {
 }
 
 // TODO make it general so that it works for the proportional font too
-void Display::renderCharacter(char character, int topX, int topY, uint16_t colour) {
+size_t Display::renderCharacter(char character, int topX, int topY, uint16_t colour) {
     checkBounds(&topX, &topY);
 	
 	int charIndex = font.height * character;
     uint16_t line;
+	size_t maxX = 0;
 
-    for (size_t charY = 0; charY < font.height; ++charY) {
+    for (size_t charY = 0; charY < (size_t)font.height; ++charY) {
         line = font.bits[charIndex+charY];
-        for (int charX = 0; charX < font.maxwidth; ++charX) {
+        for (size_t charX = 0; charX < (size_t)font.maxwidth; ++charX) {
             if (getBit(line, 15 - charX)) {
 				int bottomX = topX + charX;
 				int bottomY = topY + charY;
 				checkBounds(&bottomX, &bottomY);
 
-                buffer[bottomY][bottomX] = colour;
+                frameBuffer[bottomY][bottomX] = colour;
+
+				if (charX > maxX)
+					maxX = charX;
             }
         }
     }
+
+	if (maxX == 0) {
+		// this is probably some whitespace, no touchy
+		maxX = 16;
+	}
+
+	return maxX;
 }
 
+size_t Display::textWidth(std::string& text) {
+	return text.length() * CHAR_SPACING;
+}
 
-void Display::renderText(int topX, int topY, std::string text, uint16_t colour) {
-    char character;
+size_t Display::renderText(int topX, int topY, std::string text, uint16_t colour) {
+    size_t width = 0;
+	
+	char character;
     for (size_t i = 0; i < text.size(); ++i) {
         character = text[i];
-        renderCharacter(character, topX, topY, colour);
-        topX += 16;
+        renderCharacter(character, topX + width, topY, colour);
+		width += CHAR_SPACING;		
     }
+
+	return width;
 }
 
-void Display::renderIcon(uint16_t *buffer_, int topX, int topY) {
+size_t Display::renderIcon(uint16_t *icon, int topX, int topY, int exponent) {
     checkBounds(&topX, &topY);
 	
-	for (int iconY = 0; iconY < 16; ++iconY) {
-        for (int iconX = 0; iconX < 16; ++iconX) {
-			int bottomX = topX + iconX;
-			int bottomY = topY + iconY;
-			checkBounds(&bottomX, &bottomY);
+	size_t power = pow(2, exponent);
+	size_t scaledSize = 16 * power;
 
-            buffer[bottomY][bottomX] = buffer_[iconY * 16 + iconX];
+	for (size_t iconY = 0; iconY < scaledSize; ++iconY) {
+        for (size_t iconX = 0; iconX < scaledSize; ++iconX) {
+			size_t iconIndex = iconY / power * 16 + iconX / power;
+			setPixel(topX + iconX, topY + iconY, icon[iconIndex]);
         }
     }
-}
 
-void Display::printDisplay() {
-    char tmp;
-    // show the result
-    for (size_t y = 0; y < Display::height; ++ y) {
-        for (size_t x = 0; x < Display::width; ++x) {
-
-            if (buffer[y][x] == fgColour) {
-                tmp = 'F';
-            }
-            else {
-                if (buffer[y][x] == bgColour) {
-                    tmp = '-';
-                }
-                else {
-                    if (buffer[y][x] == selectColour) {
-                        tmp = '|';
-                    }
-                    else {
-                        tmp = '?';
-                    }
-                }
-            }
-            printf("%c", tmp);
-        }
-        printf("\n");
-    }
-    printf("\n\n");
+	return scaledSize;
 }
 
 void Display::handleInput(int8_t rgbDelta[3], bool knobsPressed[3]) {

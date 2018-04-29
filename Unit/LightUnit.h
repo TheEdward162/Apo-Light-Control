@@ -16,11 +16,6 @@ public:
 	 * */
 	LightUnit();
 	/**
-	 * LightUnit constructor which clones another Light unit.
-	 * @param other The light unit to be cloned.
-	 * */
-	LightUnit(LightUnit&& other);
-	/**
 	 * LightUnit constructor with unit description.
 	 * @param description Description of the light unit.
 	 * */
@@ -46,7 +41,6 @@ public:
 	 * */
 	~LightUnit();
 
-	LightUnit& operator=(LightUnit&& other);
 
 	uint32_t rgbCeiling = 0; /**< The RGB888 colour of the ceiling. */
 	uint32_t rgbWall = 0; /**< The RGB888 colour of the wall. */
@@ -55,7 +49,7 @@ public:
 	uint16_t image[256]; /**< Unit icon. */
 
 	unsigned long ip = 0; /**< Unit IP. */
-	std::chrono::steady_clock::time_point lastNetworkBroadcastTimePoint; /**< Time of the last broadcast. */
-	mutable std::mutex mutex_change;
-	std::atomic<std::uint32_t> counter_readers;
+	std::chrono::steady_clock::time_point lastNetworkBroadcastTimePoint; /**< Time of the last recieved broadcast. */
+	mutable std::mutex mutex_change; /**< Mutex to prevent simultaneous changing of variables. */
+	std::atomic_bool screenActive; /**< Flag to prevent unit ereasure from unitList when it's active in UnitScreen. */
 };

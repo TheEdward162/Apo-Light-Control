@@ -7,22 +7,8 @@ LightUnit::LightUnit() {
 	memset(&this->image, 0, 256 * sizeof(uint16_t));
 
 	lastNetworkBroadcastTimePoint = std::chrono::steady_clock::now();
-	counter_readers.store(0);
+	screenActive = false;
 }
-
-LightUnit::LightUnit(LightUnit&& other) {
-	// lock the other mutex
-	std::lock_guard<std::mutex> otherLock(other.mutex_change);
-
-	ip = std::move(other.ip);
-	memcpy(&description, &other.description, 17);
-	memcpy(&image, &other.image, 256 * sizeof(uint16_t));
-	rgbCeiling = std::move(other.rgbCeiling);
-	rgbWall = std::move(other.rgbWall);
-	lastNetworkBroadcastTimePoint = std::move(other.lastNetworkBroadcastTimePoint);
-	counter_readers.store(other.counter_readers.load());
-}
-
 LightUnit::LightUnit(const char description[16]) : LightUnit() {
 	int descriptionLength = strlen(description);
 	if (descriptionLength > 16)
@@ -41,23 +27,4 @@ LightUnit::LightUnit(unsigned long ip, const char description[16], const uint16_
 
 LightUnit::~LightUnit() {
 
-}
-
-LightUnit& LightUnit::operator=(LightUnit&& other) {
-	if (this != &other) {
-		std::unique_lock<std::mutex> selfLock(mutex_change, std::defer_lock);
-		std::unique_lock<std::mutex> otherLock(other.mutex_change, std::defer_lock);
-		// to avoid deadlocking, defer locks and then call std::lock
-		std::lock(selfLock, otherLock);
-
-		ip = std::move(other.ip);
-		memcpy(&description, &other.description, 17);
-		memcpy(&image, &other.image, 256 * sizeof(uint16_t));
-		rgbCeiling = std::move(other.rgbCeiling);
-		rgbWall = std::move(other.rgbWall);
-		lastNetworkBroadcastTimePoint = std::move(other.lastNetworkBroadcastTimePoint);
-		counter_readers.store(other.counter_readers.load());
-	}
-	
-	return *this;
 }

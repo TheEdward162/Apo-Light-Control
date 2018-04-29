@@ -15,7 +15,10 @@ board:
 	$(CC) $(CFLAGS) -DMZ_BOARD -o app $(SRC) $(LIBS)
 
 test:
-	./app "OMG room" icons/1.ppm
+	./app "OMG room" icons/tux.ppm
+
+grind:
+	valgrind --leak-check=full --track-origins=yes ./app "OMG room" icons/tux.ppm
 
 pack:
 	tar -zcvf pack.tar.gz Makefile *.cpp *.h Network/* Unit/* Misc/* Misc/* MZApi/* DisplayUtils/* icons/*

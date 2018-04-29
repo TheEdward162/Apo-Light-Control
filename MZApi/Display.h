@@ -76,7 +76,11 @@ public:
      **/
     void setFont(font_descriptor_t font);
 
-    void testDisplay();
+	/** @brief Calculates text width in pixels.
+     * @param text The text to calculate width for.
+     * @return Width of the passed text in pixels.
+     **/
+	size_t textWidth(std::string& text);
 
 	/** @brief Sets the whole display to one colour.
      * @param colour The colour used as background.
@@ -120,15 +124,16 @@ public:
 	 * @param buffer The 16x16 image to be rendered.
      * @param topX The x coordinate of the top-left corner.
      * @param topY The y coordinate of the top-left corner.
+	 * @param exponent The exponent to use for scaling by powers of two.
      **/
-    void renderIcon(uint16_t *buffer, int topX, int topY);
+    void renderIcon(uint16_t *buffer, int topX, int topY, int exponent=0);
 
 	/** @brief Renders the display buffer on the device.
      **/
     void redraw();
 
 private:
-	uint16_t buffer[height][width];
+	uint16_t frameBuffer[height][width];
     font_descriptor_t font;
 #ifndef MZ_BOARD
 	SDL_Window* sdl_win = NULL;
@@ -140,12 +145,11 @@ private:
 
     void parlcd_write_cmd(uint16_t cmd);
     void parlcd_write_data(uint16_t data);
-    void renderCharacter(char character, int topX, int topY, uint16_t colour);
+    size_t renderCharacter(char character, int topX, int topY, uint16_t colour);
 
     Mapper mapper = Mapper(PARLCD_REG_BASE_PHYS, PARLCD_REG_SIZE);
 
 	bool checkBounds(int* x, int* y);
 
     bool getBit(uint16_t bits, int position);
-    void printDisplay();
 };
