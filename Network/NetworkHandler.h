@@ -11,6 +11,16 @@
 #include "../Unit/LightUnit.h"
 
 /**
+	@defgroup network_thread Networking and threading module
+	@brief Networking and threading.
+*/
+
+/**
+	@addtogroup network_thread
+	@{
+*/
+
+/**
 	@brief Class that handles all network communication.
 */
 class NetworkHandler {
@@ -168,3 +178,4 @@ private:
 	uint32_t getIPFromStorage(const struct sockaddr_storage* address);
 	void printIP(uint32_t ip);
 };
+/** @} */

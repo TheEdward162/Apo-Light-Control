@@ -3,6 +3,11 @@
 #include <cstdint>
 
 /**
+	@addtogroup unit
+	@{
+*/
+
+/**
 	@brief Namespace that handles LEDs.
 */
 namespace LedController {
@@ -23,3 +28,4 @@ namespace LedController {
 	void setLEDLine(uint32_t bits);
 }
 /** namespace LedController */
+/** @} */

@@ -22,10 +22,15 @@
 
 class Screen;
 
-/*
- * A class that handles the (one-way) interaction with the device display
- * and provides methods for rendering shapes, text, and other.
- * */
+/**
+	@addtogroup unit
+	@{
+*/
+
+/**
+	@brief A class that handles the (one-way) interaction with the device display
+	and provides methods for rendering shapes, text, and other.
+**/
 class Display {
 public:
 	/**
@@ -176,3 +181,4 @@ private:
 
     bool getBit(uint16_t bits, int position);
 };
+/** @} */

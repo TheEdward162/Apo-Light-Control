@@ -9,6 +9,11 @@
 #include <string>
 
 /**
+	@addtogroup utils
+	@{
+*/
+
+/**
  * @brief Anything related to handling colours.
  *
  */
@@ -125,5 +130,6 @@ namespace Colour {
      **/
     uint32_t rgb565to888(uint16_t rgb565);
 };
-
 /* namespace Colour */
+
+/** @} */

@@ -1,0 +1,339 @@
+\hypertarget{classDisplay}{}\section{Display Class Reference}
+\label{classDisplay}\index{Display@{Display}}
+
+
+A class that handles the (one-\/way) interaction with the device display and provides methods for rendering shapes, text, and other.  
+
+
+
+
+{\ttfamily \#include $<$Display.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classDisplay_a579fdca9754b50088f77dcb7ba3489ac}{Display}} (uint16\+\_\+t \mbox{\hyperlink{classDisplay_a23a0f9867d7ba82c45a3c612c84e0504}{bg\+Colour}}, uint16\+\_\+t \mbox{\hyperlink{classDisplay_aa6a2bd6e8f05a0794ff6b32c30723245}{fg\+Colour}}, uint16\+\_\+t highlight\+Colour, \mbox{\hyperlink{structfont__descriptor__t}{font\+\_\+descriptor\+\_\+t}} font)
+\begin{DoxyCompactList}\small\item\em The display constructor taking colours and fonts as parameters. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDisplay_ac2607a6bb236c55547a4223d40d85d1f}\label{classDisplay_ac2607a6bb236c55547a4223d40d85d1f}} 
+\mbox{\hyperlink{classDisplay_ac2607a6bb236c55547a4223d40d85d1f}{$\sim$\+Display}} ()
+\begin{DoxyCompactList}\small\item\em The display destructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDisplay_aa68ef5d785a1a96abdfe0a0f8ccdc379}{handle\+Input}} (int8\+\_\+t rgb\+Delta\mbox{[}3\mbox{]}, bool knobs\+Pressed\mbox{[}3\mbox{]})
+\begin{DoxyCompactList}\small\item\em Reacts to input from the device. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDisplay_a566e7cbce9f606a20787c6d42c189dc2}{switch\+Screen}} (\mbox{\hyperlink{classScreen}{Screen}} $\ast$new\+Screen)
+\begin{DoxyCompactList}\small\item\em Changes the display screen. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classDisplay_ad043404964c19f51bb903da796aaefda}{to\+Previous\+Screen}} (bool keep\+Alive=false)
+\begin{DoxyCompactList}\small\item\em Returns to the previous screen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDisplay_a8292ad87dddbf7090e074bcff5968d93}{set\+Colours}} (uint16\+\_\+t \mbox{\hyperlink{classDisplay_a23a0f9867d7ba82c45a3c612c84e0504}{bg\+Colour}}, uint16\+\_\+t \mbox{\hyperlink{classDisplay_aa6a2bd6e8f05a0794ff6b32c30723245}{fg\+Colour}}, uint16\+\_\+t highlight\+Colour)
+\begin{DoxyCompactList}\small\item\em Sets the base colours for the display -\/ background, foreground and highlight. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDisplay_afb2154f5edc1c2784ef43d0ddae9cd6d}{set\+Font}} (\mbox{\hyperlink{structfont__descriptor__t}{font\+\_\+descriptor\+\_\+t}} font)
+\begin{DoxyCompactList}\small\item\em Sets the font for the display. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classDisplay_a60f87a87dc86ca281c1095de69e981e6}{text\+Width}} (std\+::string \&text)
+\begin{DoxyCompactList}\small\item\em Calculates text width in pixels. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDisplay_a905f9f783556b52da4655c541a5e3ea0}{clear\+Screen}} (uint16\+\_\+t colour)
+\begin{DoxyCompactList}\small\item\em Sets the whole display to one colour. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDisplay_a34d1063149dc9f36c43afd5066b0b3ce}{set\+Pixel}} (int x, int y, uint16\+\_\+t colour)
+\begin{DoxyCompactList}\small\item\em Sets one pixel to a given colour. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDisplay_aeadae3356ab6ef6bc101dd5c3ee1317d}{render\+Rectangle}} (int left, int top, int right, int bottom, uint16\+\_\+t colour)
+\begin{DoxyCompactList}\small\item\em Renders an axis-\/aligned rectangle with given corner points in a given colour. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDisplay_a94ad8f357b5fffdd4711a593e29003a8}{render\+Colour\+Square}} (int topX, int topY, uint16\+\_\+t colour)
+\begin{DoxyCompactList}\small\item\em Renders an axis-\/aligned rectangle with given position in a given colour. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classDisplay_a0e1bcaa77e45765f710a28130a34473d}{render\+Text}} (int topX, int topY, std\+::string text, uint16\+\_\+t colour)
+\begin{DoxyCompactList}\small\item\em Renders an axis-\/aligned text-\/line starting at a given position in a given colour. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classDisplay_a7e1b0ac97b561093e8f1993d7743c095}{render\+Icon}} (uint16\+\_\+t $\ast$buffer, int topX, int topY, int exponent=0)
+\begin{DoxyCompactList}\small\item\em Renders an icon starting at a given position. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDisplay_a4fe6059ab67f9a11469ea53f4a5ddb0d}\label{classDisplay_a4fe6059ab67f9a11469ea53f4a5ddb0d}} 
+void \mbox{\hyperlink{classDisplay_a4fe6059ab67f9a11469ea53f4a5ddb0d}{redraw}} ()
+\begin{DoxyCompactList}\small\item\em Renders the display buffer on the device. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classDisplay_aa6a2bd6e8f05a0794ff6b32c30723245}\label{classDisplay_aa6a2bd6e8f05a0794ff6b32c30723245}} 
+uint16\+\_\+t \mbox{\hyperlink{classDisplay_aa6a2bd6e8f05a0794ff6b32c30723245}{fg\+Colour}}
+\begin{DoxyCompactList}\small\item\em Current theme text colour. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDisplay_a23a0f9867d7ba82c45a3c612c84e0504}\label{classDisplay_a23a0f9867d7ba82c45a3c612c84e0504}} 
+uint16\+\_\+t \mbox{\hyperlink{classDisplay_a23a0f9867d7ba82c45a3c612c84e0504}{bg\+Colour}}
+\begin{DoxyCompactList}\small\item\em Current theme background colour. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDisplay_a1487285b39c53295e92cad6b3074a924}\label{classDisplay_a1487285b39c53295e92cad6b3074a924}} 
+uint16\+\_\+t \mbox{\hyperlink{classDisplay_a1487285b39c53295e92cad6b3074a924}{select\+Colour}}
+\begin{DoxyCompactList}\small\item\em Current theme selected background colour. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDisplay_a7183e09a442a157a00391639a34cd4d8}\label{classDisplay_a7183e09a442a157a00391639a34cd4d8}} 
+size\+\_\+t \mbox{\hyperlink{classDisplay_a7183e09a442a157a00391639a34cd4d8}{line\+Max}}
+\begin{DoxyCompactList}\small\item\em The maximum number of lines that fit on the display. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classDisplay_a6f1dec624224569510e05c937d33ac4d}\label{classDisplay_a6f1dec624224569510e05c937d33ac4d}} 
+static const size\+\_\+t \mbox{\hyperlink{classDisplay_a6f1dec624224569510e05c937d33ac4d}{width}} = 480
+\begin{DoxyCompactList}\small\item\em The display width. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDisplay_ac677f0db63e8eef2373fe84791cad17c}\label{classDisplay_ac677f0db63e8eef2373fe84791cad17c}} 
+static const size\+\_\+t \mbox{\hyperlink{classDisplay_ac677f0db63e8eef2373fe84791cad17c}{height}} = 320
+\begin{DoxyCompactList}\small\item\em The display height. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A class that handles the (one-\/way) interaction with the device display and provides methods for rendering shapes, text, and other. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classDisplay_a579fdca9754b50088f77dcb7ba3489ac}\label{classDisplay_a579fdca9754b50088f77dcb7ba3489ac}} 
+\index{Display@{Display}!Display@{Display}}
+\index{Display@{Display}!Display@{Display}}
+\subsubsection{\texorpdfstring{Display()}{Display()}}
+{\footnotesize\ttfamily Display\+::\+Display (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{bg\+Colour,  }\item[{uint16\+\_\+t}]{fg\+Colour,  }\item[{uint16\+\_\+t}]{highlight\+Colour,  }\item[{\mbox{\hyperlink{structfont__descriptor__t}{font\+\_\+descriptor\+\_\+t}}}]{font }\end{DoxyParamCaption})}
+
+
+
+The display constructor taking colours and fonts as parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bg\+Colour} & The colour used for background. \\
+\hline
+{\em fg\+Colour} & The colour used for foreground. \\
+\hline
+{\em highlight\+Colour} & The colour used for highlighted items, such as the sleected ones. \\
+\hline
+{\em font} & The font to be used for displayed text. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classDisplay_a905f9f783556b52da4655c541a5e3ea0}\label{classDisplay_a905f9f783556b52da4655c541a5e3ea0}} 
+\index{Display@{Display}!clear\+Screen@{clear\+Screen}}
+\index{clear\+Screen@{clear\+Screen}!Display@{Display}}
+\subsubsection{\texorpdfstring{clear\+Screen()}{clearScreen()}}
+{\footnotesize\ttfamily void Display\+::clear\+Screen (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{colour }\end{DoxyParamCaption})}
+
+
+
+Sets the whole display to one colour. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em colour} & The colour used as background. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDisplay_aa68ef5d785a1a96abdfe0a0f8ccdc379}\label{classDisplay_aa68ef5d785a1a96abdfe0a0f8ccdc379}} 
+\index{Display@{Display}!handle\+Input@{handle\+Input}}
+\index{handle\+Input@{handle\+Input}!Display@{Display}}
+\subsubsection{\texorpdfstring{handle\+Input()}{handleInput()}}
+{\footnotesize\ttfamily void Display\+::handle\+Input (\begin{DoxyParamCaption}\item[{int8\+\_\+t}]{rgb\+Delta\mbox{[}3\mbox{]},  }\item[{bool}]{knobs\+Pressed\mbox{[}3\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Reacts to input from the device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rgb\+Delta} & The change in knobs position. \\
+\hline
+{\em knobs\+Pressed} & The high/low state of the knobs. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDisplay_a94ad8f357b5fffdd4711a593e29003a8}\label{classDisplay_a94ad8f357b5fffdd4711a593e29003a8}} 
+\index{Display@{Display}!render\+Colour\+Square@{render\+Colour\+Square}}
+\index{render\+Colour\+Square@{render\+Colour\+Square}!Display@{Display}}
+\subsubsection{\texorpdfstring{render\+Colour\+Square()}{renderColourSquare()}}
+{\footnotesize\ttfamily void Display\+::render\+Colour\+Square (\begin{DoxyParamCaption}\item[{int}]{topX,  }\item[{int}]{topY,  }\item[{uint16\+\_\+t}]{colour }\end{DoxyParamCaption})}
+
+
+
+Renders an axis-\/aligned rectangle with given position in a given colour. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em left} & The x coordinate of the left edge. \\
+\hline
+{\em top} & The y coordinate of the top edge. \\
+\hline
+{\em right} & The x cooridnate of the right edge. \\
+\hline
+{\em bottom} & The y coordinate of the bottom edgge. \\
+\hline
+{\em colour} & The colour of the rectangle. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDisplay_a7e1b0ac97b561093e8f1993d7743c095}\label{classDisplay_a7e1b0ac97b561093e8f1993d7743c095}} 
+\index{Display@{Display}!render\+Icon@{render\+Icon}}
+\index{render\+Icon@{render\+Icon}!Display@{Display}}
+\subsubsection{\texorpdfstring{render\+Icon()}{renderIcon()}}
+{\footnotesize\ttfamily size\+\_\+t Display\+::render\+Icon (\begin{DoxyParamCaption}\item[{uint16\+\_\+t $\ast$}]{buffer,  }\item[{int}]{topX,  }\item[{int}]{topY,  }\item[{int}]{exponent = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Renders an icon starting at a given position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & The 16x16 image to be rendered. \\
+\hline
+{\em topX} & The x coordinate of the top-\/left corner. \\
+\hline
+{\em topY} & The y coordinate of the top-\/left corner. \\
+\hline
+{\em exponent} & The exponent to use for scaling by powers of two. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Width rendered icon in pixels. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDisplay_aeadae3356ab6ef6bc101dd5c3ee1317d}\label{classDisplay_aeadae3356ab6ef6bc101dd5c3ee1317d}} 
+\index{Display@{Display}!render\+Rectangle@{render\+Rectangle}}
+\index{render\+Rectangle@{render\+Rectangle}!Display@{Display}}
+\subsubsection{\texorpdfstring{render\+Rectangle()}{renderRectangle()}}
+{\footnotesize\ttfamily void Display\+::render\+Rectangle (\begin{DoxyParamCaption}\item[{int}]{left,  }\item[{int}]{top,  }\item[{int}]{right,  }\item[{int}]{bottom,  }\item[{uint16\+\_\+t}]{colour }\end{DoxyParamCaption})}
+
+
+
+Renders an axis-\/aligned rectangle with given corner points in a given colour. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em left} & The x coordinate of the left edge. \\
+\hline
+{\em top} & The y coordinate of the top edge. \\
+\hline
+{\em right} & The x cooridnate of the right edge. \\
+\hline
+{\em bottom} & The y coordinate of the bottom edgge. \\
+\hline
+{\em colour} & The colour of the rectangle. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDisplay_a0e1bcaa77e45765f710a28130a34473d}\label{classDisplay_a0e1bcaa77e45765f710a28130a34473d}} 
+\index{Display@{Display}!render\+Text@{render\+Text}}
+\index{render\+Text@{render\+Text}!Display@{Display}}
+\subsubsection{\texorpdfstring{render\+Text()}{renderText()}}
+{\footnotesize\ttfamily size\+\_\+t Display\+::render\+Text (\begin{DoxyParamCaption}\item[{int}]{topX,  }\item[{int}]{topY,  }\item[{std\+::string}]{text,  }\item[{uint16\+\_\+t}]{colour }\end{DoxyParamCaption})}
+
+
+
+Renders an axis-\/aligned text-\/line starting at a given position in a given colour. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em topX} & The x coordinate of the top-\/left corner. \\
+\hline
+{\em topY} & The y coordinate of the top-\/left corner. \\
+\hline
+{\em text} & The text to be rendered. \\
+\hline
+{\em colour} & The colour of the text. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Width rendered text in pixels. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDisplay_a8292ad87dddbf7090e074bcff5968d93}\label{classDisplay_a8292ad87dddbf7090e074bcff5968d93}} 
+\index{Display@{Display}!set\+Colours@{set\+Colours}}
+\index{set\+Colours@{set\+Colours}!Display@{Display}}
+\subsubsection{\texorpdfstring{set\+Colours()}{setColours()}}
+{\footnotesize\ttfamily void Display\+::set\+Colours (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{bg\+Colour,  }\item[{uint16\+\_\+t}]{fg\+Colour,  }\item[{uint16\+\_\+t}]{highlight\+Colour }\end{DoxyParamCaption})}
+
+
+
+Sets the base colours for the display -\/ background, foreground and highlight. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bg\+Colour} & The colour used for background. \\
+\hline
+{\em fg\+Colour} & The colour used for foreground. \\
+\hline
+{\em highlight\+Colour} & The colour used for highlighted items, such as the sleected ones. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if there was a previous screen, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDisplay_afb2154f5edc1c2784ef43d0ddae9cd6d}\label{classDisplay_afb2154f5edc1c2784ef43d0ddae9cd6d}} 
+\index{Display@{Display}!set\+Font@{set\+Font}}
+\index{set\+Font@{set\+Font}!Display@{Display}}
+\subsubsection{\texorpdfstring{set\+Font()}{setFont()}}
+{\footnotesize\ttfamily void Display\+::set\+Font (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfont__descriptor__t}{font\+\_\+descriptor\+\_\+t}}}]{font }\end{DoxyParamCaption})}
+
+
+
+Sets the font for the display. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em font} & The font to be used for displayed text. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDisplay_a34d1063149dc9f36c43afd5066b0b3ce}\label{classDisplay_a34d1063149dc9f36c43afd5066b0b3ce}} 
+\index{Display@{Display}!set\+Pixel@{set\+Pixel}}
+\index{set\+Pixel@{set\+Pixel}!Display@{Display}}
+\subsubsection{\texorpdfstring{set\+Pixel()}{setPixel()}}
+{\footnotesize\ttfamily void Display\+::set\+Pixel (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y,  }\item[{uint16\+\_\+t}]{colour }\end{DoxyParamCaption})}
+
+
+
+Sets one pixel to a given colour. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The pixel x coordinate. \\
+\hline
+{\em y} & The pixel y coordinate. \\
+\hline
+{\em colour} & The colour of the pixel. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDisplay_a566e7cbce9f606a20787c6d42c189dc2}\label{classDisplay_a566e7cbce9f606a20787c6d42c189dc2}} 
+\index{Display@{Display}!switch\+Screen@{switch\+Screen}}
+\index{switch\+Screen@{switch\+Screen}!Display@{Display}}
+\subsubsection{\texorpdfstring{switch\+Screen()}{switchScreen()}}
+{\footnotesize\ttfamily void Display\+::switch\+Screen (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classScreen}{Screen}} $\ast$}]{new\+Screen }\end{DoxyParamCaption})}
+
+
+
+Changes the display screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Screen} & The new screen. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDisplay_a60f87a87dc86ca281c1095de69e981e6}\label{classDisplay_a60f87a87dc86ca281c1095de69e981e6}} 
+\index{Display@{Display}!text\+Width@{text\+Width}}
+\index{text\+Width@{text\+Width}!Display@{Display}}
+\subsubsection{\texorpdfstring{text\+Width()}{textWidth()}}
+{\footnotesize\ttfamily size\+\_\+t Display\+::text\+Width (\begin{DoxyParamCaption}\item[{std\+::string \&}]{text }\end{DoxyParamCaption})}
+
+
+
+Calculates text width in pixels. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & The text to calculate width for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Width of the passed text in pixels. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDisplay_ad043404964c19f51bb903da796aaefda}\label{classDisplay_ad043404964c19f51bb903da796aaefda}} 
+\index{Display@{Display}!to\+Previous\+Screen@{to\+Previous\+Screen}}
+\index{to\+Previous\+Screen@{to\+Previous\+Screen}!Display@{Display}}
+\subsubsection{\texorpdfstring{to\+Previous\+Screen()}{toPreviousScreen()}}
+{\footnotesize\ttfamily bool Display\+::to\+Previous\+Screen (\begin{DoxyParamCaption}\item[{bool}]{keep\+Alive = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Returns to the previous screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em keep\+Alive} & Whether the current screen should be preserved so that it can be returned to later. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+M\+Z\+Api/Display.\+h\item 
+M\+Z\+Api/Display.\+cpp\end{DoxyCompactItemize}

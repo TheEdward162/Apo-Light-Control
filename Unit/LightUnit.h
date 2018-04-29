@@ -7,8 +7,18 @@
 #include <atomic>
 
 /**
- * A class representing a light unit.
- * */
+	@defgroup unit Unit module
+	@brief MZ board and light units.
+*/
+
+/**
+	@addtogroup unit
+	@{
+*/
+
+/**
+	@brief A class representing a light unit.
+**/
 class LightUnit {
 public:
 	/**
@@ -77,3 +87,4 @@ public:
 	*/
 	std::atomic_bool screenActive;
 };
+/** @} */

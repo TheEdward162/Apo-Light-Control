@@ -7,9 +7,11 @@
 #include "Unit/LightUnit.h"
 #include "Misc/ControlMessageQueue.h"
 
-/** Namesapce representing the entry point of the whole application.
- * It stores a list of connected units and a control message queue.
- * */
+/** 
+	@brief Namesapce representing the entry point of the application.
+	@details It stores a list of connected units, a control message queue and ui icons map.
+	Also internally runs and synchronizes the main loop and network loop and handles network messages.
+**/
 namespace Engine {
 	extern std::list<LightUnit> unitList; /*< The list of all currently connected units. */
 	extern ControlMessageQueue controlQueue; /*< The control message queue. */
@@ -25,3 +27,9 @@ namespace Engine {
 	int run(int argc, char** argv);
 }
 /* namespace Engine */
+
+/** @mainpage Apo Light Control
+	@section intro_sec Introduction
+	This is the documentation for the project Apo Light Control by Klára and Edward.
+	You can find the source code on <a href="https://gitlab.fel.cvut.cz/lavusedu/APO_SEM">FEL Gitlab</a> (if you have the access rights, ofc ^-^).
+ */

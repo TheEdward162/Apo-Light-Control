@@ -1,0 +1,120 @@
+\hypertarget{classLightUnit}{}\section{Light\+Unit Class Reference}
+\label{classLightUnit}\index{Light\+Unit@{Light\+Unit}}
+
+
+A class representing a light unit.  
+
+
+
+
+{\ttfamily \#include $<$Light\+Unit.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classLightUnit_a28169090402e0a891c35a881760e14bd}{Light\+Unit}} ()
+\item 
+\mbox{\hyperlink{classLightUnit_aa44c2d7b6e764c9bbca0f5ab19a31553}{Light\+Unit}} (const char \mbox{\hyperlink{classLightUnit_aad36ad5ba65b93a30ee35ef1f6895b5a}{description}}\mbox{[}16\mbox{]})
+\item 
+\mbox{\hyperlink{classLightUnit_afb696351f25e3766eb18d6ce31f97fa6}{Light\+Unit}} (unsigned long \mbox{\hyperlink{classLightUnit_a7d490bbccb134d200628eee46ab8fb3d}{ip}}, const char \mbox{\hyperlink{classLightUnit_aad36ad5ba65b93a30ee35ef1f6895b5a}{description}}\mbox{[}16\mbox{]}, const uint16\+\_\+t \mbox{\hyperlink{classLightUnit_a01f65fda0c55ecd8b1d62911cfa688d2}{image}}\mbox{[}256\mbox{]})
+\item 
+\mbox{\hyperlink{classLightUnit_ab91f948d033d6982b4b981aea104b1d7}{Light\+Unit}} (unsigned long \mbox{\hyperlink{classLightUnit_a7d490bbccb134d200628eee46ab8fb3d}{ip}}, const char \mbox{\hyperlink{classLightUnit_aad36ad5ba65b93a30ee35ef1f6895b5a}{description}}\mbox{[}16\mbox{]}, const uint16\+\_\+t \mbox{\hyperlink{classLightUnit_a01f65fda0c55ecd8b1d62911cfa688d2}{image}}\mbox{[}256\mbox{]}, uint32\+\_\+t \mbox{\hyperlink{classLightUnit_ae688f610193b69a2f390bd2a44dc2a7c}{rgb\+Ceiling}}, uint32\+\_\+t \mbox{\hyperlink{classLightUnit_a9927e4bcf968e043883688e87935fb4a}{rgb\+Wall}})
+\item 
+\mbox{\hyperlink{classLightUnit_a29969943be7a664ffc0795ec07cc12c2}{$\sim$\+Light\+Unit}} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classLightUnit_ae688f610193b69a2f390bd2a44dc2a7c}\label{classLightUnit_ae688f610193b69a2f390bd2a44dc2a7c}} 
+uint32\+\_\+t \mbox{\hyperlink{classLightUnit_ae688f610193b69a2f390bd2a44dc2a7c}{rgb\+Ceiling}} = 0
+\begin{DoxyCompactList}\small\item\em The R\+G\+B888 colour of the ceiling. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLightUnit_a9927e4bcf968e043883688e87935fb4a}\label{classLightUnit_a9927e4bcf968e043883688e87935fb4a}} 
+uint32\+\_\+t \mbox{\hyperlink{classLightUnit_a9927e4bcf968e043883688e87935fb4a}{rgb\+Wall}} = 0
+\begin{DoxyCompactList}\small\item\em The R\+G\+B888 colour of the wall. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLightUnit_aad36ad5ba65b93a30ee35ef1f6895b5a}\label{classLightUnit_aad36ad5ba65b93a30ee35ef1f6895b5a}} 
+char \mbox{\hyperlink{classLightUnit_aad36ad5ba65b93a30ee35ef1f6895b5a}{description}} \mbox{[}17\mbox{]}
+\begin{DoxyCompactList}\small\item\em Unit dscription. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLightUnit_a01f65fda0c55ecd8b1d62911cfa688d2}\label{classLightUnit_a01f65fda0c55ecd8b1d62911cfa688d2}} 
+uint16\+\_\+t \mbox{\hyperlink{classLightUnit_a01f65fda0c55ecd8b1d62911cfa688d2}{image}} \mbox{[}256\mbox{]}
+\begin{DoxyCompactList}\small\item\em Unit icon. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLightUnit_a7d490bbccb134d200628eee46ab8fb3d}\label{classLightUnit_a7d490bbccb134d200628eee46ab8fb3d}} 
+unsigned long \mbox{\hyperlink{classLightUnit_a7d490bbccb134d200628eee46ab8fb3d}{ip}} = 0
+\begin{DoxyCompactList}\small\item\em Unit IP. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLightUnit_ac5f86e26fe02c192736cddd1d06af583}\label{classLightUnit_ac5f86e26fe02c192736cddd1d06af583}} 
+std\+::chrono\+::steady\+\_\+clock\+::time\+\_\+point \mbox{\hyperlink{classLightUnit_ac5f86e26fe02c192736cddd1d06af583}{last\+Network\+Broadcast\+Time\+Point}}
+\begin{DoxyCompactList}\small\item\em Time of the last recieved broadcast. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLightUnit_a4380f5dead3b35443b09f1dbbe44af55}\label{classLightUnit_a4380f5dead3b35443b09f1dbbe44af55}} 
+std\+::mutex \mbox{\hyperlink{classLightUnit_a4380f5dead3b35443b09f1dbbe44af55}{mutex\+\_\+change}}
+\begin{DoxyCompactList}\small\item\em Mutex to prevent simultaneous changing of variables. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLightUnit_ad1053b699435285eee81f2ba49c12617}\label{classLightUnit_ad1053b699435285eee81f2ba49c12617}} 
+std\+::atomic\+\_\+bool \mbox{\hyperlink{classLightUnit_ad1053b699435285eee81f2ba49c12617}{screen\+Active}}
+\begin{DoxyCompactList}\small\item\em Flag to prevent unit ereasure from unit\+List when it\textquotesingle{}s active in \mbox{\hyperlink{classUnitScreen}{Unit\+Screen}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A class representing a light unit. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classLightUnit_a28169090402e0a891c35a881760e14bd}\label{classLightUnit_a28169090402e0a891c35a881760e14bd}} 
+\index{Light\+Unit@{Light\+Unit}!Light\+Unit@{Light\+Unit}}
+\index{Light\+Unit@{Light\+Unit}!Light\+Unit@{Light\+Unit}}
+\subsubsection{\texorpdfstring{Light\+Unit()}{LightUnit()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily Light\+Unit\+::\+Light\+Unit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Default \mbox{\hyperlink{classLightUnit}{Light\+Unit}} constructor. \mbox{\Hypertarget{classLightUnit_aa44c2d7b6e764c9bbca0f5ab19a31553}\label{classLightUnit_aa44c2d7b6e764c9bbca0f5ab19a31553}} 
+\index{Light\+Unit@{Light\+Unit}!Light\+Unit@{Light\+Unit}}
+\index{Light\+Unit@{Light\+Unit}!Light\+Unit@{Light\+Unit}}
+\subsubsection{\texorpdfstring{Light\+Unit()}{LightUnit()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily Light\+Unit\+::\+Light\+Unit (\begin{DoxyParamCaption}\item[{const char}]{description\mbox{[}16\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{classLightUnit}{Light\+Unit}} constructor with unit description. 
+\begin{DoxyParams}{Parameters}
+{\em description} & Description of the light unit. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classLightUnit_afb696351f25e3766eb18d6ce31f97fa6}\label{classLightUnit_afb696351f25e3766eb18d6ce31f97fa6}} 
+\index{Light\+Unit@{Light\+Unit}!Light\+Unit@{Light\+Unit}}
+\index{Light\+Unit@{Light\+Unit}!Light\+Unit@{Light\+Unit}}
+\subsubsection{\texorpdfstring{Light\+Unit()}{LightUnit()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily Light\+Unit\+::\+Light\+Unit (\begin{DoxyParamCaption}\item[{unsigned long}]{ip,  }\item[{const char}]{description\mbox{[}16\mbox{]},  }\item[{const uint16\+\_\+t}]{image\mbox{[}256\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{classLightUnit}{Light\+Unit}} constructor with ip, unit description and image as parameters. 
+\begin{DoxyParams}{Parameters}
+{\em ip} & The IP address of the light unit. \\
+\hline
+{\em description} & Description of the light unit. \\
+\hline
+{\em image} & Icon for the light unit. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classLightUnit_ab91f948d033d6982b4b981aea104b1d7}\label{classLightUnit_ab91f948d033d6982b4b981aea104b1d7}} 
+\index{Light\+Unit@{Light\+Unit}!Light\+Unit@{Light\+Unit}}
+\index{Light\+Unit@{Light\+Unit}!Light\+Unit@{Light\+Unit}}
+\subsubsection{\texorpdfstring{Light\+Unit()}{LightUnit()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily Light\+Unit\+::\+Light\+Unit (\begin{DoxyParamCaption}\item[{unsigned long}]{ip,  }\item[{const char}]{description\mbox{[}16\mbox{]},  }\item[{const uint16\+\_\+t}]{image\mbox{[}256\mbox{]},  }\item[{uint32\+\_\+t}]{rgb\+Ceiling,  }\item[{uint32\+\_\+t}]{rgb\+Wall }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{classLightUnit}{Light\+Unit}} constructor with complete information. 
+\begin{DoxyParams}{Parameters}
+{\em ip} & The IP address of the light unit. \\
+\hline
+{\em description} & Description of the light unit. \\
+\hline
+{\em image} & Icon for the light unit. \\
+\hline
+{\em rgb\+Ceiling} & R\+G\+B888 colour of the light unit ceiling. \\
+\hline
+{\em rgb\+Wall} & R\+G\+B888 colour of the light unit wall. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classLightUnit_a29969943be7a664ffc0795ec07cc12c2}\label{classLightUnit_a29969943be7a664ffc0795ec07cc12c2}} 
+\index{Light\+Unit@{Light\+Unit}!````~Light\+Unit@{$\sim$\+Light\+Unit}}
+\index{````~Light\+Unit@{$\sim$\+Light\+Unit}!Light\+Unit@{Light\+Unit}}
+\subsubsection{\texorpdfstring{$\sim$\+Light\+Unit()}{~LightUnit()}}
+{\footnotesize\ttfamily Light\+Unit\+::$\sim$\+Light\+Unit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{classLightUnit}{Light\+Unit}} destructor. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Unit/Light\+Unit.\+h\item 
+Unit/Light\+Unit.\+cpp\end{DoxyCompactItemize}

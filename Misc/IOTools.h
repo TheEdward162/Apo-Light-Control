@@ -1,6 +1,16 @@
 #include <string>
 
 /**
+	@defgroup utils Utilities module
+	@brief Utility functions.
+*/
+
+/**
+	@addtogroup utils
+	@{
+*/
+
+/**
  * @brief Tools connected to IO.
  * 
  */
@@ -21,3 +31,5 @@ namespace IOTools {
 	bool loadImage16x16(const std::string& path, uint16_t buffer[256]);
 }
 /* namespace IOTools */
+
+/** @} */

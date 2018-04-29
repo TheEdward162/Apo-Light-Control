@@ -12,11 +12,15 @@
 
 class Display;
 
-/** @defgroup screens Screens */
+/**
+	@defgroup screens Screens module
+	@brief Screen base class and implementations.
+*/
 
-/** @addtogroup screens
- * @{
- */
+/**
+	@addtogroup screens
+	@{
+*/
 
 /** 
 	@brief Class representing one screen.
@@ -79,6 +83,7 @@ protected:
 
 		int renderSelf(Display* display, int x, int y);
 	};
+	/** @brief Color square */
 	class ColorSquareLineElement : public LineElement {
 	public:
 		ColorSquareLineElement(uint16_t color=0, int margin=0, bool alignRight=false);
@@ -91,6 +96,7 @@ protected:
 		*/
 		uint16_t color;
 	};
+	/** @brief Text */
 	class TextLineElement : public LineElement {
 	public:
 		TextLineElement(std::string text="", uint16_t color=0, int margin=0, bool alignRight=false);
@@ -107,6 +113,7 @@ protected:
 		*/
 		uint16_t color;
 	};
+	/** @brief Scaled icon */
 	class IconLineElement : public LineElement {
 	public:
 		IconLineElement(uint16_t* pIcon=NULL, int scaleExponent=0, int margin=0, bool alignRight=false);

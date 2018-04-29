@@ -3,9 +3,10 @@
 #include "Screen.h"
 #include "../MZApi/Display.h"
 
-/** @addtogroup screens
- * @{
- */
+/**
+	@addtogroup screens
+	@{
+*/
 
 /** @brief Meow. */
 class NyanScreen : public Screen {

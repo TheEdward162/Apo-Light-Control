@@ -1,0 +1,93 @@
+\hypertarget{classScreen_1_1IconLineElement}{}\section{Screen\+:\+:Icon\+Line\+Element Class Reference}
+\label{classScreen_1_1IconLineElement}\index{Screen\+::\+Icon\+Line\+Element@{Screen\+::\+Icon\+Line\+Element}}
+
+
+Scaled icon.  
+
+
+
+
+{\ttfamily \#include $<$Screen.\+h$>$}
+
+
+
+Inheritance diagram for Screen\+:\+:Icon\+Line\+Element\+:
+% FIG 0
+
+
+Collaboration diagram for Screen\+:\+:Icon\+Line\+Element\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classScreen_1_1IconLineElement_ad465a9f557b9f7e659ebfb8a5a995ca6}\label{classScreen_1_1IconLineElement_ad465a9f557b9f7e659ebfb8a5a995ca6}} 
+{\bfseries Icon\+Line\+Element} (uint16\+\_\+t $\ast$\mbox{\hyperlink{classScreen_1_1IconLineElement_ae84108a5bfda7ba013401c067a8c9aca}{p\+Icon}}=N\+U\+LL, int \mbox{\hyperlink{classScreen_1_1IconLineElement_a95ab319fab5abe27266a092fdb75b58e}{scale\+Exponent}}=0, int margin=0, bool \mbox{\hyperlink{classScreen_1_1LineElement_a0c5f4e33c2df1dce8e4e45b90dac1423}{align\+Right}}=false)
+\item 
+\mbox{\Hypertarget{classScreen_1_1IconLineElement_a7bba2dffbe294ad65c4cda9d7e462bc6}\label{classScreen_1_1IconLineElement_a7bba2dffbe294ad65c4cda9d7e462bc6}} 
+{\bfseries Icon\+Line\+Element} (uint16\+\_\+t $\ast$\mbox{\hyperlink{classScreen_1_1IconLineElement_ae84108a5bfda7ba013401c067a8c9aca}{p\+Icon}}, int \mbox{\hyperlink{classScreen_1_1IconLineElement_a95ab319fab5abe27266a092fdb75b58e}{scale\+Exponent}}, int \mbox{\hyperlink{classScreen_1_1LineElement_a9ed23f9510a11334af9be6f53965f7a6}{margin\+Left}}, int \mbox{\hyperlink{classScreen_1_1LineElement_a3a2077f01072be8e8fd0f4539b85beb0}{margin\+Right}}, bool \mbox{\hyperlink{classScreen_1_1LineElement_a0c5f4e33c2df1dce8e4e45b90dac1423}{align\+Right}}=false)
+\item 
+int \mbox{\hyperlink{classScreen_1_1IconLineElement_a3ee090b31ee5061974552be4688d937b}{render\+Self}} (\mbox{\hyperlink{classDisplay}{Display}} $\ast$display, int x, int y)
+\begin{DoxyCompactList}\small\item\em Renders itself at position x, y to display. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classScreen_1_1IconLineElement_ae84108a5bfda7ba013401c067a8c9aca}\label{classScreen_1_1IconLineElement_ae84108a5bfda7ba013401c067a8c9aca}} 
+uint16\+\_\+t $\ast$ \mbox{\hyperlink{classScreen_1_1IconLineElement_ae84108a5bfda7ba013401c067a8c9aca}{p\+Icon}}
+\begin{DoxyCompactList}\small\item\em Pointer to the icon buffer. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classScreen_1_1IconLineElement_a95ab319fab5abe27266a092fdb75b58e}{scale\+Exponent}}
+\begin{DoxyCompactList}\small\item\em Exponent to scale icon by. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Scaled icon. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classScreen_1_1IconLineElement_a3ee090b31ee5061974552be4688d937b}\label{classScreen_1_1IconLineElement_a3ee090b31ee5061974552be4688d937b}} 
+\index{Screen\+::\+Icon\+Line\+Element@{Screen\+::\+Icon\+Line\+Element}!render\+Self@{render\+Self}}
+\index{render\+Self@{render\+Self}!Screen\+::\+Icon\+Line\+Element@{Screen\+::\+Icon\+Line\+Element}}
+\subsubsection{\texorpdfstring{render\+Self()}{renderSelf()}}
+{\footnotesize\ttfamily int Screen\+::\+Icon\+Line\+Element\+::render\+Self (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDisplay}{Display}} $\ast$}]{display,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Renders itself at position x, y to display. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em display} & \mbox{\hyperlink{classDisplay}{Display}} to render to. \\
+\hline
+\mbox{\tt in}  & {\em x} & X position to render to. \\
+\hline
+\mbox{\tt in}  & {\em y} & Y position to render to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of pixels this elements takes. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classScreen_1_1LineElement_a667fbf6505fbed274ca9a3deac3fef9e}{Screen\+::\+Line\+Element}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classScreen_1_1IconLineElement_a95ab319fab5abe27266a092fdb75b58e}\label{classScreen_1_1IconLineElement_a95ab319fab5abe27266a092fdb75b58e}} 
+\index{Screen\+::\+Icon\+Line\+Element@{Screen\+::\+Icon\+Line\+Element}!scale\+Exponent@{scale\+Exponent}}
+\index{scale\+Exponent@{scale\+Exponent}!Screen\+::\+Icon\+Line\+Element@{Screen\+::\+Icon\+Line\+Element}}
+\subsubsection{\texorpdfstring{scale\+Exponent}{scaleExponent}}
+{\footnotesize\ttfamily int Screen\+::\+Icon\+Line\+Element\+::scale\+Exponent\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Exponent to scale icon by. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classDisplay_a7e1b0ac97b561093e8f1993d7743c095}{Display\+::render\+Icon}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Display\+Utils/Screen.\+h\item 
+Display\+Utils/Screen.\+cpp\end{DoxyCompactItemize}

@@ -8,7 +8,8 @@
 
 #include "Screen.h"
 
-/** @addtogroup screens
+/**
+	@addtogroup screens
 	@{
 */
 

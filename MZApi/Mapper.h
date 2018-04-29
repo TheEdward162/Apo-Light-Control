@@ -7,8 +7,13 @@
 #include <stdio.h>
 
 /**
- *  A class that handles the mapping of peripheral physical regions to virtual addresses.
- * */
+	@addtogroup unit
+	@{
+*/
+
+/**
+	@brief A class that handles the mapping of peripheral physical regions to virtual addresses.
+**/
 class Mapper {
 public:
     /**
@@ -37,3 +42,4 @@ private:
     void map_phys_address(off_t region_base, size_t region_size, int opt_cached);
 
 };
+/** @} */

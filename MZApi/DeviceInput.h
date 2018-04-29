@@ -7,6 +7,14 @@
 #include "Mapper.h"
 #include "MZRegisters.h"
 
+/**
+	@addtogroup unit
+	@{
+*/
+
+/**
+	@brief Handler device input.
+**/
 class DeviceInput {
 public:
     /**
@@ -39,3 +47,4 @@ private:
 
     int8_t getDelta(uint8_t prev, uint8_t act);
 };
+/** @} */
