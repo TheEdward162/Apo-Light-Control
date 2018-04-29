@@ -12,17 +12,21 @@ Line element base class.
 
 
 Inheritance diagram for Screen\+:\+:Line\+Element\+:
-% FIG 0
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScreen_1_1LineElement__inherit__graph}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classScreen_1_1LineElement_a3f822f160e15ee96022b95026e52ee42}\label{classScreen_1_1LineElement_a3f822f160e15ee96022b95026e52ee42}} 
-{\bfseries Line\+Element} (int margin=0, bool \mbox{\hyperlink{classScreen_1_1LineElement_a0c5f4e33c2df1dce8e4e45b90dac1423}{align\+Right}}=false)
-\item 
-\mbox{\Hypertarget{classScreen_1_1LineElement_a65fe216ee2acbc1191b1fd51b25b2ec7}\label{classScreen_1_1LineElement_a65fe216ee2acbc1191b1fd51b25b2ec7}} 
-{\bfseries Line\+Element} (int \mbox{\hyperlink{classScreen_1_1LineElement_a9ed23f9510a11334af9be6f53965f7a6}{margin\+Left}}, int \mbox{\hyperlink{classScreen_1_1LineElement_a3a2077f01072be8e8fd0f4539b85beb0}{margin\+Right}}, bool \mbox{\hyperlink{classScreen_1_1LineElement_a0c5f4e33c2df1dce8e4e45b90dac1423}{align\+Right}}=false)
-\item 
-virtual int \mbox{\hyperlink{classScreen_1_1LineElement_a667fbf6505fbed274ca9a3deac3fef9e}{render\+Self}} (\mbox{\hyperlink{classDisplay}{Display}} $\ast$display, int x, int y)=0
+\mbox{\hyperlink{classScreen_1_1LineElement_a3f822f160e15ee96022b95026e52ee42}{Line\+Element}} (int margin=0, bool \mbox{\hyperlink{classScreen_1_1LineElement_a0c5f4e33c2df1dce8e4e45b90dac1423}{align\+Right}}=false)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classScreen_1_1LineElement}{Line\+Element}} constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classScreen_1_1LineElement_a65fe216ee2acbc1191b1fd51b25b2ec7}{Line\+Element}} (int \mbox{\hyperlink{classScreen_1_1LineElement_a9ed23f9510a11334af9be6f53965f7a6}{margin\+Left}}, int \mbox{\hyperlink{classScreen_1_1LineElement_a3a2077f01072be8e8fd0f4539b85beb0}{margin\+Right}}, bool \mbox{\hyperlink{classScreen_1_1LineElement_a0c5f4e33c2df1dce8e4e45b90dac1423}{align\+Right}}=false)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classScreen_1_1LineElement}{Line\+Element}} constructor with different margins. \end{DoxyCompactList}\item 
+virtual int \mbox{\hyperlink{classScreen_1_1LineElement_a667fbf6505fbed274ca9a3deac3fef9e}{render\+Self}} (\mbox{\hyperlink{classDisplay}{Display}} $\ast$\mbox{\hyperlink{classScreen_aad713267725e8aa8a8def951a07de641}{display}}, int x, int y)=0
 \begin{DoxyCompactList}\small\item\em Renders itself at position x, y to display. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -43,6 +47,45 @@ int \mbox{\hyperlink{classScreen_1_1LineElement_a3a2077f01072be8e8fd0f4539b85beb
 
 \subsection{Detailed Description}
 Line element base class. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classScreen_1_1LineElement_a3f822f160e15ee96022b95026e52ee42}\label{classScreen_1_1LineElement_a3f822f160e15ee96022b95026e52ee42}} 
+\index{Screen\+::\+Line\+Element@{Screen\+::\+Line\+Element}!Line\+Element@{Line\+Element}}
+\index{Line\+Element@{Line\+Element}!Screen\+::\+Line\+Element@{Screen\+::\+Line\+Element}}
+\subsubsection{\texorpdfstring{Line\+Element()}{LineElement()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Screen\+::\+Line\+Element\+::\+Line\+Element (\begin{DoxyParamCaption}\item[{int}]{margin = {\ttfamily 0},  }\item[{bool}]{align\+Right = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{classScreen_1_1LineElement}{Line\+Element}} constructor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em margin} & \\
+\hline
+\mbox{\tt in}  & {\em align\+Right} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classScreen_1_1LineElement_a65fe216ee2acbc1191b1fd51b25b2ec7}\label{classScreen_1_1LineElement_a65fe216ee2acbc1191b1fd51b25b2ec7}} 
+\index{Screen\+::\+Line\+Element@{Screen\+::\+Line\+Element}!Line\+Element@{Line\+Element}}
+\index{Line\+Element@{Line\+Element}!Screen\+::\+Line\+Element@{Screen\+::\+Line\+Element}}
+\subsubsection{\texorpdfstring{Line\+Element()}{LineElement()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Screen\+::\+Line\+Element\+::\+Line\+Element (\begin{DoxyParamCaption}\item[{int}]{margin\+Left,  }\item[{int}]{margin\+Right,  }\item[{bool}]{align\+Right = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{classScreen_1_1LineElement}{Line\+Element}} constructor with different margins. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em margin\+Left} & \\
+\hline
+\mbox{\tt in}  & {\em margin\+Right} & \\
+\hline
+\mbox{\tt in}  & {\em align\+Right} & \\
+\hline
+\end{DoxyParams}
+
 
 \subsection{Member Function Documentation}
 \mbox{\Hypertarget{classScreen_1_1LineElement_a667fbf6505fbed274ca9a3deac3fef9e}\label{classScreen_1_1LineElement_a667fbf6505fbed274ca9a3deac3fef9e}} 

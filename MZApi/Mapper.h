@@ -24,6 +24,9 @@ public:
     Mapper(off_t base, size_t size);
     ~Mapper();
 
+	/**
+		@brief Base addres to which the mapping is bound.
+	*/
     unsigned char *mem_base = NULL;
 
 private:

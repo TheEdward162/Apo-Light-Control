@@ -1,0 +1,4 @@
+<map id="NetworkHandler::Message" name="NetworkHandler::Message">
+<area shape="rect" id="node2" href="$structNetworkHandler_1_1BroadcastMessage.html" title="Broadcast message. Type 0. " alt="" coords="5,80,207,121"/>
+<area shape="rect" id="node3" href="$structNetworkHandler_1_1ControlMessage.html" title="Control message. Types 1 and 2. " alt="" coords="231,87,471,114"/>
+</map>

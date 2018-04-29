@@ -56,20 +56,19 @@ virtual void \mbox{\hyperlink{classScreen_a1b9547f8f48c3ceae2024b58e0746e94}{han
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classScreen_a3696376a0036dc304d337dc5e697d6f9}\label{classScreen_a3696376a0036dc304d337dc5e697d6f9}} 
-typedef std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classScreen_1_1LineElement}{Line\+Element}} $>$ {\bfseries P\+Line\+Element}
-\item 
+typedef std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classScreen_1_1LineElement}{Line\+Element}} $>$ \mbox{\hyperlink{classScreen_a3696376a0036dc304d337dc5e697d6f9}{P\+Line\+Element}}
+\begin{DoxyCompactList}\small\item\em One line element pointer. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classScreen_a62e857d5d7fcfd58fe241c1e933ac3bb}\label{classScreen_a62e857d5d7fcfd58fe241c1e933ac3bb}} 
-typedef std\+::vector$<$ Screen\+::\+P\+Line\+Element $>$ {\bfseries P\+Line\+Element\+Vector}
-\end{DoxyCompactItemize}
+typedef std\+::vector$<$ \mbox{\hyperlink{classScreen_a3696376a0036dc304d337dc5e697d6f9}{Screen\+::\+P\+Line\+Element}} $>$ \mbox{\hyperlink{classScreen_a62e857d5d7fcfd58fe241c1e933ac3bb}{P\+Line\+Element\+Vector}}
+\begin{DoxyCompactList}\small\item\em Vector of line element pointers. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classScreen_a596e7fffdfafd57fb5385c299863f31d}\label{classScreen_a596e7fffdfafd57fb5385c299863f31d}} 
-{\bfseries Screen} (\mbox{\hyperlink{classDisplay}{Display}} $\ast$display)
-\item 
-void \mbox{\hyperlink{classScreen_a30226bc0c228db9f74f337af86cf34ed}{render\+Line}} (int y, Screen\+::\+P\+Line\+Element element, int32\+\_\+t line\+Color=-\/1)
+\mbox{\hyperlink{classScreen_a596e7fffdfafd57fb5385c299863f31d}{Screen}} (\mbox{\hyperlink{classDisplay}{Display}} $\ast$\mbox{\hyperlink{classScreen_aad713267725e8aa8a8def951a07de641}{display}})
+\begin{DoxyCompactList}\small\item\em Creates \mbox{\hyperlink{classScreen}{Screen}} and binds it to display. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classScreen_a30226bc0c228db9f74f337af86cf34ed}{render\+Line}} (int y, \mbox{\hyperlink{classScreen_a3696376a0036dc304d337dc5e697d6f9}{Screen\+::\+P\+Line\+Element}} element, int32\+\_\+t line\+Color=-\/1)
 \begin{DoxyCompactList}\small\item\em Renders line containing only one element. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classScreen_a21262307ae7898dfa1b27bb0c60247b7}{render\+Line}} (int y, Screen\+::\+P\+Line\+Element\+Vector \&elements, int32\+\_\+t line\+Color=-\/1)
+void \mbox{\hyperlink{classScreen_a21262307ae7898dfa1b27bb0c60247b7}{render\+Line}} (int y, \mbox{\hyperlink{classScreen_a62e857d5d7fcfd58fe241c1e933ac3bb}{Screen\+::\+P\+Line\+Element\+Vector}} \&elements, int32\+\_\+t line\+Color=-\/1)
 \begin{DoxyCompactList}\small\item\em Renders line containing elements. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classScreen_a435b179ec61ea7ad8126102a00051b88}{render\+Nagivation\+Line}} (std\+::vector$<$ std\+::pair$<$ std\+::string, std\+::string $>$$>$ ui\+Input\+Pairs)
 \begin{DoxyCompactList}\small\item\em Renders navigation line. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -77,22 +76,40 @@ void \mbox{\hyperlink{classScreen_a435b179ec61ea7ad8126102a00051b88}{render\+Nag
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classScreen_aad713267725e8aa8a8def951a07de641}\label{classScreen_aad713267725e8aa8a8def951a07de641}} 
-\mbox{\hyperlink{classDisplay}{Display}} $\ast$ {\bfseries display}
-\item 
+\mbox{\hyperlink{classDisplay}{Display}} $\ast$ \mbox{\hyperlink{classScreen_aad713267725e8aa8a8def951a07de641}{display}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classDisplay}{Display}} this screen is bound to. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classScreen_ae66538a4cf9fd681495f28acb12be732}\label{classScreen_ae66538a4cf9fd681495f28acb12be732}} 
-size\+\_\+t {\bfseries selected} = 0
-\end{DoxyCompactItemize}
+size\+\_\+t \mbox{\hyperlink{classScreen_ae66538a4cf9fd681495f28acb12be732}{selected}} = 0
+\begin{DoxyCompactList}\small\item\em Currently selected line. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 Class representing one screen. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classScreen_a596e7fffdfafd57fb5385c299863f31d}\label{classScreen_a596e7fffdfafd57fb5385c299863f31d}} 
+\index{Screen@{Screen}!Screen@{Screen}}
+\index{Screen@{Screen}!Screen@{Screen}}
+\subsubsection{\texorpdfstring{Screen()}{Screen()}}
+{\footnotesize\ttfamily Screen\+::\+Screen (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDisplay}{Display}} $\ast$}]{display }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Creates \mbox{\hyperlink{classScreen}{Screen}} and binds it to display. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em display} & \\
+\hline
+\end{DoxyParams}
+
 
 \subsection{Member Function Documentation}
 \mbox{\Hypertarget{classScreen_a30226bc0c228db9f74f337af86cf34ed}\label{classScreen_a30226bc0c228db9f74f337af86cf34ed}} 
 \index{Screen@{Screen}!render\+Line@{render\+Line}}
 \index{render\+Line@{render\+Line}!Screen@{Screen}}
 \subsubsection{\texorpdfstring{render\+Line()}{renderLine()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily void Screen\+::render\+Line (\begin{DoxyParamCaption}\item[{int}]{y,  }\item[{Screen\+::\+P\+Line\+Element}]{element,  }\item[{int32\+\_\+t}]{line\+Color = {\ttfamily -\/1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily void Screen\+::render\+Line (\begin{DoxyParamCaption}\item[{int}]{y,  }\item[{\mbox{\hyperlink{classScreen_a3696376a0036dc304d337dc5e697d6f9}{Screen\+::\+P\+Line\+Element}}}]{element,  }\item[{int32\+\_\+t}]{line\+Color = {\ttfamily -\/1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -111,7 +128,7 @@ Renders line containing only one element.
 \index{Screen@{Screen}!render\+Line@{render\+Line}}
 \index{render\+Line@{render\+Line}!Screen@{Screen}}
 \subsubsection{\texorpdfstring{render\+Line()}{renderLine()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily void Screen\+::render\+Line (\begin{DoxyParamCaption}\item[{int}]{y,  }\item[{Screen\+::\+P\+Line\+Element\+Vector \&}]{elements,  }\item[{int32\+\_\+t}]{line\+Color = {\ttfamily -\/1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily void Screen\+::render\+Line (\begin{DoxyParamCaption}\item[{int}]{y,  }\item[{\mbox{\hyperlink{classScreen_a62e857d5d7fcfd58fe241c1e933ac3bb}{Screen\+::\+P\+Line\+Element\+Vector}} \&}]{elements,  }\item[{int32\+\_\+t}]{line\+Color = {\ttfamily -\/1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -142,7 +159,7 @@ Renders navigation line.
 \hline
 \end{DoxyParams}
 \begin{DoxySeeAlso}{See also}
-Engine\+::ui\+Icons 
+\mbox{\hyperlink{namespaceEngine_ae562ecbc72c843b594695a058487d3cb}{Engine\+::ui\+Icons}} 
 \end{DoxySeeAlso}
 
 

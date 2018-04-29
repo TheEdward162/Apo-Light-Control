@@ -1,9 +1,9 @@
 a {
-	color: orangered;
+	color: #3AE600;
 }
 
 .sm-dox a {
-	color: orangered;
+	color: #3AE600;
 	background-image: none;
 	text-shadow: none;
 }
@@ -11,30 +11,42 @@ a {
 	background-image: none;
 }
 .sm-dox a:hover {
-	background: orangered;
+	background: #3AE600;
 	text-shadow: none;
 }
 
 .sm-dox ul a:hover {
-	background: orangered;
+	background: #3AE600;
 	text-shadow: none;
 }
 
 .memberdecls td.glow, .fieldtable tr.glow {
-	background: orangered;
+	background: #54FF1A;
 	box-shadow: none;
 }
 
+.memtitle {
+	background-image: none;
+}
+h1, h2, h3, h4, h5, h6 {
+	transition-property: background-color;
+	transition-duration: 0.5s;
+}
+h1.glow, h2.glow, h3.glow, h4.glow, h5.glow, h6.glow {
+	background-color: #54FF1A;
+	text-shadow: none;
+}
+
 #nav-tree .selected {
-	background: orangered;
+	background: #3AE600;
 	text-shadow: none;
 }
 
 .navpath li.navelem a {
-	color: orangered;
+	color: #3AE600;
 }
 
 .memdoc {
 	background-image: none;
-	border-top: 1px solid #F69C5C;
+	border-top: 1px solid #2DB300;
 }

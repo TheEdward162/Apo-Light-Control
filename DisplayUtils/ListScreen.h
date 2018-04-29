@@ -19,6 +19,10 @@
 */
 class ListScreen: public Screen {
 public:
+	/**
+		@brief ListScreen constructor
+		@param[in] display Display to be bound to.
+	*/
     ListScreen(Display* display);
 
     void renderScreen();

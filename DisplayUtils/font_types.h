@@ -31,17 +31,28 @@ typedef uint16_t font_bits_t;
 	@brief Bitmap font struct
 */
 typedef struct {
-        char *                  name;           /* font name*/
-        int                             maxwidth;       /* max width in pixels*/
-        unsigned int    height;         /* height in pixels*/
-        int                             ascent;         /* ascent (baseline) height*/
-        int                             firstchar;      /* first character in bitmap*/
-        int                             size;           /* font size in characters*/
-        const font_bits_t *bits;        /* 16-bit right-padded bitmap data*/
-        const uint32_t  *offset;        /* offsets into bitmap data*/
-        const unsigned char *width;     /* character widths or 0 if fixed*/
-        int                             defaultchar;/* default char (not glyph index)*/
-        int32_t                 bits_size;      /* # words of MWIMAGEBITS bits*/
+		/** @brief font name*/
+        char * name;
+		/** @brief max width in pixels*/
+        int maxwidth;
+	 	/** @brief height in pixels*/
+        unsigned int height;
+        /** @brief ascent (baseline) height*/
+		int ascent;
+		/** @brief first character in bitmap*/
+        int firstchar;
+        /** @brief font size in characters*/
+		int size;
+		/** @brief 16-bit right-padded bitmap data*/
+        const font_bits_t *bits;
+		/** @brief offsets into bitmap data*/
+        const uint32_t  *offset;
+		/** @brief character widths or 0 if fixed*/
+        const unsigned char *width;
+        /** @brief default char (not glyph index)*/
+		int defaultchar;
+		/** @brief # words of MWIMAGEBITS bits*/
+        int32_t bits_size;
 } font_descriptor_t;
 
 extern font_descriptor_t font_prop14x16;

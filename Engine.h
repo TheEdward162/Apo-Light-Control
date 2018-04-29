@@ -13,10 +13,19 @@
 	Also internally runs and synchronizes the main loop and network loop and handles network messages.
 **/
 namespace Engine {
-	extern std::list<LightUnit> unitList; /*< The list of all currently connected units. */
-	extern ControlMessageQueue controlQueue; /*< The control message queue. */
+	/**
+		@brief The list of all currently connected units.
+	*/
+	extern std::list<LightUnit> unitList;
+	/**
+		@brief The control message queue.
+	*/
+	extern ControlMessageQueue controlQueue;
 
-	extern std::unordered_map<std::string, std::array<uint16_t, 256>> uiIcons; /*< The map of UI icons. */
+	/**
+		@brief The map of UI icons.
+	*/
+	extern std::unordered_map<std::string, std::array<uint16_t, 256>> uiIcons;
 
 	/**
 	 * @brief The entry point of the whole application.

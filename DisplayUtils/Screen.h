@@ -50,7 +50,18 @@ protected:
      */
 	class LineElement {
 	public:
+		/**
+			@brief LineElement constructor
+			@param[in] margin
+			@param[in] alignRight
+		*/
 		LineElement(int margin=0, bool alignRight=false);
+		/**
+			@brief LineElement constructor with different margins
+			@param[in] marginLeft
+			@param[in] marginRight
+			@param[in] alignRight
+		*/
 		LineElement(int marginLeft, int marginRight, bool alignRight=false);
 
 		/**
@@ -79,6 +90,11 @@ protected:
 	/** @brief Empty space */
 	class SpaceLineElement : public LineElement {
 	public:
+		/**
+			@brief SpaceLineElement constructor
+			@param[in] size
+			@param[in] alignRight
+		*/
 		SpaceLineElement(int size, bool alignRight=false);
 
 		int renderSelf(Display* display, int x, int y);
@@ -86,7 +102,20 @@ protected:
 	/** @brief Color square */
 	class ColorSquareLineElement : public LineElement {
 	public:
+		/**
+			@brief ColorSquareLineElement constructor
+			@param[in] color
+			@param[in] margin
+			@param[in] alignRight
+		*/
 		ColorSquareLineElement(uint16_t color=0, int margin=0, bool alignRight=false);
+		/**
+			@brief SpaceLineElement constructor with different margins
+			@param[in] color
+			@param[in] marginLeft
+			@param[in] marginRight
+			@param[in] alignRight
+		*/
 		ColorSquareLineElement(uint16_t color, int marginLeft, int marginRight, bool alignRight=false);
 
 		int renderSelf(Display* display, int x, int y);
@@ -99,7 +128,22 @@ protected:
 	/** @brief Text */
 	class TextLineElement : public LineElement {
 	public:
+		/**
+			@brief TextLineElement constructor
+			@param[in] text
+			@param[in] color
+			@param[in] margin
+			@param[in] alignRight
+		*/
 		TextLineElement(std::string text="", uint16_t color=0, int margin=0, bool alignRight=false);
+		/**
+			@brief TextLineElement constructor with different margins
+			@param[in] text
+			@param[in] color
+			@param[in] marginLeft
+			@param[in] marginRight
+			@param[in] alignRight
+		*/
 		TextLineElement(std::string text, uint16_t color, int marginLeft, int marginRight, bool alignRight=false);
 
 		int renderSelf(Display* display, int x, int y);
@@ -116,7 +160,22 @@ protected:
 	/** @brief Scaled icon */
 	class IconLineElement : public LineElement {
 	public:
+		/**
+			@brief IconLineElement constructor
+			@param[in] pIcon
+			@param[in] scaleExponent
+			@param[in] margin
+			@param[in] alignRight
+		*/
 		IconLineElement(uint16_t* pIcon=NULL, int scaleExponent=0, int margin=0, bool alignRight=false);
+		/**
+			@brief IconLineElement constructor with different margins
+			@param[in] pIcon
+			@param[in] scaleExponent
+			@param[in] marginLeft
+			@param[in] marginRight
+			@param[in] alignRight
+		*/
 		IconLineElement(uint16_t* pIcon, int scaleExponent, int marginLeft, int marginRight, bool alignRight=false);
 
 		int renderSelf(Display* display, int x, int y);
@@ -131,13 +190,29 @@ protected:
 		*/
 		int scaleExponent;
 	};
+	/**
+		@brief One line element pointer
+	*/
 	typedef std::unique_ptr<LineElement> PLineElement;
+	/**
+		@brief Vector of line element pointers
+	*/
 	typedef std::vector<Screen::PLineElement> PLineElementVector;
 
+	/**
+		@brief Creates Screen and binds it to display
+		@param[in] display
+	*/
 	Screen(Display* display);
 
+	/**
+		@brief Display this screen is bound to.
+	*/
     Display* display;
-    size_t selected = 0; /*< Currently selected line. */
+	/**
+		@brief Currently selected line
+	*/
+    size_t selected = 0; 
 
 	/**
 		@brief Renders line containing only one element.

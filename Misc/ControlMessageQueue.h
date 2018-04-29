@@ -50,11 +50,14 @@ public:
 			memset(valuesWall, 0, sizeof(int16_t) * 3);
 		}
 
-		ControlMessageInfo(uint32_t ip) : ControlMessageInfo() {
+		/**
+			@brief ControlMessageInfo constructor with ip and optional type
+			@details If type is set to 2, this constructor also sets all values to -1.
+			@param[in] ip
+			@param[in] type
+		*/		
+		ControlMessageInfo(uint32_t ip, int type=-1) : ControlMessageInfo() {
 			this->ip = ip;
-		}
-		
-		ControlMessageInfo(uint32_t ip, int type) : ControlMessageInfo(ip) {
 			this->type = type;
 			if (type == 2) {
 				valuesCeiling[0] = -1;

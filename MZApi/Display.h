@@ -130,10 +130,8 @@ public:
 	void renderRectangle(int left, int top, int right, int bottom, uint16_t colour);
 
 	/** @brief Renders an axis-aligned rectangle with given position in a given colour.
-     * @param left The x coordinate of the left edge.
-     * @param top The y coordinate of the top edge.
-     * @param right The x cooridnate of the right edge.
-     * @param bottom The y coordinate of the bottom edgge.
+     * @param topX The x coordinate of the left edge.
+     * @param topY The y coordinate of the top edge.
      * @param colour The colour of the rectangle.
      **/
     void renderColourSquare(int topX, int topY, uint16_t colour);

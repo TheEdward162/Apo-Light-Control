@@ -19,6 +19,11 @@
 */
 class UnitScreen: public Screen {
 public:
+	/**
+		@brief UnitScreen constructor
+		@param[in] display Display to be bound to.
+		@param[in] unit LightUnit to be bound to.
+	*/
     UnitScreen(Display* display, LightUnit& unit);
 	~UnitScreen();
 

@@ -106,12 +106,9 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structControlMessageQueue_1_1ControlMessageInfo.html#a2e85f6e0583ea739ff6ec35ef1655bef">ControlMessageInfo</a> ()</td></tr>
 <tr class="memdesc:a2e85f6e0583ea739ff6ec35ef1655bef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty constructor constructs invalid <a class="el" href="structControlMessageQueue_1_1ControlMessageInfo.html" title="Element of the ControlMessageQueue. ">ControlMessageInfo</a>. <br /></td></tr>
 <tr class="separator:a2e85f6e0583ea739ff6ec35ef1655bef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a343b872010632c73cd5d811f0439db65"><td class="memItemLeft" align="right" valign="top"><a id="a343b872010632c73cd5d811f0439db65"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ControlMessageInfo</b> (uint32_t <a class="el" href="structControlMessageQueue_1_1ControlMessageInfo.html#a9c729d9dd8e2bbabfbdfcdaf845065f6">ip</a>)</td></tr>
-<tr class="separator:a343b872010632c73cd5d811f0439db65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3d25b3f23c684a35f85ecad82c4b0de"><td class="memItemLeft" align="right" valign="top"><a id="ab3d25b3f23c684a35f85ecad82c4b0de"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ControlMessageInfo</b> (uint32_t <a class="el" href="structControlMessageQueue_1_1ControlMessageInfo.html#a9c729d9dd8e2bbabfbdfcdaf845065f6">ip</a>, int <a class="el" href="structControlMessageQueue_1_1ControlMessageInfo.html#a0166019e4c749c1fcea08074c641af3e">type</a>)</td></tr>
-<tr class="separator:ab3d25b3f23c684a35f85ecad82c4b0de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86967ffe7674cc77dcb2ddae8917dc32"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structControlMessageQueue_1_1ControlMessageInfo.html#a86967ffe7674cc77dcb2ddae8917dc32">ControlMessageInfo</a> (uint32_t <a class="el" href="structControlMessageQueue_1_1ControlMessageInfo.html#a9c729d9dd8e2bbabfbdfcdaf845065f6">ip</a>, int <a class="el" href="structControlMessageQueue_1_1ControlMessageInfo.html#a0166019e4c749c1fcea08074c641af3e">type</a>=-1)</td></tr>
+<tr class="memdesc:a86967ffe7674cc77dcb2ddae8917dc32"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structControlMessageQueue_1_1ControlMessageInfo.html" title="Element of the ControlMessageQueue. ">ControlMessageInfo</a> constructor with ip and optional type.  <a href="#a86967ffe7674cc77dcb2ddae8917dc32">More...</a><br /></td></tr>
+<tr class="separator:a86967ffe7674cc77dcb2ddae8917dc32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -137,7 +134,53 @@ int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="structNetworkHandler_1_1Message.html" title="Base message struct. ">NetworkHandler::Message</a> </dd>
 <dd>
 <a class="el" href="structNetworkHandler_1_1ControlMessage.html" title="Control message. Types 1 and 2. ">NetworkHandler::ControlMessage</a> </dd></dl>
-</div><hr/>The documentation for this struct was generated from the following file:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a86967ffe7674cc77dcb2ddae8917dc32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86967ffe7674cc77dcb2ddae8917dc32">&#9670;&nbsp;</a></span>ControlMessageInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ControlMessageQueue::ControlMessageInfo::ControlMessageInfo </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>ip</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>type</em> = <code>-1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="structControlMessageQueue_1_1ControlMessageInfo.html" title="Element of the ControlMessageQueue. ">ControlMessageInfo</a> constructor with ip and optional type. </p>
+<p>If type is set to 2, this constructor also sets all values to -1. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ip</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">type</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
 <li>Misc/<a class="el" href="ControlMessageQueue_8h_source.html">ControlMessageQueue.h</a></li>
 </ul>
 </div><!-- contents -->

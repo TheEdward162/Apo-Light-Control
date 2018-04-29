@@ -22,23 +22,23 @@
 class LightUnit {
 public:
 	/**
-	 * Default LightUnit constructor.
+	 * @brief Default LightUnit constructor.
 	 * */
 	LightUnit();
 	/**
-	 * LightUnit constructor with unit description.
+	 * @brief LightUnit constructor with unit description.
 	 * @param description Description of the light unit.
 	 * */
 	LightUnit(const char description[16]);
 	/**
-	 * LightUnit constructor with ip, unit description and image as parameters.
+	 * @brief LightUnit constructor with ip, unit description and image as parameters.
 	 * @param ip The IP address of the light unit.
 	 * @param description Description of the light unit.
 	 * @param image Icon for the light unit.
 	 * */
 	LightUnit(unsigned long ip, const char description[16], const uint16_t image[256]);
 	/**
-	 * LightUnit constructor with complete information.
+	 * @brief LightUnit constructor with complete information.
 	 * @param ip The IP address of the light unit.
 	 * @param description Description of the light unit.
 	 * @param image Icon for the light unit.
