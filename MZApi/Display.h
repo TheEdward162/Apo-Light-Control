@@ -41,19 +41,20 @@ public:
     void setColours(uint16_t bgColour, uint16_t fgColour, uint16_t selectColour);
     void setFont(font_descriptor_t font);
 
-    void testDisplay();
+	size_t textWidth(std::string& text);
 
 	void clearScreen(uint16_t colour);
+
 	void setPixel(int x, int y, uint16_t color);
 	void renderRectangle(int left, int top, int right, int bottom, uint16_t color);
     void renderColourSquare(int topX, int topY, uint16_t colour);
-    void renderText(int topX, int topY, std::string text, uint16_t colour);
-    void renderIcon(uint16_t *buffer, int topX, int topY);
+    size_t renderText(int topX, int topY, std::string text, uint16_t colour);
+    size_t renderIcon(uint16_t *icon, int topX, int topY, int exponent=0);
 
     void redraw();
 
 private:
-	uint16_t buffer[height][width];
+	uint16_t frameBuffer[height][width];
     font_descriptor_t font;
 #ifndef MZ_BOARD
 	SDL_Window* sdl_win = NULL;
@@ -65,12 +66,11 @@ private:
 
     void parlcd_write_cmd(uint16_t cmd);
     void parlcd_write_data(uint16_t data);
-    void renderCharacter(char character, int topX, int topY, uint16_t colour);
+    size_t renderCharacter(char character, int topX, int topY, uint16_t colour);
 
     Mapper mapper = Mapper(PARLCD_REG_BASE_PHYS, PARLCD_REG_SIZE);
 
 	bool checkBounds(int* x, int* y);
 
     bool getBit(uint16_t bits, int position);
-    void printDisplay();
 };

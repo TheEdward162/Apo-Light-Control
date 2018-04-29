@@ -7,7 +7,7 @@ LightUnit::LightUnit() {
 	memset(&this->image, 0, 256 * sizeof(uint16_t));
 
 	lastNetworkBroadcastTimePoint = std::chrono::steady_clock::now();
-	counter_readers.store(0);
+	screenActive = false;
 }
 
 LightUnit::LightUnit(LightUnit&& other) {
@@ -20,7 +20,7 @@ LightUnit::LightUnit(LightUnit&& other) {
 	rgbCeiling = std::move(other.rgbCeiling);
 	rgbWall = std::move(other.rgbWall);
 	lastNetworkBroadcastTimePoint = std::move(other.lastNetworkBroadcastTimePoint);
-	counter_readers.store(other.counter_readers.load());
+	screenActive = other.screenActive.load();
 }
 
 LightUnit::LightUnit(const char description[16]) : LightUnit() {
@@ -56,7 +56,7 @@ LightUnit& LightUnit::operator=(LightUnit&& other) {
 		rgbCeiling = std::move(other.rgbCeiling);
 		rgbWall = std::move(other.rgbWall);
 		lastNetworkBroadcastTimePoint = std::move(other.lastNetworkBroadcastTimePoint);
-		counter_readers.store(other.counter_readers.load());
+		screenActive = other.screenActive.load();
 	}
 	
 	return *this;

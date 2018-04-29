@@ -27,5 +27,5 @@ public:
 	std::chrono::steady_clock::time_point lastNetworkBroadcastTimePoint;
 	// prevents both networking and UI from changing this simultaneously
 	mutable std::mutex mutex_change;
-	std::atomic_uint32_t counter_readers;
+	std::atomic_bool screenActive;
 };

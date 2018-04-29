@@ -6,6 +6,8 @@
 
 #include <cstdint>
 
+#include <string>
+
 namespace Colour {
     enum {
         BLACK = 0,
@@ -34,6 +36,9 @@ namespace Colour {
 	uint32_t changeB(uint32_t value, int16_t change);
 
 	uint32_t fromRGB(uint8_t r, uint8_t g, uint8_t b);
+
+	std::string toRGBString(uint32_t rgb);
+	std::string toHexString(uint32_t rgb);
 
     uint16_t rgb888to565(uint32_t rgb888);
 	uint32_t rgb565to888(uint16_t rgb565);

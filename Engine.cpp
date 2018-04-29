@@ -28,11 +28,12 @@ const auto broadcastDeleteInterval = std::chrono::seconds(5);
 using namespace Engine;
 
 // variables
-std::vector<LightUnit> Engine::unitList;
+std::unordered_map<std::string, std::array<uint16_t, 256>> Engine::uiIcons;
+
+std::list<LightUnit> Engine::unitList;
 RWMutex mutexUnitList;
 
 ControlMessageQueue Engine::controlQueue;
-
 std::thread networkThread;
 
 DeviceInput deviceInput;
@@ -43,17 +44,16 @@ void NetworkThreadHandleBroadcastMessage(NetworkHandler::RecievedMessage* reciev
 
 	mutexUnitList.lockRead();
 	// find out if this unit is in the list
-	LightUnit* contextUnit = NULL;
+	auto contextUnit = unitList.end();
 
 	// start at one, skipping thisUnit
-	for (size_t i = 1; i < unitList.size(); i++) {
-		if (unitList[i].ip == recievedMessage->ip) {
-			contextUnit = &unitList[i];
-			break;
+	for (auto it = ++unitList.begin(); it != unitList.end(); it++) {
+		if (it->ip == recievedMessage->ip) {
+			contextUnit = it;
 		}
 	}
 	
-	if (contextUnit == NULL) {
+	if (contextUnit == unitList.end()) {
 		// if not, lock whole list and add new unit
 		mutexUnitList.unlockRead();
 		mutexUnitList.lockWrite();
@@ -79,34 +79,36 @@ void NetworkThreadHandleControlMessage(NetworkHandler::RecievedMessage* recieved
 	NetworkHandler::ControlMessage* cMessage = (NetworkHandler::ControlMessage*) recievedMessage->pMessage;
 	
 	mutexUnitList.lockRead();
-	std::lock_guard<std::mutex> lock(unitList[0].mutex_change);
+
+	LightUnit& thisUnit = *unitList.begin();
+	std::lock_guard<std::mutex> lock(thisUnit.mutex_change);
 
 	if (cMessage->msgType == 1) {
-		unitList[0].rgbWall = Colour::changeR(unitList[0].rgbWall, cMessage->valuesWall[0]);
-		unitList[0].rgbWall = Colour::changeR(unitList[0].rgbWall, cMessage->valuesWall[1]);
-		unitList[0].rgbWall = Colour::changeR(unitList[0].rgbWall, cMessage->valuesWall[2]);
+		thisUnit.rgbWall = Colour::changeR(thisUnit.rgbWall, cMessage->valuesWall[0]);
+		thisUnit.rgbWall = Colour::changeR(thisUnit.rgbWall, cMessage->valuesWall[1]);
+		thisUnit.rgbWall = Colour::changeR(thisUnit.rgbWall, cMessage->valuesWall[2]);
 
-		unitList[0].rgbCeiling = Colour::changeR(unitList[0].rgbCeiling, cMessage->valuesCeiling[0]);
-		unitList[0].rgbCeiling = Colour::changeR(unitList[0].rgbCeiling, cMessage->valuesCeiling[1]);
-		unitList[0].rgbCeiling = Colour::changeR(unitList[0].rgbCeiling, cMessage->valuesCeiling[2]);
+		thisUnit.rgbCeiling = Colour::changeR(thisUnit.rgbCeiling, cMessage->valuesCeiling[0]);
+		thisUnit.rgbCeiling = Colour::changeR(thisUnit.rgbCeiling, cMessage->valuesCeiling[1]);
+		thisUnit.rgbCeiling = Colour::changeR(thisUnit.rgbCeiling, cMessage->valuesCeiling[2]);
 	} else {
 		if (cMessage->valuesWall[0] >= 0)
-			unitList[0].rgbWall = Colour::setR(unitList[0].rgbWall, cMessage->valuesWall[0]);
+			thisUnit.rgbWall = Colour::setR(thisUnit.rgbWall, cMessage->valuesWall[0]);
 
 		if (cMessage->valuesWall[1] >= 0)
-			unitList[0].rgbWall = Colour::setG(unitList[0].rgbWall, cMessage->valuesWall[1]);
+			thisUnit.rgbWall = Colour::setG(thisUnit.rgbWall, cMessage->valuesWall[1]);
 
 		if (cMessage->valuesWall[2] >= 0)
-			unitList[0].rgbWall = Colour::setB(unitList[0].rgbWall, cMessage->valuesWall[2]);
+			thisUnit.rgbWall = Colour::setB(thisUnit.rgbWall, cMessage->valuesWall[2]);
 
 		if (cMessage->valuesCeiling[0] >= 0)
-			unitList[0].rgbCeiling = Colour::setR(unitList[0].rgbCeiling, cMessage->valuesCeiling[0]);
+			thisUnit.rgbCeiling = Colour::setR(thisUnit.rgbCeiling, cMessage->valuesCeiling[0]);
 
 		if (cMessage->valuesCeiling[1] >= 0)
-			unitList[0].rgbCeiling = Colour::setG(unitList[0].rgbCeiling, cMessage->valuesCeiling[1]);
+			thisUnit.rgbCeiling = Colour::setG(thisUnit.rgbCeiling, cMessage->valuesCeiling[1]);
 
 		if (cMessage->valuesCeiling[2] >= 0)
-			unitList[0].rgbCeiling = Colour::setB(unitList[0].rgbCeiling, cMessage->valuesCeiling[2]);
+			thisUnit.rgbCeiling = Colour::setB(thisUnit.rgbCeiling, cMessage->valuesCeiling[2]);
 	}
 
 	mutexUnitList.unlockRead();
@@ -118,7 +120,7 @@ void NetworkThreadRun(std::future<void> death) {
 
 	while (death.wait_for(std::chrono::seconds(0)) != std::future_status::ready) {
 		// send broadcast
-		networkHandler.broadcastUnit(unitList[0]);
+		networkHandler.broadcastUnit(*unitList.begin());
 		auto lastTimePoint = std::chrono::steady_clock::now();
 
 		// check for units to remove
@@ -126,8 +128,8 @@ void NetworkThreadRun(std::future<void> death) {
 		bool hasAnyToRemove = false;
 		auto timeNow = std::chrono::steady_clock::now();
 		auto timePast = timeNow - broadcastDeleteInterval;
-		for (size_t i = 1; i < unitList.size(); i++) {
-			if (unitList[i].counter_readers == 0 && unitList[i].lastNetworkBroadcastTimePoint <= timePast) {
+		for (auto it = ++unitList.begin(); it != unitList.end(); it++) {
+			if (!it->screenActive && it->ip != 0 && it->lastNetworkBroadcastTimePoint <= timePast) {
 				hasAnyToRemove = true;
 				break;
 			}
@@ -137,11 +139,9 @@ void NetworkThreadRun(std::future<void> death) {
 		if (hasAnyToRemove) {
 			mutexUnitList.lockWrite();
 
-			unitList.erase(std::remove_if(unitList.begin() + 1, unitList.end(),
-				[timePast](const LightUnit &u) {
-						return u.counter_readers == 0 && u.lastNetworkBroadcastTimePoint <= timePast;
-					}),
-				unitList.end());
+			unitList.remove_if([timePast](const LightUnit &u) {
+						return !u.screenActive && u.ip != 0 && u.lastNetworkBroadcastTimePoint <= timePast;
+					});
 
 			mutexUnitList.unlockWrite();
 		}
@@ -168,10 +168,6 @@ void NetworkThreadRun(std::future<void> death) {
 			// recieve broadcasts and control messages
 			NetworkHandler::RecievedMessage recievedMessage = networkHandler.recieveMessage();
 			if (recievedMessage.ip != 0) {
-				std::cout << std::endl << "Recieved message from ";
-				printf("%hhu %hhu %hhu %hhu", ((char*) &recievedMessage.ip)[0], ((char*) &recievedMessage.ip)[1], ((char*) &recievedMessage.ip)[2], ((char*) &recievedMessage.ip)[3]);
-				std::cout << " at time " << recievedMessage.timePoint.time_since_epoch().count() << " of type " << recievedMessage.pMessage->msgType << std::endl;
-				
 				if (recievedMessage.pMessage->msgType == 0) {
 					NetworkThreadHandleBroadcastMessage(&recievedMessage);	
 				} else {
@@ -216,19 +212,42 @@ void checkArguments(int argc, char** argv) {
 		throw std::runtime_error("Image file does not exist");
 	}
 }
+
+void loadUIIcon(std::string path, std::string key) {
+	if (IOTools::fileExists(path)) {
+		std::array<uint16_t, 256> iconBuffer = std::array<uint16_t, 256>();
+		IOTools::loadImage16x16(path, iconBuffer.data());
+		uiIcons[key] = std::move(iconBuffer);
+	}
+}
+void loadUIIcons() {
+	loadUIIcon("icons/input-red-turn.ppm", "input-red-turn");
+	loadUIIcon("icons/input-red-press.ppm", "input-red-press");
+
+	loadUIIcon("icons/input-green-turn.ppm", "input-green-turn");
+	loadUIIcon("icons/input-green-press.ppm", "input-green-press");
+
+	loadUIIcon("icons/input-blue-turn.ppm", "input-blue-turn");
+	loadUIIcon("icons/input-blue-press.ppm", "input-blue-press");
+}
+
 int Engine::run(int argc, char** argv) {
 	checkArguments(argc, argv);
+	loadUIIcons();
 
-	unitList.reserve(5);
+	//unitList.reserve(5);
 	
 	// init this unit object which will be always the first element of the unitList vector
 	unitList.emplace_back(argv[1]);
-	IOTools::loadImage16x16(argv[2], unitList[0].image);
+	IOTools::loadImage16x16(argv[2], unitList.back().image);
 
-	for (int i = 0; i < 20; i++) {
-		unitList.emplace_back( ("Dummy unit " + std::to_string(i + 1)).c_str() );
-		IOTools::loadImage16x16("icons/" + std::to_string((i + 1) % 7) + ".ppm", unitList[i + 1].image);
-		unitList[i + 1].rgbWall = (uint32_t)std::chrono::steady_clock::now().time_since_epoch().count();
+	for (int i = 1; i <= 20; i++) {
+		unitList.emplace_back( ("Dummy unit " + std::to_string(i)).c_str() );
+		LightUnit& tmp = unitList.back();
+
+		IOTools::loadImage16x16("icons/" + std::to_string(i % 6 + 1) + ".ppm", tmp.image);
+		tmp.rgbWall = (uint32_t)std::chrono::steady_clock::now().time_since_epoch().count();
+		tmp.ip = 1;
 	}
 
 	// stateless death event, yaay
