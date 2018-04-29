@@ -3,6 +3,11 @@
 #include "Screen.h"
 #include "../MZApi/Display.h"
 
+/** @addtogroup screens
+ * @{
+ */
+
+/** @brief Meow. */
 class NyanScreen : public Screen {
 public:
     NyanScreen(Display* display);
@@ -12,3 +17,4 @@ public:
     void handleKnobChange(int8_t RGBDelta[3]);
     void handleKnobPress(bool RGBPressed[3]);
 };
+/** @} */

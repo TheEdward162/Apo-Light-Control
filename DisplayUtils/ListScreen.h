@@ -7,6 +7,15 @@
 #include "Screen.h"
 #include "../MZApi/Display.h"
 
+/** @addtogroup screens
+ * @{
+ */
+
+/** 
+	@brief Unit screen.
+	@details This screen renders list of all connected units and allows selection to pass to Unit screen.
+	@see UnitScreen
+*/
 class ListScreen: public Screen {
 public:
     ListScreen(Display* display);
@@ -23,3 +32,4 @@ private:
 
 	size_t scrollOffset = 0;
 };
+/** @} */

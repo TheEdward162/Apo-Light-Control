@@ -1,52 +1,185 @@
 \hypertarget{classNetworkHandler}{}\section{Network\+Handler Class Reference}
 \label{classNetworkHandler}\index{Network\+Handler@{Network\+Handler}}
+
+
+Class that handles all network communication.  
+
+
+
+
+{\ttfamily \#include $<$Network\+Handler.\+h$>$}
+
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-struct \hyperlink{structNetworkHandler_1_1BroadcastMessage}{Broadcast\+Message}
-\item 
-struct \hyperlink{structNetworkHandler_1_1ControlMessage}{Control\+Message}
-\item 
-struct \hyperlink{structNetworkHandler_1_1Message}{Message}
-\item 
-struct \hyperlink{structNetworkHandler_1_1RecievedMessage}{Recieved\+Message}
-\end{DoxyCompactItemize}
+struct \mbox{\hyperlink{structNetworkHandler_1_1BroadcastMessage}{Broadcast\+Message}}
+\begin{DoxyCompactList}\small\item\em Broadcast message. Type 0. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structNetworkHandler_1_1ControlMessage}{Control\+Message}}
+\begin{DoxyCompactList}\small\item\em Control message. Types 1 and 2. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structNetworkHandler_1_1Message}{Message}}
+\begin{DoxyCompactList}\small\item\em Base message struct. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structNetworkHandler_1_1RecievedMessage}{Recieved\+Message}}
+\begin{DoxyCompactList}\small\item\em Struct that represents a recieved message. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-typedef struct \hyperlink{structNetworkHandler_1_1Message}{Network\+Handler\+::\+Message} {\bfseries Message}\hypertarget{classNetworkHandler_a40a384ea43787b06682a000b015add29}{}\label{classNetworkHandler_a40a384ea43787b06682a000b015add29}
-
-\item 
-typedef \hyperlink{structNetworkHandler_1_1BroadcastMessage}{Network\+Handler\+::\+Broadcast\+Message} {\bfseries Broadcast\+Message}\hypertarget{classNetworkHandler_a5efffc9f48abe8087c6f756e33d5eb9e}{}\label{classNetworkHandler_a5efffc9f48abe8087c6f756e33d5eb9e}
-
-\item 
-typedef \hyperlink{structNetworkHandler_1_1ControlMessage}{Network\+Handler\+::\+Control\+Message} {\bfseries Control\+Message}\hypertarget{classNetworkHandler_a29cb429e8069fa3c00b8317aec0b735a}{}\label{classNetworkHandler_a29cb429e8069fa3c00b8317aec0b735a}
-
-\item 
-typedef struct \hyperlink{structNetworkHandler_1_1RecievedMessage}{Network\+Handler\+::\+Recieved\+Message} {\bfseries Recieved\+Message}\hypertarget{classNetworkHandler_a558eabe1d275787ab92e63c7bbabf19c}{}\label{classNetworkHandler_a558eabe1d275787ab92e63c7bbabf19c}
-
-\end{DoxyCompactItemize}
+\mbox{\Hypertarget{classNetworkHandler_a40a384ea43787b06682a000b015add29}\label{classNetworkHandler_a40a384ea43787b06682a000b015add29}} 
+typedef struct \mbox{\hyperlink{structNetworkHandler_1_1Message}{Network\+Handler\+::\+Message}} \mbox{\hyperlink{classNetworkHandler_a40a384ea43787b06682a000b015add29}{Message}}
+\begin{DoxyCompactList}\small\item\em Base message struct. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNetworkHandler_a5efffc9f48abe8087c6f756e33d5eb9e}\label{classNetworkHandler_a5efffc9f48abe8087c6f756e33d5eb9e}} 
+typedef \mbox{\hyperlink{structNetworkHandler_1_1BroadcastMessage}{Network\+Handler\+::\+Broadcast\+Message}} \mbox{\hyperlink{classNetworkHandler_a5efffc9f48abe8087c6f756e33d5eb9e}{Broadcast\+Message}}
+\begin{DoxyCompactList}\small\item\em Broadcast message. Type 0. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{structNetworkHandler_1_1ControlMessage}{Network\+Handler\+::\+Control\+Message}} \mbox{\hyperlink{classNetworkHandler_a29cb429e8069fa3c00b8317aec0b735a}{Control\+Message}}
+\begin{DoxyCompactList}\small\item\em Control message. Types 1 and 2. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNetworkHandler_a558eabe1d275787ab92e63c7bbabf19c}\label{classNetworkHandler_a558eabe1d275787ab92e63c7bbabf19c}} 
+typedef struct \mbox{\hyperlink{structNetworkHandler_1_1RecievedMessage}{Network\+Handler\+::\+Recieved\+Message}} \mbox{\hyperlink{classNetworkHandler_a558eabe1d275787ab92e63c7bbabf19c}{Recieved\+Message}}
+\begin{DoxyCompactList}\small\item\em Struct that represents a recieved message. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-bool {\bfseries broadcast\+Message} (const \hyperlink{structNetworkHandler_1_1BroadcastMessage}{Broadcast\+Message} $\ast$message)\hypertarget{classNetworkHandler_a3296b0356692982086aacad3f34b7c12}{}\label{classNetworkHandler_a3296b0356692982086aacad3f34b7c12}
+bool \mbox{\hyperlink{classNetworkHandler_a3296b0356692982086aacad3f34b7c12}{broadcast\+Message}} (const \mbox{\hyperlink{structNetworkHandler_1_1BroadcastMessage}{Broadcast\+Message}} $\ast$message)
+\begin{DoxyCompactList}\small\item\em Broadcasts message. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classNetworkHandler_a515ae3ef779f2244cfdcccbbb24c8cb2}{broadcast\+Unit}} (\mbox{\hyperlink{classLightUnit}{Light\+Unit}} \&unit)
+\begin{DoxyCompactList}\small\item\em Builds and broadcasts message for given unit. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classNetworkHandler_ae424a6a062dd0244560908d8de1798d0}{send\+Message}} (const \mbox{\hyperlink{structNetworkHandler_1_1ControlMessage}{Control\+Message}} $\ast$message, uint32\+\_\+t ip)
+\begin{DoxyCompactList}\small\item\em Sends control message. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structNetworkHandler_1_1BroadcastMessage}{Broadcast\+Message}} \mbox{\hyperlink{classNetworkHandler_a0e8984b42f72b35466d409319c938e4d}{build\+Broadcast\+Message}} (\mbox{\hyperlink{classLightUnit}{Light\+Unit}} \&unit)
+\begin{DoxyCompactList}\small\item\em Builds broadcast message for unit. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structNetworkHandler_1_1ControlMessage}{Control\+Message}} \mbox{\hyperlink{classNetworkHandler_ac43127d9c50aeba5c9bbc853bef447a9}{build\+Control\+Message}} (int type, int16\+\_\+t values\+Ceiling\mbox{[}$\,$\mbox{]}, int16\+\_\+t values\+Wall\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Builds control message. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structNetworkHandler_1_1RecievedMessage}{Recieved\+Message}} \mbox{\hyperlink{classNetworkHandler_a0c605f9d3c9ae3d7d55c1edffdba7d84}{recieve\+Message}} ()
+\begin{DoxyCompactList}\small\item\em Waits for a message on the socket. Can timeout. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
-\item 
-bool {\bfseries broadcast\+Unit} (\hyperlink{classLightUnit}{Light\+Unit} \&unit)\hypertarget{classNetworkHandler_a515ae3ef779f2244cfdcccbbb24c8cb2}{}\label{classNetworkHandler_a515ae3ef779f2244cfdcccbbb24c8cb2}
 
-\item 
-bool {\bfseries send\+Message} (const \hyperlink{structNetworkHandler_1_1ControlMessage}{Control\+Message} $\ast$message, uint32\+\_\+t ip)\hypertarget{classNetworkHandler_ae424a6a062dd0244560908d8de1798d0}{}\label{classNetworkHandler_ae424a6a062dd0244560908d8de1798d0}
+\subsection{Detailed Description}
+Class that handles all network communication. 
 
-\item 
-\hyperlink{structNetworkHandler_1_1BroadcastMessage}{Broadcast\+Message} {\bfseries build\+Broadcast\+Message} (\hyperlink{classLightUnit}{Light\+Unit} \&unit)\hypertarget{classNetworkHandler_a0e8984b42f72b35466d409319c938e4d}{}\label{classNetworkHandler_a0e8984b42f72b35466d409319c938e4d}
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classNetworkHandler_a29cb429e8069fa3c00b8317aec0b735a}\label{classNetworkHandler_a29cb429e8069fa3c00b8317aec0b735a}} 
+\index{Network\+Handler@{Network\+Handler}!Control\+Message@{Control\+Message}}
+\index{Control\+Message@{Control\+Message}!Network\+Handler@{Network\+Handler}}
+\subsubsection{\texorpdfstring{Control\+Message}{ControlMessage}}
+{\footnotesize\ttfamily typedef  \mbox{\hyperlink{structNetworkHandler_1_1ControlMessage}{Network\+Handler\+::\+Control\+Message}}  \mbox{\hyperlink{structNetworkHandler_1_1ControlMessage}{Network\+Handler\+::\+Control\+Message}}}
 
-\item 
-\hyperlink{structNetworkHandler_1_1ControlMessage}{Control\+Message} {\bfseries build\+Control\+Message} (int type, int16\+\_\+t values\+Ceiling\mbox{[}$\,$\mbox{]}, int16\+\_\+t values\+Wall\mbox{[}$\,$\mbox{]})\hypertarget{classNetworkHandler_ac43127d9c50aeba5c9bbc853bef447a9}{}\label{classNetworkHandler_ac43127d9c50aeba5c9bbc853bef447a9}
 
-\item 
-\hyperlink{structNetworkHandler_1_1RecievedMessage}{Recieved\+Message} {\bfseries recieve\+Message} ()\hypertarget{classNetworkHandler_a0c605f9d3c9ae3d7d55c1edffdba7d84}{}\label{classNetworkHandler_a0c605f9d3c9ae3d7d55c1edffdba7d84}
 
-\end{DoxyCompactItemize}
+Control message. Types 1 and 2. 
+
+Type 1 increments values. Type 2 sets values. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classNetworkHandler_a3296b0356692982086aacad3f34b7c12}\label{classNetworkHandler_a3296b0356692982086aacad3f34b7c12}} 
+\index{Network\+Handler@{Network\+Handler}!broadcast\+Message@{broadcast\+Message}}
+\index{broadcast\+Message@{broadcast\+Message}!Network\+Handler@{Network\+Handler}}
+\subsubsection{\texorpdfstring{broadcast\+Message()}{broadcastMessage()}}
+{\footnotesize\ttfamily bool Network\+Handler\+::broadcast\+Message (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structNetworkHandler_1_1BroadcastMessage}{Broadcast\+Message}} $\ast$}]{message }\end{DoxyParamCaption})}
+
+
+
+Broadcasts message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em message} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Value indicating if the message was sent successfully. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNetworkHandler_a515ae3ef779f2244cfdcccbbb24c8cb2}\label{classNetworkHandler_a515ae3ef779f2244cfdcccbbb24c8cb2}} 
+\index{Network\+Handler@{Network\+Handler}!broadcast\+Unit@{broadcast\+Unit}}
+\index{broadcast\+Unit@{broadcast\+Unit}!Network\+Handler@{Network\+Handler}}
+\subsubsection{\texorpdfstring{broadcast\+Unit()}{broadcastUnit()}}
+{\footnotesize\ttfamily bool Network\+Handler\+::broadcast\+Unit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classLightUnit}{Light\+Unit}} \&}]{unit }\end{DoxyParamCaption})}
+
+
+
+Builds and broadcasts message for given unit. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em unit} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Value indicating if the message was sent successfully. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNetworkHandler_a0e8984b42f72b35466d409319c938e4d}\label{classNetworkHandler_a0e8984b42f72b35466d409319c938e4d}} 
+\index{Network\+Handler@{Network\+Handler}!build\+Broadcast\+Message@{build\+Broadcast\+Message}}
+\index{build\+Broadcast\+Message@{build\+Broadcast\+Message}!Network\+Handler@{Network\+Handler}}
+\subsubsection{\texorpdfstring{build\+Broadcast\+Message()}{buildBroadcastMessage()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structNetworkHandler_1_1BroadcastMessage}{Network\+Handler\+::\+Broadcast\+Message}} Network\+Handler\+::build\+Broadcast\+Message (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classLightUnit}{Light\+Unit}} \&}]{unit }\end{DoxyParamCaption})}
+
+
+
+Builds broadcast message for unit. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em unit} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Built broadcast message. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNetworkHandler_ac43127d9c50aeba5c9bbc853bef447a9}\label{classNetworkHandler_ac43127d9c50aeba5c9bbc853bef447a9}} 
+\index{Network\+Handler@{Network\+Handler}!build\+Control\+Message@{build\+Control\+Message}}
+\index{build\+Control\+Message@{build\+Control\+Message}!Network\+Handler@{Network\+Handler}}
+\subsubsection{\texorpdfstring{build\+Control\+Message()}{buildControlMessage()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structNetworkHandler_1_1ControlMessage}{Network\+Handler\+::\+Control\+Message}} Network\+Handler\+::build\+Control\+Message (\begin{DoxyParamCaption}\item[{int}]{type,  }\item[{int16\+\_\+t}]{values\+Ceiling\mbox{[}$\,$\mbox{]},  }\item[{int16\+\_\+t}]{values\+Wall\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Builds control message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em type} & Type of the message \\
+\hline
+\mbox{\tt in}  & {\em values\+Ceiling} & Ceiling values to set in the message. \\
+\hline
+\mbox{\tt in}  & {\em values\+Wall} & Wall values to set in the message. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{structNetworkHandler_1_1Message}{Message}} 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+Built control message. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNetworkHandler_a0c605f9d3c9ae3d7d55c1edffdba7d84}\label{classNetworkHandler_a0c605f9d3c9ae3d7d55c1edffdba7d84}} 
+\index{Network\+Handler@{Network\+Handler}!recieve\+Message@{recieve\+Message}}
+\index{recieve\+Message@{recieve\+Message}!Network\+Handler@{Network\+Handler}}
+\subsubsection{\texorpdfstring{recieve\+Message()}{recieveMessage()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structNetworkHandler_1_1RecievedMessage}{Network\+Handler\+::\+Recieved\+Message}} Network\+Handler\+::recieve\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Waits for a message on the socket. Can timeout. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structNetworkHandler_1_1RecievedMessage}{Recieved\+Message}} only valid when ip != 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNetworkHandler_ae424a6a062dd0244560908d8de1798d0}\label{classNetworkHandler_ae424a6a062dd0244560908d8de1798d0}} 
+\index{Network\+Handler@{Network\+Handler}!send\+Message@{send\+Message}}
+\index{send\+Message@{send\+Message}!Network\+Handler@{Network\+Handler}}
+\subsubsection{\texorpdfstring{send\+Message()}{sendMessage()}}
+{\footnotesize\ttfamily bool Network\+Handler\+::send\+Message (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structNetworkHandler_1_1ControlMessage}{Control\+Message}} $\ast$}]{message,  }\item[{uint32\+\_\+t}]{ip }\end{DoxyParamCaption})}
+
+
+
+Sends control message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em message} & \\
+\hline
+\mbox{\tt in}  & {\em ip} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Value indicating if the message was sent successfully. 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

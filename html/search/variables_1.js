@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['height',['height',['../classDisplay.html#ac677f0db63e8eef2373fe84791cad17c',1,'Display']]]
+  ['bgcolour',['bgColour',['../classDisplay.html#a23a0f9867d7ba82c45a3c612c84e0504',1,'Display']]]
 ];

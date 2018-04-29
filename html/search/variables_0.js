@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['description',['description',['../classLightUnit.html#aad36ad5ba65b93a30ee35ef1f6895b5a',1,'LightUnit']]]
+  ['alignright',['alignRight',['../classScreen_1_1LineElement.html#a0c5f4e33c2df1dce8e4e45b90dac1423',1,'Screen::LineElement']]]
 ];

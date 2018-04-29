@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['getb',['getB',['../namespaceColour.html#a217843f90fd11c5632683125e19bef08',1,'Colour']]],
-  ['getg',['getG',['../namespaceColour.html#afe62e2366d29eab29349e53694cf04c2',1,'Colour']]],
-  ['getr',['getR',['../namespaceColour.html#abad9ffef17d0d47b94a80a834e3b061e',1,'Colour']]]
+  ['fileexists',['fileExists',['../namespaceIOTools.html#a60e05eba5733bd6f46f2800267c9217b',1,'IOTools']]],
+  ['fromrgb',['fromRGB',['../namespaceColour.html#a2ee4192ca3c1535351e57f223e5fb65d',1,'Colour']]]
 ];

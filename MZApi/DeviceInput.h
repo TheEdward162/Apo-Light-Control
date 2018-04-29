@@ -18,8 +18,14 @@ public:
      * */
     ~DeviceInput();
 
-    int8_t RGBDelta[3]; /**< The change in the device knobs position. */
-    bool RGBPressed[3]; /**< The high/low state of the device knobs */
+	/**
+		@brief The change in the device knob positions.
+	*/
+    int8_t RGBDelta[3];
+	/**
+		@brief Wether given device knob is pressed or not.
+	*/
+    bool RGBPressed[3]; 
 
     /**
      * @brief Gets the input (knobs state) from the device.

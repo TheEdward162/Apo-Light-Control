@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['networkhandler',['NetworkHandler',['../classNetworkHandler.html',1,'']]],
-  ['nyanscreen',['NyanScreen',['../classNyanScreen.html',1,'']]]
+  ['mapper',['Mapper',['../classMapper.html',1,'']]],
+  ['message',['Message',['../structNetworkHandler_1_1Message.html',1,'NetworkHandler']]]
 ];

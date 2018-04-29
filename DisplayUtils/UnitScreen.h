@@ -8,6 +8,14 @@
 
 #include "Screen.h"
 
+/** @addtogroup screens
+	@{
+*/
+
+/** 
+	@brief Unit screen.
+	@details This screen renders info about selected unit and allows making changes to units light settings.
+*/
 class UnitScreen: public Screen {
 public:
     UnitScreen(Display* display, LightUnit& unit);
@@ -60,3 +68,4 @@ private:
 	void updateUnitValue(bool force=false);
 	void updateUnitPreset(uint32_t preset, bool isWall);
 };
+/** @} */

@@ -114,13 +114,14 @@ namespace Colour {
     /** @brief Converts an RGB888 colour to an RGB565 colour.
      * @param rgb888 The RGB888 colour.
      * @return The resulting RGB565 colour.
-     * @see rgb888to565
+     * @see rgb565to888
      **/
     uint16_t rgb888to565(uint32_t rgb888);
 
     /** @brief Converts an RGB565 colour to an RGB888 colour.
      * @param rgb565 The RGB565 colour.
      * @return The resulting RGB888 colour.
+	 * @see rgb888to565
      **/
     uint32_t rgb565to888(uint16_t rgb565);
 };

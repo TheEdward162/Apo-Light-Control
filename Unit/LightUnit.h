@@ -41,15 +41,39 @@ public:
 	 * */
 	~LightUnit();
 
+	/**
+		@brief The RGB888 colour of the ceiling.
+	*/
+	uint32_t rgbCeiling = 0;
+	/**
+		@brief The RGB888 colour of the wall.
+	*/
+	uint32_t rgbWall = 0;
 
-	uint32_t rgbCeiling = 0; /**< The RGB888 colour of the ceiling. */
-	uint32_t rgbWall = 0; /**< The RGB888 colour of the wall. */
+	/**
+		@brief Unit dscription.
+	*/
+	char description[17];
+	/**
+		@brief Unit icon.
+	*/
+	uint16_t image[256];
 
-	char description[17]; /**< Unit dscription. */
-	uint16_t image[256]; /**< Unit icon. */
-
-	unsigned long ip = 0; /**< Unit IP. */
-	std::chrono::steady_clock::time_point lastNetworkBroadcastTimePoint; /**< Time of the last recieved broadcast. */
-	mutable std::mutex mutex_change; /**< Mutex to prevent simultaneous changing of variables. */
-	std::atomic_bool screenActive; /**< Flag to prevent unit ereasure from unitList when it's active in UnitScreen. */
+	/**
+		@brief Unit IP.
+	*/
+	unsigned long ip = 0;
+	/**
+		@brief Time of the last recieved broadcast.
+	*/
+	std::chrono::steady_clock::time_point lastNetworkBroadcastTimePoint;
+	
+	/**
+		@brief Mutex to prevent simultaneous changing of variables.
+	*/
+	mutable std::mutex mutex_change;
+	/**
+		@brief Flag to prevent unit ereasure from unitList when it's active in UnitScreen.
+	*/
+	std::atomic_bool screenActive;
 };

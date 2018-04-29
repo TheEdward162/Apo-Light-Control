@@ -2,6 +2,15 @@
 \label{structNetworkHandler_1_1RecievedMessage}\index{Network\+Handler\+::\+Recieved\+Message@{Network\+Handler\+::\+Recieved\+Message}}
 
 
+Struct that represents a recieved message.  
+
+
+
+
+{\ttfamily \#include $<$Network\+Handler.\+h$>$}
+
+
+
 Collaboration diagram for Network\+Handler\+:\+:Recieved\+Message\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -9,19 +18,28 @@ Collaboration diagram for Network\+Handler\+:\+:Recieved\+Message\+:\nopagebreak
 \includegraphics[width=214pt]{structNetworkHandler_1_1RecievedMessage__coll__graph}
 \end{center}
 \end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structNetworkHandler_1_1RecievedMessage_a385c4440196786787b549f03c09811af}\label{structNetworkHandler_1_1RecievedMessage_a385c4440196786787b549f03c09811af}} 
+\mbox{\hyperlink{structNetworkHandler_1_1RecievedMessage_a385c4440196786787b549f03c09811af}{$\sim$\+Recieved\+Message}} ()
+\begin{DoxyCompactList}\small\item\em Desctructor. Deletes p\+Message. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-uint32\+\_\+t {\bfseries ip}\hypertarget{structNetworkHandler_1_1RecievedMessage_a6f01f4a042b9f5a4cd40d441e0e29d48}{}\label{structNetworkHandler_1_1RecievedMessage_a6f01f4a042b9f5a4cd40d441e0e29d48}
+\mbox{\Hypertarget{structNetworkHandler_1_1RecievedMessage_a6f01f4a042b9f5a4cd40d441e0e29d48}\label{structNetworkHandler_1_1RecievedMessage_a6f01f4a042b9f5a4cd40d441e0e29d48}} 
+uint32\+\_\+t \mbox{\hyperlink{structNetworkHandler_1_1RecievedMessage_a6f01f4a042b9f5a4cd40d441e0e29d48}{ip}}
+\begin{DoxyCompactList}\small\item\em IP address of the sender. Set to 0 to represent invalid message (e.\+g. on timeout). \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structNetworkHandler_1_1RecievedMessage_a0ce3474866ebd9fefaeba2cf901959e2}\label{structNetworkHandler_1_1RecievedMessage_a0ce3474866ebd9fefaeba2cf901959e2}} 
+std\+::chrono\+::steady\+\_\+clock\+::time\+\_\+point \mbox{\hyperlink{structNetworkHandler_1_1RecievedMessage_a0ce3474866ebd9fefaeba2cf901959e2}{time\+Point}}
+\begin{DoxyCompactList}\small\item\em Time point at which the message was recieved. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structNetworkHandler_1_1RecievedMessage_a3407eb8d41737f5ab7fbf73fa6813342}\label{structNetworkHandler_1_1RecievedMessage_a3407eb8d41737f5ab7fbf73fa6813342}} 
+\mbox{\hyperlink{structNetworkHandler_1_1Message}{Message}} $\ast$ \mbox{\hyperlink{structNetworkHandler_1_1RecievedMessage_a3407eb8d41737f5ab7fbf73fa6813342}{p\+Message}}
+\begin{DoxyCompactList}\small\item\em Pointer to the message. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
-\item 
-std\+::chrono\+::steady\+\_\+clock\+::time\+\_\+point {\bfseries time\+Point}\hypertarget{structNetworkHandler_1_1RecievedMessage_a0ce3474866ebd9fefaeba2cf901959e2}{}\label{structNetworkHandler_1_1RecievedMessage_a0ce3474866ebd9fefaeba2cf901959e2}
 
-\item 
-\hyperlink{structNetworkHandler_1_1Message}{Message} $\ast$ {\bfseries p\+Message}\hypertarget{structNetworkHandler_1_1RecievedMessage_a3407eb8d41737f5ab7fbf73fa6813342}{}\label{structNetworkHandler_1_1RecievedMessage_a3407eb8d41737f5ab7fbf73fa6813342}
-
-\end{DoxyCompactItemize}
-
+\subsection{Detailed Description}
+Struct that represents a recieved message. 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

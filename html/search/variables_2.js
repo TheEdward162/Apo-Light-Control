@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['image',['image',['../classLightUnit.html#a01f65fda0c55ecd8b1d62911cfa688d2',1,'LightUnit']]],
-  ['ip',['ip',['../classLightUnit.html#a7d490bbccb134d200628eee46ab8fb3d',1,'LightUnit']]]
+  ['color',['color',['../classScreen_1_1ColorSquareLineElement.html#a8ebfc246a4c52a6f6a82c318511468d6',1,'Screen::ColorSquareLineElement::color()'],['../classScreen_1_1TextLineElement.html#ac4fa4d52ead8e4b38ba18c673875fae2',1,'Screen::TextLineElement::color()']]]
 ];

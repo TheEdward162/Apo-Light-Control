@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['fileexists',['fileExists',['../namespaceIOTools.html#a60e05eba5733bd6f46f2800267c9217b',1,'IOTools']]],
-  ['font_5fdescriptor_5ft',['font_descriptor_t',['../structfont__descriptor__t.html',1,'']]],
-  ['fromrgb',['fromRGB',['../namespaceColour.html#a2ee4192ca3c1535351e57f223e5fb65d',1,'Colour']]]
+  ['description',['description',['../structNetworkHandler_1_1BroadcastMessage.html#a759ee3b4d1f21f4f5fd107f943f6b984',1,'NetworkHandler::BroadcastMessage::description()'],['../classLightUnit.html#aad36ad5ba65b93a30ee35ef1f6895b5a',1,'LightUnit::description()']]],
+  ['deviceinput',['DeviceInput',['../classDeviceInput.html',1,'DeviceInput'],['../classDeviceInput.html#a5a5d144c0a4a2d0fedfd85fcb687a716',1,'DeviceInput::DeviceInput()']]],
+  ['display',['Display',['../classDisplay.html',1,'Display'],['../classDisplay.html#a579fdca9754b50088f77dcb7ba3489ac',1,'Display::Display()']]]
 ];

@@ -28,8 +28,14 @@ class Screen;
  * */
 class Display {
 public:
-	static const size_t width = 480; /**< Display width. */
-	static const size_t height = 320; /**< Display height. */
+	/**
+		@brief The display width
+	*/
+	static const size_t width = 480;
+	/**
+		@brief The display height
+	*/
+	static const size_t height = 320;
 
 	/** @brief The display constructor taking colours and fonts as parameters.
      * @param bgColour The colour used for background.
@@ -43,8 +49,23 @@ public:
      **/
     ~Display();
     
-    uint16_t fgColour, bgColour, selectColour; /**< Display colours. */
-    size_t lineMax; /**< The maximum number of lines that fit on the display. */
+	/**
+		@brief Current theme text colour.
+	*/
+	uint16_t fgColour;
+	/**
+		@brief Current theme background colour.
+	*/
+	uint16_t bgColour;
+	/**
+		@brief Current theme selected background colour.
+	*/
+	uint16_t selectColour;
+
+	/**
+		@brief The maximum number of lines that fit on the display.
+	*/
+    size_t lineMax;
 
 	/** @brief Reacts to input from the device.
      * @param rgbDelta The change in knobs position.
@@ -117,16 +138,18 @@ public:
      * @param topY The y coordinate of the top-left corner.
      * @param text The text to be rendered.
      * @param colour The colour of the text.
+	 * @return Width rendered text in pixels.
      **/
-    void renderText(int topX, int topY, std::string text, uint16_t colour);
+    size_t renderText(int topX, int topY, std::string text, uint16_t colour);
 
 	/** @brief Renders an icon starting at a given position.
 	 * @param buffer The 16x16 image to be rendered.
      * @param topX The x coordinate of the top-left corner.
      * @param topY The y coordinate of the top-left corner.
 	 * @param exponent The exponent to use for scaling by powers of two.
+	 * @return Width rendered icon in pixels.
      **/
-    void renderIcon(uint16_t *buffer, int topX, int topY, int exponent=0);
+    size_t renderIcon(uint16_t *buffer, int topX, int topY, int exponent=0);
 
 	/** @brief Renders the display buffer on the device.
      **/

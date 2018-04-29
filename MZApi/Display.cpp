@@ -179,16 +179,16 @@ bool Display::checkBounds(int* x, int* y) {
 	return changed;
 }
 
-void Display::clearScreen(uint16_t color) {
+void Display::clearScreen(uint16_t colour) {
 	uint16_t* b = (uint16_t*)frameBuffer;
 	for (size_t i = 0; i < width * height; i++) {
-		*(b++) = color;
+		*(b++) = colour;
 	}
 }
 
 void Display::setPixel(int x, int y, uint16_t colour) {
 	checkBounds(&x, &y);
-	frameBuffer[y][x] = color;
+	frameBuffer[y][x] = colour;
 }
 
 void Display::renderRectangle(int left, int top, int right, int bottom, uint16_t colour) {
@@ -197,7 +197,7 @@ void Display::renderRectangle(int left, int top, int right, int bottom, uint16_t
 
     for (int rectY = top; rectY < bottom + 1; ++rectY) {
         for (int rectX = left; rectX < right + 1; ++rectX) {
-            frameBuffer[rectY][rectX] = color;
+            frameBuffer[rectY][rectX] = colour;
         }
     }
 }

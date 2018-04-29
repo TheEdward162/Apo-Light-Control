@@ -3,26 +3,40 @@
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \hyperlink{namespaceEngine_a18825e7d28c8436bb36f3ca02b99d41f}{run} (int argc, char $\ast$$\ast$argv)\hypertarget{namespaceEngine_a18825e7d28c8436bb36f3ca02b99d41f}{}\label{namespaceEngine_a18825e7d28c8436bb36f3ca02b99d41f}
-
-\begin{DoxyCompactList}\small\item\em The entry point of the whole application. Connects a new unit to the network.  The number of arguments.  The command line arguments. The format should be \textquotesingle{}\char`\"{}\+Unit Description\char`\"{} path\+\_\+to\+\_\+icon16x16.\+ppm\textquotesingle{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+int \mbox{\hyperlink{namespaceEngine_a18825e7d28c8436bb36f3ca02b99d41f}{run}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em The entry point of the whole application. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-std\+::vector$<$ Light\+Unit $>$ \hyperlink{namespaceEngine_af251daeaa5143c5915b7726e6eb6a72d}{unit\+List}
+\mbox{\Hypertarget{namespaceEngine_ac3baaa2258cdfbc45de266c5b5641454}\label{namespaceEngine_ac3baaa2258cdfbc45de266c5b5641454}} 
+std\+::list$<$ \mbox{\hyperlink{classLightUnit}{Light\+Unit}} $>$ {\bfseries unit\+List}
 \item 
-Control\+Message\+Queue \hyperlink{namespaceEngine_a300dfed93e6ea0213f64e184373517ed}{control\+Queue}
+\mbox{\Hypertarget{namespaceEngine_a300dfed93e6ea0213f64e184373517ed}\label{namespaceEngine_a300dfed93e6ea0213f64e184373517ed}} 
+\mbox{\hyperlink{classControlMessageQueue}{Control\+Message\+Queue}} {\bfseries control\+Queue}
+\item 
+\mbox{\Hypertarget{namespaceEngine_ae562ecbc72c843b594695a058487d3cb}\label{namespaceEngine_ae562ecbc72c843b594695a058487d3cb}} 
+std\+::unordered\+\_\+map$<$ std\+::string, std\+::array$<$ uint16\+\_\+t, 256 $>$ $>$ {\bfseries ui\+Icons}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Class representing the entry point of the whole application. It stores a list of connected units and a control message queue. 
+Namesapce representing the entry point of the whole application. It stores a list of connected units and a control message queue. 
 
-\subsection{Variable Documentation}
-\index{Engine@{Engine}!control\+Queue@{control\+Queue}}
-\index{control\+Queue@{control\+Queue}!Engine@{Engine}}
-\subsubsection[{\texorpdfstring{control\+Queue}{controlQueue}}]{\setlength{\rightskip}{0pt plus 5cm}Control\+Message\+Queue Engine\+::control\+Queue}\hypertarget{namespaceEngine_a300dfed93e6ea0213f64e184373517ed}{}\label{namespaceEngine_a300dfed93e6ea0213f64e184373517ed}
-The control message queue. \index{Engine@{Engine}!unit\+List@{unit\+List}}
-\index{unit\+List@{unit\+List}!Engine@{Engine}}
-\subsubsection[{\texorpdfstring{unit\+List}{unitList}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ Light\+Unit $>$ Engine\+::unit\+List}\hypertarget{namespaceEngine_af251daeaa5143c5915b7726e6eb6a72d}{}\label{namespaceEngine_af251daeaa5143c5915b7726e6eb6a72d}
-The list of all currently connected units. 
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespaceEngine_a18825e7d28c8436bb36f3ca02b99d41f}\label{namespaceEngine_a18825e7d28c8436bb36f3ca02b99d41f}} 
+\index{Engine@{Engine}!run@{run}}
+\index{run@{run}!Engine@{Engine}}
+\subsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily int Engine\+::run (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+The entry point of the whole application. 
+
+This function starts a network thread, connects the new unit to the network and loads ui icons. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em argc} & The number of arguments. \\
+\hline
+\mbox{\tt in}  & {\em argv} & The command line arguments. The format should be \textquotesingle{}\char`\"{}\+Unit Description\char`\"{} path\+\_\+to\+\_\+icon16x16.\+ppm\textquotesingle{}. \\
+\hline
+\end{DoxyParams}

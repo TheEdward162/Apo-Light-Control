@@ -1,8 +1,8 @@
 #include <string>
 
 /**
- * @brief Tools connected to IO..
- *
+ * @brief Tools connected to IO.
+ * 
  */
 namespace IOTools {
 	/**
@@ -18,6 +18,6 @@ namespace IOTools {
      * @param buffer An array to store the image into.
 	 * @return True if the image was loaded successfully, false otherwise.
 	 * */
-	bool loadImage16x16(const std::string& path, uint16_t buffer[]);
+	bool loadImage16x16(const std::string& path, uint16_t buffer[256]);
 }
 /* namespace IOTools */

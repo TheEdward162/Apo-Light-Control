@@ -1,0 +1,79 @@
+\hypertarget{classScreen_1_1LineElement}{}\section{Screen\+:\+:Line\+Element Class Reference}
+\label{classScreen_1_1LineElement}\index{Screen\+::\+Line\+Element@{Screen\+::\+Line\+Element}}
+
+
+Line element base class.  
+
+
+
+
+{\ttfamily \#include $<$Screen.\+h$>$}
+
+
+
+Inheritance diagram for Screen\+:\+:Line\+Element\+:
+% FIG 0
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classScreen_1_1LineElement_a3f822f160e15ee96022b95026e52ee42}\label{classScreen_1_1LineElement_a3f822f160e15ee96022b95026e52ee42}} 
+{\bfseries Line\+Element} (int margin=0, bool \mbox{\hyperlink{classScreen_1_1LineElement_a0c5f4e33c2df1dce8e4e45b90dac1423}{align\+Right}}=false)
+\item 
+\mbox{\Hypertarget{classScreen_1_1LineElement_a65fe216ee2acbc1191b1fd51b25b2ec7}\label{classScreen_1_1LineElement_a65fe216ee2acbc1191b1fd51b25b2ec7}} 
+{\bfseries Line\+Element} (int \mbox{\hyperlink{classScreen_1_1LineElement_a9ed23f9510a11334af9be6f53965f7a6}{margin\+Left}}, int \mbox{\hyperlink{classScreen_1_1LineElement_a3a2077f01072be8e8fd0f4539b85beb0}{margin\+Right}}, bool \mbox{\hyperlink{classScreen_1_1LineElement_a0c5f4e33c2df1dce8e4e45b90dac1423}{align\+Right}}=false)
+\item 
+virtual int \mbox{\hyperlink{classScreen_1_1LineElement_a667fbf6505fbed274ca9a3deac3fef9e}{render\+Self}} (\mbox{\hyperlink{classDisplay}{Display}} $\ast$display, int x, int y)=0
+\begin{DoxyCompactList}\small\item\em Renders itself at position x, y to display. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classScreen_1_1LineElement_a0c5f4e33c2df1dce8e4e45b90dac1423}\label{classScreen_1_1LineElement_a0c5f4e33c2df1dce8e4e45b90dac1423}} 
+bool \mbox{\hyperlink{classScreen_1_1LineElement_a0c5f4e33c2df1dce8e4e45b90dac1423}{align\+Right}}
+\begin{DoxyCompactList}\small\item\em Wether to align left or right. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classScreen_1_1LineElement_a9ed23f9510a11334af9be6f53965f7a6}\label{classScreen_1_1LineElement_a9ed23f9510a11334af9be6f53965f7a6}} 
+int \mbox{\hyperlink{classScreen_1_1LineElement_a9ed23f9510a11334af9be6f53965f7a6}{margin\+Left}}
+\begin{DoxyCompactList}\small\item\em Left margin of this element. Can be negative. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classScreen_1_1LineElement_a3a2077f01072be8e8fd0f4539b85beb0}\label{classScreen_1_1LineElement_a3a2077f01072be8e8fd0f4539b85beb0}} 
+int \mbox{\hyperlink{classScreen_1_1LineElement_a3a2077f01072be8e8fd0f4539b85beb0}{margin\+Right}}
+\begin{DoxyCompactList}\small\item\em Right margin of this element. Can be negative. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Line element base class. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classScreen_1_1LineElement_a667fbf6505fbed274ca9a3deac3fef9e}\label{classScreen_1_1LineElement_a667fbf6505fbed274ca9a3deac3fef9e}} 
+\index{Screen\+::\+Line\+Element@{Screen\+::\+Line\+Element}!render\+Self@{render\+Self}}
+\index{render\+Self@{render\+Self}!Screen\+::\+Line\+Element@{Screen\+::\+Line\+Element}}
+\subsubsection{\texorpdfstring{render\+Self()}{renderSelf()}}
+{\footnotesize\ttfamily virtual int Screen\+::\+Line\+Element\+::render\+Self (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDisplay}{Display}} $\ast$}]{display,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Renders itself at position x, y to display. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em display} & \mbox{\hyperlink{classDisplay}{Display}} to render to. \\
+\hline
+\mbox{\tt in}  & {\em x} & X position to render to. \\
+\hline
+\mbox{\tt in}  & {\em y} & Y position to render to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of pixels this elements takes. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classScreen_1_1IconLineElement_a3ee090b31ee5061974552be4688d937b}{Screen\+::\+Icon\+Line\+Element}}, \mbox{\hyperlink{classScreen_1_1TextLineElement_abcd2e0700f84bb19d7a285345cd37871}{Screen\+::\+Text\+Line\+Element}}, \mbox{\hyperlink{classScreen_1_1ColorSquareLineElement_abea938100788da99f8ded53ca642edc0}{Screen\+::\+Color\+Square\+Line\+Element}}, and \mbox{\hyperlink{classScreen_1_1SpaceLineElement_a897336996ddbfbb7c86bb6ef9acb8536}{Screen\+::\+Space\+Line\+Element}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Display\+Utils/Screen.\+h\item 
+Display\+Utils/Screen.\+cpp\end{DoxyCompactItemize}

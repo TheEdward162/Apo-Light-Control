@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['fileexists',['fileExists',['../namespaceIOTools.html#a60e05eba5733bd6f46f2800267c9217b',1,'IOTools']]],
-  ['fromrgb',['fromRGB',['../namespaceColour.html#a2ee4192ca3c1535351e57f223e5fb65d',1,'Colour']]]
+  ['deviceinput',['DeviceInput',['../classDeviceInput.html#a5a5d144c0a4a2d0fedfd85fcb687a716',1,'DeviceInput']]],
+  ['display',['Display',['../classDisplay.html#a579fdca9754b50088f77dcb7ba3489ac',1,'Display']]]
 ];
