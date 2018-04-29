@@ -20,7 +20,14 @@ namespace Colour {
         DARK_GREEN = 0x4D24,
         BLUE = 0x051F,
         PURPLE = 0x881F,
-        BROWN = 0x9260
+        BROWN = 0x9260,
+		DARK_BLUE = 0x08CB,
+		TURUOISE = 0x6694,
+		UGLY = 0xEC1A,
+		WEIRD_RED =  0xA165,
+		DARK_GREY = 0x2945,
+		LIGHT_GREY =  0xD69A,
+		ALMOST_GOLD = 0xFE03
     };
 
     uint8_t getR(uint32_t rgb);

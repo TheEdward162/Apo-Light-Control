@@ -17,7 +17,7 @@
 #include "../DisplayUtils/Screen.h"
 
 #ifndef MZ_BOARD
-	#include <SDL.h>
+#include <SDL2/SDL.h>
 #endif
 
 class Screen;
