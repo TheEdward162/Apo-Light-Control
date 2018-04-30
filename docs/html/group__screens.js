@@ -52,6 +52,12 @@ var group__screens =
       [ "display", "classScreen.html#aad713267725e8aa8a8def951a07de641", null ],
       [ "selected", "classScreen.html#ae66538a4cf9fd681495f28acb12be732", null ]
     ] ],
+    [ "ThemeScreen", "classThemeScreen.html", [
+      [ "ThemeScreen", "classThemeScreen.html#af62f34712361648223d8355ac9cbeb1a", null ],
+      [ "handleKnobChange", "classThemeScreen.html#a63186eef43267b259663c811f457ae55", null ],
+      [ "handleKnobPress", "classThemeScreen.html#ae497f8c5fda0250abcade2603ea3b3be", null ],
+      [ "renderScreen", "classThemeScreen.html#a7ce31eea7316cdf3f9b7769e3df6ff7f", null ]
+    ] ],
     [ "UnitScreen", "classUnitScreen.html", [
       [ "UnitScreen", "classUnitScreen.html#aec9e9c593e2c59025096fd01529c874b", null ],
       [ "~UnitScreen", "classUnitScreen.html#afde6644348d64e562d1c81d993488849", null ],

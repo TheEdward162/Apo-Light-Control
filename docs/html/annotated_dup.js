@@ -10,5 +10,6 @@ var annotated_dup =
     [ "NetworkHandler", "classNetworkHandler.html", "classNetworkHandler" ],
     [ "RWMutex", "classRWMutex.html", "classRWMutex" ],
     [ "Screen", "classScreen.html", "classScreen" ],
+    [ "ThemeScreen", "classThemeScreen.html", "classThemeScreen" ],
     [ "UnitScreen", "classUnitScreen.html", "classUnitScreen" ]
 ];

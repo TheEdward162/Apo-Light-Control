@@ -22,6 +22,7 @@ var hierarchy =
     [ "RWMutex", "classRWMutex.html", null ],
     [ "Screen", "classScreen.html", [
       [ "ListScreen", "classListScreen.html", null ],
+      [ "ThemeScreen", "classThemeScreen.html", null ],
       [ "UnitScreen", "classUnitScreen.html", null ]
     ] ]
 ];

@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-Wall -Werror -std=gnu++11 -D_REENTRANT
+CFLAGS=-Wall -Werror -std=gnu++11 -D_REENTRANT -O3
 PC_FLAGS=$(shell sdl2-config --cflags)
 LIBS=-lpthread
 PC_LIBS=$(shell sdl2-config --libs)

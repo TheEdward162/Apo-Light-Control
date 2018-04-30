@@ -38,7 +38,7 @@ ControlMessageQueue Engine::controlQueue;
 std::thread networkThread;
 
 DeviceInput deviceInput;
-Display display = Display(Colour::DARK_GREY, Colour::WHITE, Colour::ALMOST_GOLD, font_rom8x16);
+Display display = Display(Colour::WHITE, Colour::BLACK, Colour::ALMOST_GOLD, font_rom8x16);
 
 void NetworkThreadHandleBroadcastMessage(NetworkHandler::RecievedMessage* recievedMessage) {
 	NetworkHandler::BroadcastMessage* bMessage = (NetworkHandler::BroadcastMessage*) recievedMessage->pMessage;

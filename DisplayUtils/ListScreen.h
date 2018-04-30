@@ -13,7 +13,7 @@
 */
 
 /** 
-	@brief Unit screen.
+	@brief List screen.
 	@details This screen renders list of all connected units and allows selection to pass to Unit screen.
 	@see UnitScreen
 */
@@ -31,7 +31,7 @@ public:
     void handleKnobPress(bool RGBPressed[3]);
 
 private:
-	const std::vector<std::pair<std::string, std::string>> uiInputPairs = {{"input-red-turn", "Up/Down"}, {"input-red-press", "Edit"}};
+	const std::vector<std::pair<std::string, std::string>> uiInputPairs = {{"input-red-turn", "Up/Down"}, {"input-red-press", "Edit"}, {"input-blue-press", "Themes"}};
 
     void renderUnitList();
 
