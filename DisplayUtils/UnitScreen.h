@@ -48,11 +48,11 @@ private:
 	const std::vector<std::pair<std::string, std::string>> baseUiInputPairs = {{"input-red-turn", "Up/Down"}, {"input-green-turn", "Edit value"}, {"input-blue-press", "Back"}};
 	const std::vector<std::pair<std::string, std::string>> presetListUiInputPairs = {{"input-red-turn", "Up/Down"}, {"input-red-press", "Apply wall"}, {"input-green-press", "Apply ceil"}, {"input-blue-press", "Back"}};
 
-    const std::array<int, 7> positions = {LineIndex::WALL_R, LineIndex::WALL_G, LineIndex::WALL_B, LineIndex::CEIL_R, LineIndex::CEIL_G, LineIndex::CEIL_B, LineIndex::PRESET_LIST};
+    const std::array<int, 7> positions = {{LineIndex::WALL_R, LineIndex::WALL_G, LineIndex::WALL_B, LineIndex::CEIL_R, LineIndex::CEIL_G, LineIndex::CEIL_B, LineIndex::PRESET_LIST}};
 	const std::chrono::milliseconds maxControlPacketSendFrequency = std::chrono::milliseconds(100);
-	const std::array<uint32_t, 17> presets = {0x000000, 0xFF0000, 0x00FF00, 0x0000FF, 0xFFFF00, 0xFF00FF,
+	const std::array<uint32_t, 17> presets = {{0x000000, 0xFF0000, 0x00FF00, 0x0000FF, 0xFFFF00, 0xFF00FF,
 											0x00FFFF, 0xFF0073, 0xFF8C00, 0x00FF8C, 0x0073FF, 0xE6003A,
-											0x3AE600, 0x003AE6, 0x34CDFF, 0xDEADBEEF, 0xFFFFFF};
+											0x3AE600, 0x003AE6, 0x34CDFF, 0xDEADBEEF, 0xFFFFFF}};
 
     LightUnit& unit;
 	int16_t selectedValue = -1;
