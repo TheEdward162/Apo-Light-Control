@@ -19,7 +19,7 @@ board:
 	$(CC) $(CFLAGS) -DMZ_BOARD -o app $(SRC) $(LIBS)
 
 cross:
-	$(CC_CROSS) $(CFLAGS) -DMZ_BOARD -o app $(SRC) $(LIBS)
+	$(CC_CROSS) $(CFLAGS) -DMZ_BOARD -o app_cross $(SRC) $(LIBS)
 
 test:
 	./app "OMG room" icons/tux.ppm

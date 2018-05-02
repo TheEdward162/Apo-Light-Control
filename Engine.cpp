@@ -38,7 +38,7 @@ ControlMessageQueue Engine::controlQueue;
 std::thread networkThread;
 
 DeviceInput deviceInput;
-Display display = Display(Colour::WHITE, Colour::BLACK, Colour::ALMOST_GOLD, font_rom8x16);
+Display display = Display(Colour::WHITE, Colour::BLACK, Colour::ALMOST_GOLD, font_rom8x16, &deviceInput);
 
 void NetworkThreadHandleBroadcastMessage(NetworkHandler::RecievedMessage* recievedMessage) {
 	NetworkHandler::BroadcastMessage* bMessage = (NetworkHandler::BroadcastMessage*) recievedMessage->pMessage;
@@ -193,14 +193,12 @@ void mainLoop() {
 #ifdef MZ_BOARD
 		// input
 		deviceInput.update();
-		display.handleInput(deviceInput.RGBDelta, deviceInput.RGBPressed);
 
 		// update leds
 		LedController::setLED1(thisUnit.rgbWall);
 		LedController::setLED2(thisUnit.rgbCeiling);
-#else
-		display.handleInput(NULL, NULL);
 #endif
+		display.handleInput();
 		display.redraw();
 
 		mutexUnitList.unlockRead();

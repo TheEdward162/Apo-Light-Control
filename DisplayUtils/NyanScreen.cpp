@@ -14,7 +14,12 @@ int oX = 0;
 int oY = 0;
 
 size_t fA = 0;
-size_t fF = 17;
+
+#ifdef MZ_BOARD
+	size_t fF = 2;
+#else
+	size_t fF = 17;
+#endif
 size_t fB = 0;
 
 bool c = false;

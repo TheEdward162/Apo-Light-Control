@@ -11,7 +11,7 @@
 #include "Colour.h"
 
 ListScreen::ListScreen(Display* display) : Screen(display) {
-
+	scrollOffset = 0;
 }
 
 void ListScreen::renderScreen() {
@@ -72,11 +72,11 @@ void ListScreen::handleKnobChange(int8_t *RGBDelta) {
 void ListScreen::handleKnobPress(bool *RGBPressed) {
     if (RGBPressed[0] && RGBPressed[1] && RGBPressed[2]) {
 		display->switchScreen(new NyanScreen(display));
-	} else if (RGBPressed[0]) {
+	} else if (RGBPressed[0] && !RGBPressed[1] && !RGBPressed[2]) {
 		auto lightUnitIt = Engine::unitList.begin();
 		std::advance(lightUnitIt, selected);
 		display->switchScreen(new UnitScreen(display, *lightUnitIt));
-    } else if (RGBPressed[1]) {
+    } else if (RGBPressed[1] && !RGBPressed[0] && !RGBPressed[2]) {
 		display->switchScreen(new ThemeScreen(display));
 	}
 }

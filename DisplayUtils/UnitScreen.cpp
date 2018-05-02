@@ -76,7 +76,7 @@ void UnitScreen::renderUnitDetail() {
 
     // render title and icon
 	Screen::renderLine(y + 8, PLineElement(new TextLineElement(unit.description, display->fgColour, 5)));
-	Screen::renderLine(y + 2, PLineElement(new IconLineElement(unit.image, 3, 2, true)));
+	Screen::renderLine(y, PLineElement(new IconLineElement(unit.image, 3, 0, true)));
 	y += 16 * 2;
 	
 	y += renderColorGroup(y, "Wall RGB:", unit.rgbWall);

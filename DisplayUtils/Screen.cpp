@@ -6,6 +6,7 @@
 
 Screen::Screen(Display* display) {
 	this->display = display;
+	selected = 0;
 }
 
 Screen::~Screen() {}

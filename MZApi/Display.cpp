@@ -17,11 +17,13 @@
 
 #define CHAR_SPACING 10
 
-Display::Display(uint16_t bgColour, uint16_t fgColour, uint16_t selectColour, font_descriptor_t font) {
+Display::Display(uint16_t bgColour, uint16_t fgColour, uint16_t selectColour, font_descriptor_t font, DeviceInput* deviceInput) {
     this->bgColour = bgColour;
     this->fgColour = fgColour;
     this->selectColour = selectColour;
-    memset(frameBuffer, bgColour, sizeof(uint16_t) * Display::width * Display::height);
+    this->deviceInput = deviceInput;
+	
+	memset(frameBuffer, bgColour, sizeof(uint16_t) * Display::width * Display::height);
 
 	setFont(font);
 
@@ -280,10 +282,10 @@ size_t Display::renderIcon(uint16_t *icon, int topX, int topY, int exponent) {
 	return scaledSize;
 }
 
-void Display::handleInput(int8_t rgbDelta[3], bool knobsPressed[3]) {
+void Display::handleInput() {
 #ifdef MZ_BOARD
- 	currentScreen->handleKnobChange(rgbDelta);
-    currentScreen->handleKnobPress(knobsPressed);
+ 	currentScreen->handleKnobChange(deviceInput->rgbDelta);
+    currentScreen->handleKnobPress(deviceInput->knobsPressed);
 #else
 	currentScreen->handleKnobChange(sdl_knobDeltas);
     currentScreen->handleKnobPress(sdl_knobPresses);
@@ -294,6 +296,8 @@ void Display::switchScreen(Screen* newScreen) {
 	delete previousScreen;
 	previousScreen = currentScreen;
 	currentScreen = newScreen;
+
+	deviceInput->lock();
 } 
 bool Display::toPreviousScreen(bool keepAlive) {
 	if (previousScreen != NULL) {
@@ -307,6 +311,7 @@ bool Display::toPreviousScreen(bool keepAlive) {
 			previousScreen = NULL;
 		}
 
+		deviceInput->lock();
 		return true;
 	}
 

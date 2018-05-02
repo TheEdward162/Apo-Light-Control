@@ -11,6 +11,7 @@
 
 #include "Display.h"
 #include "Mapper.h"
+#include "DeviceInput.h"
 #include "../DisplayUtils/font_types.h"
 #include "../MZApi/MZRegisters.h"
 #include "../Unit/LightUnit.h"
@@ -48,7 +49,7 @@ public:
      * @param highlightColour The colour used for highlighted items, such as the sleected ones.
      * @param font The font to be used for displayed text.
      **/
-    Display(uint16_t bgColour, uint16_t fgColour, uint16_t highlightColour, font_descriptor_t font);
+    Display(uint16_t bgColour, uint16_t fgColour, uint16_t highlightColour, font_descriptor_t font, DeviceInput* deviceInput);
 
 	/** @brief The display destructor.
      **/
@@ -73,10 +74,8 @@ public:
     size_t lineMax;
 
 	/** @brief Reacts to input from the device.
-     * @param rgbDelta The change in knobs position.
-     * @param knobsPressed The high/low state of the knobs.
      **/
-    void handleInput(int8_t rgbDelta[3], bool knobsPressed[3]);
+    void handleInput();
 
     /** @brief Changes the display screen.
      * @param newScreen The new screen.
@@ -161,6 +160,8 @@ public:
 private:
 	uint16_t frameBuffer[height][width];
     font_descriptor_t font;
+    DeviceInput* deviceInput = NULL;
+
 #ifndef MZ_BOARD
 	SDL_Window* sdl_win = NULL;
 	int8_t sdl_knobDeltas[3] = {0, 0, 0};

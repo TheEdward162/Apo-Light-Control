@@ -31,13 +31,20 @@ void DeviceInput::update() {
     knobs_value = *(volatile uint32_t*)(mapper.mem_base + SPILED_REG_KNOBS_8BIT_o);
 
     // get delta
-    RGBDelta[0] = getDelta(R(knobs_value), R(prev_knobs_value)) / -4;
-    RGBDelta[1] = getDelta(G(knobs_value), G(prev_knobs_value)) / -4;
-    RGBDelta[2] = getDelta(B(knobs_value), B(prev_knobs_value)) / -4;
+    rgbDelta[0] = getDelta(R(knobs_value), R(prev_knobs_value)) / -4;
+    rgbDelta[1] = getDelta(G(knobs_value), G(prev_knobs_value)) / -4;
+    rgbDelta[2] = getDelta(B(knobs_value), B(prev_knobs_value)) / -4;
+    
     // get press
-    RGBPressed[0] = RPress(knobs_value) ? true : false;
-    RGBPressed[1] = GPress(knobs_value) ? true : false;
-    RGBPressed[2] = BPress(knobs_value) ? true : false;
+    checkLock(RPress(knobs_value), 0);
+    checkLock(GPress(knobs_value), 1);
+    checkLock(BPress(knobs_value), 2);
+}
+
+void DeviceInput::lock() {
+    locked[0] = knobsPressed[0];
+    locked[1] = knobsPressed[1];
+    locked[2] = knobsPressed[2];
 }
 
 int8_t DeviceInput::getDelta(uint8_t prev, uint8_t act) {
@@ -50,4 +57,14 @@ int8_t DeviceInput::getDelta(uint8_t prev, uint8_t act) {
         return ((int8_t)act - prev - 255);
     }
     return act - prev;
+}
+
+void DeviceInput::checkLock(bool actual, size_t index) {
+    if (locked[index]) {
+        if (!actual)
+            locked[index] = 0;
+        knobsPressed[index] = 0;
+    } else {
+        knobsPressed[index] = actual;
+    }
 }
