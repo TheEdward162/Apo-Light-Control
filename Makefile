@@ -1,11 +1,12 @@
 CC=g++
+CC_CROSS=arm-linux-gnueabihf-g++
 CFLAGS=-Wall -Werror -std=gnu++11 -D_REENTRANT -O3
 PC_FLAGS=$(shell sdl2-config --cflags)
 LIBS=-lpthread
 PC_LIBS=$(shell sdl2-config --libs)
 
 SRC=main.cpp Engine.cpp Network/*.cpp Unit/*.cpp Misc/*.cpp MZApi/*.cpp DisplayUtils/*.cpp
-PACK_FILES=Makefile *.cpp *.h Network/* Unit/* Misc/* Misc/* MZApi/* DisplayUtils/* icons/* docs/Doxyfile docs/doxygen-css.css
+PACK_FILES=Makefile *.cpp *.h Network/* Unit/* Misc/* Misc/* MZApi/* DisplayUtils/* icons/* Doxyfile docs/doxygen-css.css
 
 default_target: all
 
@@ -16,6 +17,9 @@ all:
 
 board:
 	$(CC) $(CFLAGS) -DMZ_BOARD -o app $(SRC) $(LIBS)
+
+cross:
+	$(CC_CROSS) $(CFLAGS) -DMZ_BOARD -o app $(SRC) $(LIBS)
 
 test:
 	./app "OMG room" icons/tux.ppm

@@ -1,3 +1,5 @@
+#include <cmath>
+
 #include "NyanScreen.h"
 
 // 272x168
@@ -34,7 +36,7 @@ void NyanScreen::renderScreen() {
 	if (fA % 60 == 0 || c) {	
 		display->clearScreen(0xa71);
 
-		const size_t cX = ceil((oX + 28) / 56) + 1;
+		const size_t cX = std::ceil((oX + 28) / 56) + 1;
 
 		int o = 0;
 		const int a = 10;

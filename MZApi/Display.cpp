@@ -2,6 +2,7 @@
 // Created by klara on 14.4.18.
 //
 
+#include <cmath>
 #include <cstring>
 #include <iostream>
 #include <vector>
@@ -51,8 +52,8 @@ void Display::redraw() {
 #ifdef MZ_BOARD
     parlcd_write_cmd(0x2c);
 
-    for (int y = 0; y < Display::height; ++y) {
-        for (int x = 0; x < Display::width; ++x) {
+    for (size_t y = 0; y < Display::height; ++y) {
+        for (size_t x = 0; x < Display::width; ++x) {
             parlcd_write_data(frameBuffer[y][x]);
         }
     }
@@ -266,7 +267,7 @@ size_t Display::renderText(int topX, int topY, std::string text, uint16_t colour
 size_t Display::renderIcon(uint16_t *icon, int topX, int topY, int exponent) {
     checkBounds(&topX, &topY);
 	
-	size_t power = pow(2, exponent);
+	size_t power = std::pow(2, exponent);
 	size_t scaledSize = 16 * power;
 
 	for (size_t iconY = 0; iconY < scaledSize; ++iconY) {

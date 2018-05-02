@@ -31,7 +31,7 @@ public:
     void handleKnobPress(bool RGBPressed[3]);
 
 private:
-	const std::vector<std::pair<std::string, std::string>> uiInputPairs = {{"input-red-turn", "Up/Down"}, {"input-red-press", "Edit"}, {"input-blue-press", "Themes"}};
+	const std::vector<std::pair<std::string, std::string>> uiInputPairs = {{"input-red-turn", "Up/Down"}, {"input-red-press", "Edit"}, {"input-green-press", "Themes"}};
 
     void renderUnitList();
 

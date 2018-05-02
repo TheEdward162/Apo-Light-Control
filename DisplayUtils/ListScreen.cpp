@@ -76,7 +76,7 @@ void ListScreen::handleKnobPress(bool *RGBPressed) {
 		auto lightUnitIt = Engine::unitList.begin();
 		std::advance(lightUnitIt, selected);
 		display->switchScreen(new UnitScreen(display, *lightUnitIt));
-    } else if (RGBPressed[2]) {
+    } else if (RGBPressed[1]) {
 		display->switchScreen(new ThemeScreen(display));
 	}
 }

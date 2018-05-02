@@ -1,3 +1,5 @@
+#include <cmath>
+
 #include "Screen.h"
 #include "Colour.h"
 #include "../Engine.h"
@@ -102,7 +104,7 @@ Screen::IconLineElement::IconLineElement(uint16_t* pIcon, int scaleExponent, int
 int Screen::IconLineElement::renderSelf(Display* display, int x, int y) {
 	int leftX = x + marginLeft;
 	if (alignRight)
-		leftX = x - marginRight - 16 * pow(2, scaleExponent);
+		leftX = x - marginRight - 16 * std::pow(2, scaleExponent);
 
 	return marginLeft + display->renderIcon(pIcon, leftX, y, scaleExponent) + marginRight;
 }
