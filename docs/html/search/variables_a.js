@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['offset',['offset',['../structfont__descriptor__t.html#aaf4c05aa205048a217620ca26f8c5abb',1,'font_descriptor_t']]]
+  ['name',['name',['../structfont__descriptor__t.html#a7a5f7569c87f8995fe45b207897a0327',1,'font_descriptor_t']]]
 ];

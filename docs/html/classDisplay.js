@@ -1,9 +1,9 @@
 var classDisplay =
 [
-    [ "Display", "classDisplay.html#a579fdca9754b50088f77dcb7ba3489ac", null ],
+    [ "Display", "classDisplay.html#a4cc5e14106323089582385c898cc234b", null ],
     [ "~Display", "classDisplay.html#ac2607a6bb236c55547a4223d40d85d1f", null ],
     [ "clearScreen", "classDisplay.html#a905f9f783556b52da4655c541a5e3ea0", null ],
-    [ "handleInput", "classDisplay.html#aa68ef5d785a1a96abdfe0a0f8ccdc379", null ],
+    [ "handleInput", "classDisplay.html#a2bb4517715f7432775fe4be6d7ccf98e", null ],
     [ "redraw", "classDisplay.html#a4fe6059ab67f9a11469ea53f4a5ddb0d", null ],
     [ "renderColourSquare", "classDisplay.html#a94ad8f357b5fffdd4711a593e29003a8", null ],
     [ "renderIcon", "classDisplay.html#a7e1b0ac97b561093e8f1993d7743c095", null ],

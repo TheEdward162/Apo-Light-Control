@@ -1,12 +1,22 @@
 var searchData=
 [
-  ['text',['text',['../classScreen_1_1TextLineElement.html#ad2495931e2dd28b0d7cb5d8c761dedad',1,'Screen::TextLineElement']]],
-  ['textlineelement',['TextLineElement',['../classScreen_1_1TextLineElement.html',1,'Screen::TextLineElement'],['../classScreen_1_1TextLineElement.html#ae0de60080a1c3f6c1be23448927e0717',1,'Screen::TextLineElement::TextLineElement(std::string text=&quot;&quot;, uint16_t color=0, int margin=0, bool alignRight=false)'],['../classScreen_1_1TextLineElement.html#ae6f666d60594d487b9c43310c470ec59',1,'Screen::TextLineElement::TextLineElement(std::string text, uint16_t color, int marginLeft, int marginRight, bool alignRight=false)']]],
-  ['textwidth',['textWidth',['../classDisplay.html#a60f87a87dc86ca281c1095de69e981e6',1,'Display']]],
-  ['themescreen',['ThemeScreen',['../classThemeScreen.html',1,'ThemeScreen'],['../classThemeScreen.html#af62f34712361648223d8355ac9cbeb1a',1,'ThemeScreen::ThemeScreen()']]],
-  ['timepoint',['timePoint',['../structNetworkHandler_1_1RecievedMessage.html#a0ce3474866ebd9fefaeba2cf901959e2',1,'NetworkHandler::RecievedMessage']]],
-  ['tohexstring',['toHexString',['../namespaceColour.html#a2289444135d7196963b284cdd7f13fff',1,'Colour']]],
-  ['topreviousscreen',['toPreviousScreen',['../classDisplay.html#ad043404964c19f51bb903da796aaefda',1,'Display']]],
-  ['torgbstring',['toRGBString',['../namespaceColour.html#a317cf8c55a2ec6a9315b50079703ac8f',1,'Colour']]],
-  ['type',['type',['../structControlMessageQueue_1_1ControlMessageInfo.html#a0166019e4c749c1fcea08074c641af3e',1,'ControlMessageQueue::ControlMessageInfo']]]
+  ['scaleexponent',['scaleExponent',['../classScreen_1_1IconLineElement.html#a95ab319fab5abe27266a092fdb75b58e',1,'Screen::IconLineElement']]],
+  ['screen',['Screen',['../classScreen.html',1,'Screen'],['../classScreen.html#a596e7fffdfafd57fb5385c299863f31d',1,'Screen::Screen()']]],
+  ['screenactive',['screenActive',['../classLightUnit.html#ad1053b699435285eee81f2ba49c12617',1,'LightUnit']]],
+  ['screens_20module',['Screens module',['../group__screens.html',1,'']]],
+  ['selectcolour',['selectColour',['../classDisplay.html#a1487285b39c53295e92cad6b3074a924',1,'Display']]],
+  ['selected',['selected',['../classScreen.html#ae66538a4cf9fd681495f28acb12be732',1,'Screen']]],
+  ['sendmessage',['sendMessage',['../classNetworkHandler.html#ae424a6a062dd0244560908d8de1798d0',1,'NetworkHandler']]],
+  ['setb',['setB',['../namespaceColour.html#a0b181bcc3bc52f87504d8f1cf3d0289a',1,'Colour']]],
+  ['setcolours',['setColours',['../classDisplay.html#a8292ad87dddbf7090e074bcff5968d93',1,'Display']]],
+  ['setfont',['setFont',['../classDisplay.html#afb2154f5edc1c2784ef43d0ddae9cd6d',1,'Display']]],
+  ['setg',['setG',['../namespaceColour.html#a059504956471e6a07df579f59cec6e22',1,'Colour']]],
+  ['setled1',['setLED1',['../namespaceLedController.html#ac371421fafaac6a506afbbc8de099819',1,'LedController']]],
+  ['setled2',['setLED2',['../namespaceLedController.html#afd44909d54eb8d81b4b7340057e8beda',1,'LedController']]],
+  ['setledline',['setLEDLine',['../namespaceLedController.html#a87384dd2af9a2925e17b9f5687e366a7',1,'LedController']]],
+  ['setpixel',['setPixel',['../classDisplay.html#a34d1063149dc9f36c43afd5066b0b3ce',1,'Display']]],
+  ['setr',['setR',['../namespaceColour.html#aafcc8ab12acc526fa93bee12b961edab',1,'Colour']]],
+  ['size',['size',['../structfont__descriptor__t.html#abe0724754ffd1eefe3933c49c534eb8a',1,'font_descriptor_t::size()'],['../classControlMessageQueue.html#a3b2d120facfc58fcdc315a806d76851a',1,'ControlMessageQueue::size()']]],
+  ['spacelineelement',['SpaceLineElement',['../classScreen_1_1SpaceLineElement.html',1,'Screen::SpaceLineElement'],['../classScreen_1_1SpaceLineElement.html#a5049df7e0470c0c6b2da96cbb3be2e31',1,'Screen::SpaceLineElement::SpaceLineElement()']]],
+  ['switchscreen',['switchScreen',['../classDisplay.html#a566e7cbce9f606a20787c6d42c189dc2',1,'Display']]]
 ];

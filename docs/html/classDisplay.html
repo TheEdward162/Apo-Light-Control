@@ -103,16 +103,17 @@ $(document).ready(function(){initNavTree('classDisplay.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a579fdca9754b50088f77dcb7ba3489ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDisplay.html#a579fdca9754b50088f77dcb7ba3489ac">Display</a> (uint16_t <a class="el" href="classDisplay.html#a23a0f9867d7ba82c45a3c612c84e0504">bgColour</a>, uint16_t <a class="el" href="classDisplay.html#aa6a2bd6e8f05a0794ff6b32c30723245">fgColour</a>, uint16_t highlightColour, <a class="el" href="structfont__descriptor__t.html">font_descriptor_t</a> font)</td></tr>
-<tr class="memdesc:a579fdca9754b50088f77dcb7ba3489ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">The display constructor taking colours and fonts as parameters.  <a href="#a579fdca9754b50088f77dcb7ba3489ac">More...</a><br /></td></tr>
-<tr class="separator:a579fdca9754b50088f77dcb7ba3489ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cc5e14106323089582385c898cc234b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDisplay.html#a4cc5e14106323089582385c898cc234b">Display</a> (uint16_t <a class="el" href="classDisplay.html#a23a0f9867d7ba82c45a3c612c84e0504">bgColour</a>, uint16_t <a class="el" href="classDisplay.html#aa6a2bd6e8f05a0794ff6b32c30723245">fgColour</a>, uint16_t highlightColour, <a class="el" href="structfont__descriptor__t.html">font_descriptor_t</a> font, <a class="el" href="classDeviceInput.html">DeviceInput</a> *deviceInput)</td></tr>
+<tr class="memdesc:a4cc5e14106323089582385c898cc234b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The display constructor taking colours and fonts as parameters.  <a href="#a4cc5e14106323089582385c898cc234b">More...</a><br /></td></tr>
+<tr class="separator:a4cc5e14106323089582385c898cc234b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2607a6bb236c55547a4223d40d85d1f"><td class="memItemLeft" align="right" valign="top"><a id="ac2607a6bb236c55547a4223d40d85d1f"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDisplay.html#ac2607a6bb236c55547a4223d40d85d1f">~Display</a> ()</td></tr>
 <tr class="memdesc:ac2607a6bb236c55547a4223d40d85d1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The display destructor. <br /></td></tr>
 <tr class="separator:ac2607a6bb236c55547a4223d40d85d1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa68ef5d785a1a96abdfe0a0f8ccdc379"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDisplay.html#aa68ef5d785a1a96abdfe0a0f8ccdc379">handleInput</a> (int8_t rgbDelta[3], bool knobsPressed[3])</td></tr>
-<tr class="memdesc:aa68ef5d785a1a96abdfe0a0f8ccdc379"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reacts to input from the device.  <a href="#aa68ef5d785a1a96abdfe0a0f8ccdc379">More...</a><br /></td></tr>
-<tr class="separator:aa68ef5d785a1a96abdfe0a0f8ccdc379"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bb4517715f7432775fe4be6d7ccf98e"><td class="memItemLeft" align="right" valign="top"><a id="a2bb4517715f7432775fe4be6d7ccf98e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDisplay.html#a2bb4517715f7432775fe4be6d7ccf98e">handleInput</a> ()</td></tr>
+<tr class="memdesc:a2bb4517715f7432775fe4be6d7ccf98e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reacts to input from the device. <br /></td></tr>
+<tr class="separator:a2bb4517715f7432775fe4be6d7ccf98e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a566e7cbce9f606a20787c6d42c189dc2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDisplay.html#a566e7cbce9f606a20787c6d42c189dc2">switchScreen</a> (<a class="el" href="classScreen.html">Screen</a> *newScreen)</td></tr>
 <tr class="memdesc:a566e7cbce9f606a20787c6d42c189dc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the display screen.  <a href="#a566e7cbce9f606a20787c6d42c189dc2">More...</a><br /></td></tr>
 <tr class="separator:a566e7cbce9f606a20787c6d42c189dc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -184,8 +185,8 @@ static const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A class that handles the (one-way) interaction with the device display and provides methods for rendering shapes, text, and other. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a579fdca9754b50088f77dcb7ba3489ac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a579fdca9754b50088f77dcb7ba3489ac">&#9670;&nbsp;</a></span>Display()</h2>
+<a id="a4cc5e14106323089582385c898cc234b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cc5e14106323089582385c898cc234b">&#9670;&nbsp;</a></span>Display()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -212,7 +213,13 @@ static const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class=
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structfont__descriptor__t.html">font_descriptor_t</a>&#160;</td>
-          <td class="paramname"><em>font</em>&#160;</td>
+          <td class="paramname"><em>font</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classDeviceInput.html">DeviceInput</a> *&#160;</td>
+          <td class="paramname"><em>deviceInput</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -229,6 +236,7 @@ static const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class=
     <tr><td class="paramname">fgColour</td><td>The colour used for foreground. </td></tr>
     <tr><td class="paramname">highlightColour</td><td>The colour used for highlighted items, such as the sleected ones. </td></tr>
     <tr><td class="paramname">font</td><td>The font to be used for displayed text. </td></tr>
+    <tr><td class="paramname">deviceInput</td><td>The device input instance to use. </td></tr>
   </table>
   </dd>
 </dl>
@@ -256,43 +264,6 @@ static const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">colour</td><td>The colour used as background. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="aa68ef5d785a1a96abdfe0a0f8ccdc379"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa68ef5d785a1a96abdfe0a0f8ccdc379">&#9670;&nbsp;</a></span>handleInput()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Display::handleInput </td>
-          <td>(</td>
-          <td class="paramtype">int8_t&#160;</td>
-          <td class="paramname"><em>rgbDelta</em>[3], </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>knobsPressed</em>[3]&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reacts to input from the device. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">rgbDelta</td><td>The change in knobs position. </td></tr>
-    <tr><td class="paramname">knobsPressed</td><td>The high/low state of the knobs. </td></tr>
   </table>
   </dd>
 </dl>

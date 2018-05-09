@@ -4,15 +4,16 @@ var group__unit =
     [ "DeviceInput", "classDeviceInput.html", [
       [ "DeviceInput", "classDeviceInput.html#a5a5d144c0a4a2d0fedfd85fcb687a716", null ],
       [ "~DeviceInput", "classDeviceInput.html#a6c06d020cca58b3d4763e1717382b1a8", null ],
+      [ "lock", "classDeviceInput.html#ab245e46a2e95790d5cfd5589e6099cc8", null ],
       [ "update", "classDeviceInput.html#ae6af261f4e6fa656dad4bd4a1efddbc6", null ],
-      [ "RGBDelta", "classDeviceInput.html#a2dae4108527f110262644b6a2609a213", null ],
-      [ "RGBPressed", "classDeviceInput.html#a27dd22c6d022b77c645899a8793d511a", null ]
+      [ "knobsPressed", "classDeviceInput.html#ab0f8855487fd81e0d3796d9673dbf965", null ],
+      [ "rgbDelta", "classDeviceInput.html#a5f7accee89afc332b01714b772d05155", null ]
     ] ],
     [ "Display", "classDisplay.html", [
-      [ "Display", "classDisplay.html#a579fdca9754b50088f77dcb7ba3489ac", null ],
+      [ "Display", "classDisplay.html#a4cc5e14106323089582385c898cc234b", null ],
       [ "~Display", "classDisplay.html#ac2607a6bb236c55547a4223d40d85d1f", null ],
       [ "clearScreen", "classDisplay.html#a905f9f783556b52da4655c541a5e3ea0", null ],
-      [ "handleInput", "classDisplay.html#aa68ef5d785a1a96abdfe0a0f8ccdc379", null ],
+      [ "handleInput", "classDisplay.html#a2bb4517715f7432775fe4be6d7ccf98e", null ],
       [ "redraw", "classDisplay.html#a4fe6059ab67f9a11469ea53f4a5ddb0d", null ],
       [ "renderColourSquare", "classDisplay.html#a94ad8f357b5fffdd4711a593e29003a8", null ],
       [ "renderIcon", "classDisplay.html#a7e1b0ac97b561093e8f1993d7743c095", null ],

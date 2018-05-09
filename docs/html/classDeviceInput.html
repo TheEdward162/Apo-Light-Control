@@ -110,17 +110,21 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDeviceInput.html#ae6af261f4e6fa656dad4bd4a1efddbc6">update</a> ()</td></tr>
 <tr class="memdesc:ae6af261f4e6fa656dad4bd4a1efddbc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the input (knobs state) from the device. <br /></td></tr>
 <tr class="separator:ae6af261f4e6fa656dad4bd4a1efddbc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab245e46a2e95790d5cfd5589e6099cc8"><td class="memItemLeft" align="right" valign="top"><a id="ab245e46a2e95790d5cfd5589e6099cc8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDeviceInput.html#ab245e46a2e95790d5cfd5589e6099cc8">lock</a> ()</td></tr>
+<tr class="memdesc:ab245e46a2e95790d5cfd5589e6099cc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Locks currently pressed knobs to 0 and unlocks them on release. <br /></td></tr>
+<tr class="separator:ab245e46a2e95790d5cfd5589e6099cc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a2dae4108527f110262644b6a2609a213"><td class="memItemLeft" align="right" valign="top"><a id="a2dae4108527f110262644b6a2609a213"></a>
-int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDeviceInput.html#a2dae4108527f110262644b6a2609a213">RGBDelta</a> [3]</td></tr>
-<tr class="memdesc:a2dae4108527f110262644b6a2609a213"><td class="mdescLeft">&#160;</td><td class="mdescRight">The change in the device knob positions. <br /></td></tr>
-<tr class="separator:a2dae4108527f110262644b6a2609a213"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27dd22c6d022b77c645899a8793d511a"><td class="memItemLeft" align="right" valign="top"><a id="a27dd22c6d022b77c645899a8793d511a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDeviceInput.html#a27dd22c6d022b77c645899a8793d511a">RGBPressed</a> [3]</td></tr>
-<tr class="memdesc:a27dd22c6d022b77c645899a8793d511a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether given device knob is pressed or not. <br /></td></tr>
-<tr class="separator:a27dd22c6d022b77c645899a8793d511a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f7accee89afc332b01714b772d05155"><td class="memItemLeft" align="right" valign="top"><a id="a5f7accee89afc332b01714b772d05155"></a>
+int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDeviceInput.html#a5f7accee89afc332b01714b772d05155">rgbDelta</a> [3] = {0}</td></tr>
+<tr class="memdesc:a5f7accee89afc332b01714b772d05155"><td class="mdescLeft">&#160;</td><td class="mdescRight">The change in the device knob positions. <br /></td></tr>
+<tr class="separator:a5f7accee89afc332b01714b772d05155"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0f8855487fd81e0d3796d9673dbf965"><td class="memItemLeft" align="right" valign="top"><a id="ab0f8855487fd81e0d3796d9673dbf965"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDeviceInput.html#ab0f8855487fd81e0d3796d9673dbf965">knobsPressed</a> [3] = {0}</td></tr>
+<tr class="memdesc:ab0f8855487fd81e0d3796d9673dbf965"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether given device knob is pressed or not. <br /></td></tr>
+<tr class="separator:ab0f8855487fd81e0d3796d9673dbf965"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Handler device input. </p>

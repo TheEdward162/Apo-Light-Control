@@ -12,12 +12,13 @@ A class that handles the (one-\/way) interaction with the device display and pro
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classDisplay_a579fdca9754b50088f77dcb7ba3489ac}{Display}} (uint16\+\_\+t \mbox{\hyperlink{classDisplay_a23a0f9867d7ba82c45a3c612c84e0504}{bg\+Colour}}, uint16\+\_\+t \mbox{\hyperlink{classDisplay_aa6a2bd6e8f05a0794ff6b32c30723245}{fg\+Colour}}, uint16\+\_\+t highlight\+Colour, \mbox{\hyperlink{structfont__descriptor__t}{font\+\_\+descriptor\+\_\+t}} font)
+\mbox{\hyperlink{classDisplay_a4cc5e14106323089582385c898cc234b}{Display}} (uint16\+\_\+t \mbox{\hyperlink{classDisplay_a23a0f9867d7ba82c45a3c612c84e0504}{bg\+Colour}}, uint16\+\_\+t \mbox{\hyperlink{classDisplay_aa6a2bd6e8f05a0794ff6b32c30723245}{fg\+Colour}}, uint16\+\_\+t highlight\+Colour, \mbox{\hyperlink{structfont__descriptor__t}{font\+\_\+descriptor\+\_\+t}} font, \mbox{\hyperlink{classDeviceInput}{Device\+Input}} $\ast$device\+Input)
 \begin{DoxyCompactList}\small\item\em The display constructor taking colours and fonts as parameters. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classDisplay_ac2607a6bb236c55547a4223d40d85d1f}\label{classDisplay_ac2607a6bb236c55547a4223d40d85d1f}} 
 \mbox{\hyperlink{classDisplay_ac2607a6bb236c55547a4223d40d85d1f}{$\sim$\+Display}} ()
 \begin{DoxyCompactList}\small\item\em The display destructor. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classDisplay_aa68ef5d785a1a96abdfe0a0f8ccdc379}{handle\+Input}} (int8\+\_\+t rgb\+Delta\mbox{[}3\mbox{]}, bool knobs\+Pressed\mbox{[}3\mbox{]})
+\mbox{\Hypertarget{classDisplay_a2bb4517715f7432775fe4be6d7ccf98e}\label{classDisplay_a2bb4517715f7432775fe4be6d7ccf98e}} 
+void \mbox{\hyperlink{classDisplay_a2bb4517715f7432775fe4be6d7ccf98e}{handle\+Input}} ()
 \begin{DoxyCompactList}\small\item\em Reacts to input from the device. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classDisplay_a566e7cbce9f606a20787c6d42c189dc2}{switch\+Screen}} (\mbox{\hyperlink{classScreen}{Screen}} $\ast$new\+Screen)
 \begin{DoxyCompactList}\small\item\em Changes the display screen. \end{DoxyCompactList}\item 
@@ -74,11 +75,11 @@ static const size\+\_\+t \mbox{\hyperlink{classDisplay_ac677f0db63e8eef2373fe847
 A class that handles the (one-\/way) interaction with the device display and provides methods for rendering shapes, text, and other. 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classDisplay_a579fdca9754b50088f77dcb7ba3489ac}\label{classDisplay_a579fdca9754b50088f77dcb7ba3489ac}} 
+\mbox{\Hypertarget{classDisplay_a4cc5e14106323089582385c898cc234b}\label{classDisplay_a4cc5e14106323089582385c898cc234b}} 
 \index{Display@{Display}!Display@{Display}}
 \index{Display@{Display}!Display@{Display}}
 \subsubsection{\texorpdfstring{Display()}{Display()}}
-{\footnotesize\ttfamily Display\+::\+Display (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{bg\+Colour,  }\item[{uint16\+\_\+t}]{fg\+Colour,  }\item[{uint16\+\_\+t}]{highlight\+Colour,  }\item[{\mbox{\hyperlink{structfont__descriptor__t}{font\+\_\+descriptor\+\_\+t}}}]{font }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Display\+::\+Display (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{bg\+Colour,  }\item[{uint16\+\_\+t}]{fg\+Colour,  }\item[{uint16\+\_\+t}]{highlight\+Colour,  }\item[{\mbox{\hyperlink{structfont__descriptor__t}{font\+\_\+descriptor\+\_\+t}}}]{font,  }\item[{\mbox{\hyperlink{classDeviceInput}{Device\+Input}} $\ast$}]{device\+Input }\end{DoxyParamCaption})}
 
 
 
@@ -93,6 +94,8 @@ The display constructor taking colours and fonts as parameters.
 {\em highlight\+Colour} & The colour used for highlighted items, such as the sleected ones. \\
 \hline
 {\em font} & The font to be used for displayed text. \\
+\hline
+{\em device\+Input} & The device input instance to use. \\
 \hline
 \end{DoxyParams}
 
@@ -111,23 +114,6 @@ Sets the whole display to one colour.
 
 \begin{DoxyParams}{Parameters}
 {\em colour} & The colour used as background. \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{classDisplay_aa68ef5d785a1a96abdfe0a0f8ccdc379}\label{classDisplay_aa68ef5d785a1a96abdfe0a0f8ccdc379}} 
-\index{Display@{Display}!handle\+Input@{handle\+Input}}
-\index{handle\+Input@{handle\+Input}!Display@{Display}}
-\subsubsection{\texorpdfstring{handle\+Input()}{handleInput()}}
-{\footnotesize\ttfamily void Display\+::handle\+Input (\begin{DoxyParamCaption}\item[{int8\+\_\+t}]{rgb\+Delta\mbox{[}3\mbox{]},  }\item[{bool}]{knobs\+Pressed\mbox{[}3\mbox{]} }\end{DoxyParamCaption})}
-
-
-
-Reacts to input from the device. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em rgb\+Delta} & The change in knobs position. \\
-\hline
-{\em knobs\+Pressed} & The high/low state of the knobs. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classDisplay_a94ad8f357b5fffdd4711a593e29003a8}\label{classDisplay_a94ad8f357b5fffdd4711a593e29003a8}} 

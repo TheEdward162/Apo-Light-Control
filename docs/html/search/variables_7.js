@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['lastnetworkbroadcasttimepoint',['lastNetworkBroadcastTimePoint',['../classLightUnit.html#ac5f86e26fe02c192736cddd1d06af583',1,'LightUnit']]],
-  ['linemax',['lineMax',['../classDisplay.html#a7183e09a442a157a00391639a34cd4d8',1,'Display']]]
+  ['knobspressed',['knobsPressed',['../classDeviceInput.html#ab0f8855487fd81e0d3796d9673dbf965',1,'DeviceInput']]]
 ];

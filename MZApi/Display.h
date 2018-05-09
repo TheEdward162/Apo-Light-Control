@@ -48,6 +48,7 @@ public:
      * @param fgColour The colour used for foreground.
      * @param highlightColour The colour used for highlighted items, such as the sleected ones.
      * @param font The font to be used for displayed text.
+	 * @param deviceInput The device input instance to use.
      **/
     Display(uint16_t bgColour, uint16_t fgColour, uint16_t highlightColour, font_descriptor_t font, DeviceInput* deviceInput);
 
