@@ -44,13 +44,14 @@ void NetworkThreadHandleBroadcastMessage(NetworkHandler::RecievedMessage* reciev
 	NetworkHandler::BroadcastMessage* bMessage = (NetworkHandler::BroadcastMessage*) recievedMessage->pMessage;
 
 	mutexUnitList.lockRead();
-	// find out if this unit is in the list
+	// find out if this unit is in the list, List.end() returs an iterator AFTER the last element
 	auto contextUnit = unitList.end();
 
 	// start at one, skipping thisUnit
 	for (auto it = ++unitList.begin(); it != unitList.end(); it++) {
 		if (it->ip == recievedMessage->ip) {
 			contextUnit = it;
+			break;
 		}
 	}
 	
@@ -62,7 +63,7 @@ void NetworkThreadHandleBroadcastMessage(NetworkHandler::RecievedMessage* reciev
 		unitList.emplace_back(recievedMessage->ip, bMessage->description, bMessage->image, bMessage->rgbCeiling, bMessage->rgbWall);
 
 		mutexUnitList.unlockWrite();
-		mutexUnitList.lockRead();
+		return;
 	} else {
 		// if yes, lock that unit and write new data
 		std::lock_guard<std::mutex> lock(contextUnit->mutex_change);
