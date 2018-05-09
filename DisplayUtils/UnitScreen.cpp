@@ -25,6 +25,8 @@ void UnitScreen::renderScreen() {
 
 	if (positions[selected] == LineIndex::PRESET_LIST) {
 		renderNagivationLine(presetListUiInputPairs);
+	} else if (selectedValue >= 0) {
+		renderNagivationLine(selectedValueInputPairs);
 	} else {
 		renderNagivationLine(baseUiInputPairs);
 	}
@@ -56,7 +58,9 @@ void UnitScreen::handleKnobPress(bool *RGBPressed) {
 			return;
 		}
 	} else {
-
+		if (RGBPressed[1] && selectedValue >= 0) {
+			updateSelected(0);
+		}
 	}
 	
 	if (RGBPressed[2]) {
@@ -149,8 +153,7 @@ void UnitScreen::updateSelected(int delta) {
         if (selected < positions.size() - 1) {
             selected++;
         }
-    }
-    else {
+    } else if (delta < 0) {
         if (selected > 0) {
             selected--;
         }

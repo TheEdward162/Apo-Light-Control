@@ -46,6 +46,7 @@ private:
 	};
 
 	const std::vector<std::pair<std::string, std::string>> baseUiInputPairs = {{"input-red-turn", "Up/Down"}, {"input-green-turn", "Edit value"}, {"input-blue-press", "Back"}};
+	const std::vector<std::pair<std::string, std::string>> selectedValueInputPairs = {{"input-red-turn", "Up/Down"}, {"input-green-turn", "Edit value"}, {"input-green-press", "Confirm"}, {"input-blue-press", "Back"}};
 	const std::vector<std::pair<std::string, std::string>> presetListUiInputPairs = {{"input-red-turn", "Up/Down"}, {"input-red-press", "Apply wall"}, {"input-green-press", "Apply ceil"}, {"input-blue-press", "Back"}};
 
     const std::array<int, 7> positions = {{LineIndex::WALL_R, LineIndex::WALL_G, LineIndex::WALL_B, LineIndex::CEIL_R, LineIndex::CEIL_G, LineIndex::CEIL_B, LineIndex::PRESET_LIST}};
