@@ -246,15 +246,6 @@ int Engine::run(int argc, char** argv) {
 	unitList.emplace_back(argv[1]);
 	IOTools::loadImage16x16(argv[2], unitList.back().image);
 
-	for (int i = 1; i <= 20; i++) {
-		unitList.emplace_back( ("Dummy unit " + std::to_string(i)).c_str() );
-		LightUnit& tmp = unitList.back();
-
-		IOTools::loadImage16x16("icons/" + std::to_string(i % 6 + 1) + ".ppm", tmp.image);
-		tmp.rgbWall = (uint32_t)std::chrono::steady_clock::now().time_since_epoch().count();
-		tmp.ip = 1;
-	}
-
 	// stateless death event, yaay
 	std::promise<void> deathPromise;
 	networkThread = std::thread(NetworkThreadRun, deathPromise.get_future());

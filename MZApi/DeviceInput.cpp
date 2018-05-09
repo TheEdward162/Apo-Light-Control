@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <sys/mman.h>
 #include <fcntl.h>
+#include <cmath>
+#include <cstring>
 #include <cstdlib>
 #include <cstdint>
 #include <time.h>
@@ -20,22 +22,20 @@
 #define BPress(a) ((a & 0x1000000) >> 24)
 
 DeviceInput::DeviceInput() {
-    knobs_value = 0;
-    prev_knobs_value = 0;
 }
 
 DeviceInput::~DeviceInput() {}
 
 void DeviceInput::update() {
-    prev_knobs_value = knobs_value;
-    knobs_value = *(volatile uint32_t*)(mapper.mem_base + SPILED_REG_KNOBS_8BIT_o);
+    uint32_t knobs_value = *(volatile uint32_t*)(mapper.mem_base + SPILED_REG_KNOBS_8BIT_o);
 
-    // get delta
-    rgbDelta[0] = getDelta(R(knobs_value), R(prev_knobs_value)) / -4;
-    rgbDelta[1] = getDelta(G(knobs_value), G(prev_knobs_value)) / -4;
-    rgbDelta[2] = getDelta(B(knobs_value), B(prev_knobs_value)) / -4;
+    // get deltas
+	memset(rgbDelta, 0, sizeof(int8_t) * 3);
+	processDelta(R(knobs_value), 0);
+	processDelta(G(knobs_value), 1);
+	processDelta(B(knobs_value), 2);
     
-    // get press
+    // get presses
     checkLock(RPress(knobs_value), 0);
     checkLock(GPress(knobs_value), 1);
     checkLock(BPress(knobs_value), 2);
@@ -47,16 +47,18 @@ void DeviceInput::lock() {
     locked[2] = knobsPressed[2];
 }
 
-int8_t DeviceInput::getDelta(uint8_t prev, uint8_t act) {
-    // hadnle overflow
-    if (prev > 220 && act < 35) {
-        return ((int8_t)act - prev + 255);
-    }
-    // handle underflow
-    if (prev < 35 && act > 220) {
-        return ((int8_t)act - prev - 255);
-    }
-    return act - prev;
+void DeviceInput::processDelta(uint8_t value, size_t index) {
+	// only react to stable positions
+	if (value % 4 != 0)
+		return;
+	
+	int16_t distance = (int16_t)value - (int16_t)lastKnobValues[index];
+	int8_t sign = std::copysign(1, -distance);
+	if (abs(distance) > 128)
+		distance = sign * (256 - abs(distance));
+
+	rgbDelta[index] = distance / 4;
+	lastKnobValues[index] = value;
 }
 
 void DeviceInput::checkLock(bool actual, size_t index) {

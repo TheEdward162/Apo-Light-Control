@@ -165,7 +165,7 @@ public:
 	RecievedMessage recieveMessage();
 
 private:
-	const uint32_t MAGIC_NUMBER = htonl(0xDEADBEEF);
+	const uint32_t MAGIC_NUMBER = htonl(0x414c4331);
 	const uint32_t VERSION = htonl(0x00010000);
 
 	const int SOCKET_TIMEOUT_SECONDS = 0;

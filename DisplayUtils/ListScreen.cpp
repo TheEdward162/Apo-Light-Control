@@ -53,12 +53,12 @@ void ListScreen::handleKnobChange(int8_t *RGBDelta) {
     size_t unitCount = Engine::unitList.size();
 	
 	int tempSelected = (int)selected + RGBDelta[0];
-	if (tempSelected < 0) {
+	while (tempSelected < 0) {
 		tempSelected += unitCount;
 	}
 	selected = (size_t)tempSelected;
 	
-	if (selected > unitCount - 1) {
+	while (selected > unitCount - 1) {
 		selected -= unitCount;
 	}
 

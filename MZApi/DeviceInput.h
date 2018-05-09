@@ -48,11 +48,10 @@ public:
 private:
     bool locked[3] = {0};
 
-	uint32_t knobs_value;
-    uint32_t prev_knobs_value;
+	uint8_t lastKnobValues[3] = {0};
     Mapper mapper = Mapper(SPILED_REG_BASE_PHYS, SPILED_REG_SIZE);
 
-    int8_t getDelta(uint8_t prev, uint8_t act);
+    void processDelta(uint8_t value, size_t index);
     void checkLock(bool actual, size_t index);
 };
 /** @} */
