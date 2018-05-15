@@ -1,0 +1,6 @@
+<map id="Screen::LineElement" name="Screen::LineElement">
+<area shape="rect" id="node2" href="$classScreen_1_1ColorSquareLineElement.html" title="Color square. " alt="" coords="208,5,443,32"/>
+<area shape="rect" id="node3" href="$classScreen_1_1IconLineElement.html" title="Scaled icon. " alt="" coords="234,56,417,83"/>
+<area shape="rect" id="node4" href="$classScreen_1_1SpaceLineElement.html" title="Empty space. " alt="" coords="228,107,423,133"/>
+<area shape="rect" id="node5" href="$classScreen_1_1TextLineElement.html" title="Text. " alt="" coords="234,157,417,184"/>
+</map>

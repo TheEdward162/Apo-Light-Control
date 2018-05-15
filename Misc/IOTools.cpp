@@ -30,9 +30,9 @@ namespace IOTools {
 		// skip whitespace
 		file.get();
 
-		char pixelBuffer[3];
+		unsigned char pixelBuffer[3];
 		for (int i = 0; i < 256; i++) {
-			file.read(pixelBuffer, 3);
+			file.read((char*) pixelBuffer, 3);
 			if (file.gcount() != 3)
 				return false;
 

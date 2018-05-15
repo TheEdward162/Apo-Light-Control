@@ -1,0 +1,116 @@
+\hypertarget{classControlMessageQueue}{}\section{Control\+Message\+Queue Class Reference}
+\label{classControlMessageQueue}\index{Control\+Message\+Queue@{Control\+Message\+Queue}}
+
+
+Thread-\/safe F\+I\+FO queue for control messages.  
+
+
+
+
+{\ttfamily \#include $<$Control\+Message\+Queue.\+h$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structControlMessageQueue_1_1ControlMessageInfo}{Control\+Message\+Info}}
+\begin{DoxyCompactList}\small\item\em Element of the \mbox{\hyperlink{classControlMessageQueue}{Control\+Message\+Queue}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structControlMessageQueue_1_1ControlMessageInfo}{Control\+Message\+Queue\+::\+Control\+Message\+Info}} \mbox{\hyperlink{classControlMessageQueue_a50df92d449dae01e49fd0e836c7d1f2e}{Control\+Message\+Info}}
+\begin{DoxyCompactList}\small\item\em Element of the \mbox{\hyperlink{classControlMessageQueue}{Control\+Message\+Queue}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classControlMessageQueue_ad0d97de85cb34b781fde757b665fb22e}{has\+Changed}} ()
+\begin{DoxyCompactList}\small\item\em Checks if the queue has changed. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classControlMessageQueue_a3b2d120facfc58fcdc315a806d76851a}{size}} ()
+\begin{DoxyCompactList}\small\item\em Returns number of elements in the queue. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classControlMessageQueue_a766bed9ca18a663bba82cc32c253049a}{enqueue}} (\mbox{\hyperlink{structControlMessageQueue_1_1ControlMessageInfo}{Control\+Message\+Info}} info)
+\begin{DoxyCompactList}\small\item\em Equeues an element at the back. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structControlMessageQueue_1_1ControlMessageInfo}{Control\+Message\+Info}} \mbox{\hyperlink{classControlMessageQueue_a95142f7602e0a64b38a8f1cb02ef9497}{dequeue}} ()
+\begin{DoxyCompactList}\small\item\em Dequeues an element from the front. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Thread-\/safe F\+I\+FO queue for control messages. 
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classControlMessageQueue_a50df92d449dae01e49fd0e836c7d1f2e}\label{classControlMessageQueue_a50df92d449dae01e49fd0e836c7d1f2e}} 
+\index{Control\+Message\+Queue@{Control\+Message\+Queue}!Control\+Message\+Info@{Control\+Message\+Info}}
+\index{Control\+Message\+Info@{Control\+Message\+Info}!Control\+Message\+Queue@{Control\+Message\+Queue}}
+\subsubsection{\texorpdfstring{Control\+Message\+Info}{ControlMessageInfo}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structControlMessageQueue_1_1ControlMessageInfo}{Control\+Message\+Queue\+::\+Control\+Message\+Info}}  \mbox{\hyperlink{structControlMessageQueue_1_1ControlMessageInfo}{Control\+Message\+Queue\+::\+Control\+Message\+Info}}}
+
+
+
+Element of the \mbox{\hyperlink{classControlMessageQueue}{Control\+Message\+Queue}}. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{structNetworkHandler_1_1Message}{Network\+Handler\+::\+Message}} 
+
+\mbox{\hyperlink{structNetworkHandler_1_1ControlMessage}{Network\+Handler\+::\+Control\+Message}} 
+\end{DoxySeeAlso}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classControlMessageQueue_a95142f7602e0a64b38a8f1cb02ef9497}\label{classControlMessageQueue_a95142f7602e0a64b38a8f1cb02ef9497}} 
+\index{Control\+Message\+Queue@{Control\+Message\+Queue}!dequeue@{dequeue}}
+\index{dequeue@{dequeue}!Control\+Message\+Queue@{Control\+Message\+Queue}}
+\subsubsection{\texorpdfstring{dequeue()}{dequeue()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structControlMessageQueue_1_1ControlMessageInfo}{Control\+Message\+Queue\+::\+Control\+Message\+Info}} Control\+Message\+Queue\+::dequeue (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Dequeues an element from the front. 
+
+\begin{DoxyReturn}{Returns}
+The front element. If there are no elements, returns \mbox{\hyperlink{classControlMessageQueue_a50df92d449dae01e49fd0e836c7d1f2e}{Control\+Message\+Info()}}; 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classControlMessageQueue_a766bed9ca18a663bba82cc32c253049a}\label{classControlMessageQueue_a766bed9ca18a663bba82cc32c253049a}} 
+\index{Control\+Message\+Queue@{Control\+Message\+Queue}!enqueue@{enqueue}}
+\index{enqueue@{enqueue}!Control\+Message\+Queue@{Control\+Message\+Queue}}
+\subsubsection{\texorpdfstring{enqueue()}{enqueue()}}
+{\footnotesize\ttfamily void Control\+Message\+Queue\+::enqueue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structControlMessageQueue_1_1ControlMessageInfo}{Control\+Message\+Queue\+::\+Control\+Message\+Info}}}]{info }\end{DoxyParamCaption})}
+
+
+
+Equeues an element at the back. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em info} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classControlMessageQueue_ad0d97de85cb34b781fde757b665fb22e}\label{classControlMessageQueue_ad0d97de85cb34b781fde757b665fb22e}} 
+\index{Control\+Message\+Queue@{Control\+Message\+Queue}!has\+Changed@{has\+Changed}}
+\index{has\+Changed@{has\+Changed}!Control\+Message\+Queue@{Control\+Message\+Queue}}
+\subsubsection{\texorpdfstring{has\+Changed()}{hasChanged()}}
+{\footnotesize\ttfamily bool Control\+Message\+Queue\+::has\+Changed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Checks if the queue has changed. 
+
+\begin{DoxyReturn}{Returns}
+Value indicating whether the queue has changed since the last call to this function. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classControlMessageQueue_a3b2d120facfc58fcdc315a806d76851a}\label{classControlMessageQueue_a3b2d120facfc58fcdc315a806d76851a}} 
+\index{Control\+Message\+Queue@{Control\+Message\+Queue}!size@{size}}
+\index{size@{size}!Control\+Message\+Queue@{Control\+Message\+Queue}}
+\subsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily size\+\_\+t Control\+Message\+Queue\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns number of elements in the queue. 
+
+\begin{DoxyReturn}{Returns}
+Number of elements in the queue. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Misc/Control\+Message\+Queue.\+h\item 
+Misc/Control\+Message\+Queue.\+cpp\end{DoxyCompactItemize}

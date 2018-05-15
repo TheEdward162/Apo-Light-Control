@@ -1,0 +1,169 @@
+\hypertarget{classScreen}{}\section{Screen Class Reference}
+\label{classScreen}\index{Screen@{Screen}}
+
+
+Class representing one screen.  
+
+
+
+
+{\ttfamily \#include $<$Screen.\+h$>$}
+
+
+
+Inheritance diagram for Screen\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScreen__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Screen\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=146pt]{classScreen__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classScreen_1_1ColorSquareLineElement}{Color\+Square\+Line\+Element}}
+\begin{DoxyCompactList}\small\item\em Color square. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classScreen_1_1IconLineElement}{Icon\+Line\+Element}}
+\begin{DoxyCompactList}\small\item\em Scaled icon. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classScreen_1_1LineElement}{Line\+Element}}
+\begin{DoxyCompactList}\small\item\em Line element base class. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classScreen_1_1SpaceLineElement}{Space\+Line\+Element}}
+\begin{DoxyCompactList}\small\item\em Empty space. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classScreen_1_1TextLineElement}{Text\+Line\+Element}}
+\begin{DoxyCompactList}\small\item\em Text. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classScreen_afd1cb4a4bfbbec56cc64c973a9242110}\label{classScreen_afd1cb4a4bfbbec56cc64c973a9242110}} 
+virtual void \mbox{\hyperlink{classScreen_afd1cb4a4bfbbec56cc64c973a9242110}{render\+Screen}} ()=0
+\begin{DoxyCompactList}\small\item\em Renders this screen to display. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classScreen_a4c3869a19704ec2530a377618b3f6104}\label{classScreen_a4c3869a19704ec2530a377618b3f6104}} 
+virtual void \mbox{\hyperlink{classScreen_a4c3869a19704ec2530a377618b3f6104}{handle\+Knob\+Change}} (int8\+\_\+t R\+G\+B\+Delta\mbox{[}3\mbox{]})=0
+\begin{DoxyCompactList}\small\item\em Handles knob changes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classScreen_a1b9547f8f48c3ceae2024b58e0746e94}\label{classScreen_a1b9547f8f48c3ceae2024b58e0746e94}} 
+virtual void \mbox{\hyperlink{classScreen_a1b9547f8f48c3ceae2024b58e0746e94}{handle\+Knob\+Press}} (bool R\+G\+B\+Pressed\mbox{[}3\mbox{]})=0
+\begin{DoxyCompactList}\small\item\em Handles knob presses. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classScreen_a3696376a0036dc304d337dc5e697d6f9}\label{classScreen_a3696376a0036dc304d337dc5e697d6f9}} 
+typedef std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classScreen_1_1LineElement}{Line\+Element}} $>$ \mbox{\hyperlink{classScreen_a3696376a0036dc304d337dc5e697d6f9}{P\+Line\+Element}}
+\begin{DoxyCompactList}\small\item\em One line element pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classScreen_a62e857d5d7fcfd58fe241c1e933ac3bb}\label{classScreen_a62e857d5d7fcfd58fe241c1e933ac3bb}} 
+typedef std\+::vector$<$ \mbox{\hyperlink{classScreen_a3696376a0036dc304d337dc5e697d6f9}{Screen\+::\+P\+Line\+Element}} $>$ \mbox{\hyperlink{classScreen_a62e857d5d7fcfd58fe241c1e933ac3bb}{P\+Line\+Element\+Vector}}
+\begin{DoxyCompactList}\small\item\em Vector of line element pointers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classScreen_a596e7fffdfafd57fb5385c299863f31d}{Screen}} (\mbox{\hyperlink{classDisplay}{Display}} $\ast$\mbox{\hyperlink{classScreen_aad713267725e8aa8a8def951a07de641}{display}})
+\begin{DoxyCompactList}\small\item\em Creates \mbox{\hyperlink{classScreen}{Screen}} and binds it to display. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classScreen_a30226bc0c228db9f74f337af86cf34ed}{render\+Line}} (int y, \mbox{\hyperlink{classScreen_a3696376a0036dc304d337dc5e697d6f9}{Screen\+::\+P\+Line\+Element}} element, int32\+\_\+t line\+Color=-\/1)
+\begin{DoxyCompactList}\small\item\em Renders line containing only one element. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classScreen_a21262307ae7898dfa1b27bb0c60247b7}{render\+Line}} (int y, \mbox{\hyperlink{classScreen_a62e857d5d7fcfd58fe241c1e933ac3bb}{Screen\+::\+P\+Line\+Element\+Vector}} \&elements, int32\+\_\+t line\+Color=-\/1)
+\begin{DoxyCompactList}\small\item\em Renders line containing elements. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classScreen_a435b179ec61ea7ad8126102a00051b88}{render\+Nagivation\+Line}} (std\+::vector$<$ std\+::pair$<$ std\+::string, std\+::string $>$$>$ ui\+Input\+Pairs)
+\begin{DoxyCompactList}\small\item\em Renders navigation line. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classScreen_aad713267725e8aa8a8def951a07de641}\label{classScreen_aad713267725e8aa8a8def951a07de641}} 
+\mbox{\hyperlink{classDisplay}{Display}} $\ast$ \mbox{\hyperlink{classScreen_aad713267725e8aa8a8def951a07de641}{display}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classDisplay}{Display}} this screen is bound to. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classScreen_ae66538a4cf9fd681495f28acb12be732}\label{classScreen_ae66538a4cf9fd681495f28acb12be732}} 
+size\+\_\+t \mbox{\hyperlink{classScreen_ae66538a4cf9fd681495f28acb12be732}{selected}} = 0
+\begin{DoxyCompactList}\small\item\em Currently selected line. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class representing one screen. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classScreen_a596e7fffdfafd57fb5385c299863f31d}\label{classScreen_a596e7fffdfafd57fb5385c299863f31d}} 
+\index{Screen@{Screen}!Screen@{Screen}}
+\index{Screen@{Screen}!Screen@{Screen}}
+\subsubsection{\texorpdfstring{Screen()}{Screen()}}
+{\footnotesize\ttfamily Screen\+::\+Screen (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDisplay}{Display}} $\ast$}]{display }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Creates \mbox{\hyperlink{classScreen}{Screen}} and binds it to display. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em display} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classScreen_a30226bc0c228db9f74f337af86cf34ed}\label{classScreen_a30226bc0c228db9f74f337af86cf34ed}} 
+\index{Screen@{Screen}!render\+Line@{render\+Line}}
+\index{render\+Line@{render\+Line}!Screen@{Screen}}
+\subsubsection{\texorpdfstring{render\+Line()}{renderLine()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Screen\+::render\+Line (\begin{DoxyParamCaption}\item[{int}]{y,  }\item[{\mbox{\hyperlink{classScreen_a3696376a0036dc304d337dc5e697d6f9}{Screen\+::\+P\+Line\+Element}}}]{element,  }\item[{int32\+\_\+t}]{line\+Color = {\ttfamily -\/1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Renders line containing only one element. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em y} & Y position to render the line at. \\
+\hline
+\mbox{\tt in}  & {\em element} & Element to render in this line. \\
+\hline
+\mbox{\tt in}  & {\em line\+Color} & Color of this line. Pass -\/1 to not draw any line background. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classScreen_a21262307ae7898dfa1b27bb0c60247b7}\label{classScreen_a21262307ae7898dfa1b27bb0c60247b7}} 
+\index{Screen@{Screen}!render\+Line@{render\+Line}}
+\index{render\+Line@{render\+Line}!Screen@{Screen}}
+\subsubsection{\texorpdfstring{render\+Line()}{renderLine()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Screen\+::render\+Line (\begin{DoxyParamCaption}\item[{int}]{y,  }\item[{\mbox{\hyperlink{classScreen_a62e857d5d7fcfd58fe241c1e933ac3bb}{Screen\+::\+P\+Line\+Element\+Vector}} \&}]{elements,  }\item[{int32\+\_\+t}]{line\+Color = {\ttfamily -\/1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Renders line containing elements. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em y} & Y position to render the line at. \\
+\hline
+\mbox{\tt in}  & {\em elements} & Elements to render in this line. \\
+\hline
+\mbox{\tt in}  & {\em line\+Color} & Color of this line. Pass -\/1 to not draw any line background. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classScreen_a435b179ec61ea7ad8126102a00051b88}\label{classScreen_a435b179ec61ea7ad8126102a00051b88}} 
+\index{Screen@{Screen}!render\+Nagivation\+Line@{render\+Nagivation\+Line}}
+\index{render\+Nagivation\+Line@{render\+Nagivation\+Line}!Screen@{Screen}}
+\subsubsection{\texorpdfstring{render\+Nagivation\+Line()}{renderNagivationLine()}}
+{\footnotesize\ttfamily void Screen\+::render\+Nagivation\+Line (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::pair$<$ std\+::string, std\+::string $>$$>$}]{ui\+Input\+Pairs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Renders navigation line. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ui\+Input\+Pairs} & Vector of string pairs (icon\+\_\+name, text) to render. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{namespaceEngine_ae562ecbc72c843b594695a058487d3cb}{Engine\+::ui\+Icons}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Display\+Utils/Screen.\+h\item 
+Display\+Utils/Screen.\+cpp\end{DoxyCompactItemize}

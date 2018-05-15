@@ -5,32 +5,53 @@
 #pragma once
 
 #include "Mapper.h"
-#include "../MZApi/MZRegisters.h"
+#include "MZRegisters.h"
 
+/**
+	@addtogroup unit
+	@{
+*/
 
-#define R(a) ((a & 0xFF0000) >> 16)
-#define G(a) ((a & 0xFF00) >> 8)
-#define B(a) ((a & 0xFF) >> 0)
-
-#define RPress(a) ((a & 0x4000000) >> 26)
-#define GPress(a) ((a & 0x2000000) >> 25)
-#define BPress(a) ((a & 0x1000000) >> 24)
-
-
+/**
+	@brief Handler device input.
+**/
 class DeviceInput {
 public:
+    /**
+     * Constructor.
+     * */
     DeviceInput();
+    /**
+     * Destructor.
+     * */
     ~DeviceInput();
 
-    int8_t RGBDelta[3];
-    bool RGBPressed[3];
+	/**
+		@brief The change in the device knob positions.
+	*/
+    int8_t rgbDelta[3] = {0};
+	/**
+		@brief Whether given device knob is pressed or not.
+	*/
+    bool knobsPressed[3] = {0};
 
+    /**
+     * @brief Gets the input (knobs state) from the device.
+     * */
     void update();
+    
+    /**
+     * @brief Locks currently pressed knobs to 0 and unlocks them on release.
+     * */
+    void lock();
 
 private:
-	uint32_t knobs_value;
-    uint32_t prev_knobs_value;
+    bool locked[3] = {0};
+
+	uint8_t lastKnobValues[3] = {0};
     Mapper mapper = Mapper(SPILED_REG_BASE_PHYS, SPILED_REG_SIZE);
 
-    int8_t getDelta(uint8_t prev, uint8_t act);
+    void processDelta(uint8_t value, size_t index);
+    void checkLock(bool actual, size_t index);
 };
+/** @} */

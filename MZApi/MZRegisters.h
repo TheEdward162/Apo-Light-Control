@@ -27,7 +27,7 @@
 
 */
 
-/* SPI connected knobs and LEDs registers and keyboard */
+/** SPI connected knobs and LEDs registers and keyboard */
 
 #define SPILED_REG_BASE_PHYS  0x43c40000
 #define SPILED_REG_SIZE       0x00004000
@@ -40,7 +40,7 @@
 #define SPILED_REG_KBDRD_KNOBS_DIRECT_o 0x020
 #define SPILED_REG_KNOBS_8BIT_o         0x024
 
-/* Parallel LCD registers */
+/** Parallel LCD registers */
 
 #define PARLCD_REG_BASE_PHYS  0x43c00000
 #define PARLCD_REG_SIZE       0x00004000

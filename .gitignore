@@ -16,3 +16,4 @@ display_test.cpp
 alc_monitor
 *.tar*
 CMakeLists.txt
+*.zip

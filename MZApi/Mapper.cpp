@@ -5,7 +5,7 @@
 
 #include <stdio.h>
 #include <sys/mman.h>
-#include <zconf.h>
+#include "zconf.h"
 #include <fcntl.h>
 #include <cstdlib>
 #include <stdexcept>

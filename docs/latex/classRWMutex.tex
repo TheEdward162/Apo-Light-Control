@@ -1,0 +1,65 @@
+\hypertarget{classRWMutex}{}\section{R\+W\+Mutex Class Reference}
+\label{classRWMutex}\index{R\+W\+Mutex@{R\+W\+Mutex}}
+
+
+Read/\+Write mutex class.  
+
+
+
+
+{\ttfamily \#include $<$R\+W\+Mutex.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classRWMutex_ab76f003469059259e2a48e9ed6643c25}{lock\+Read}} ()
+\begin{DoxyCompactList}\small\item\em Locks this mutex for reading. This is a shared lock. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRWMutex_aa71e2ce4d243c3d4c471a7fe55381b2f}{unlock\+Read}} ()
+\begin{DoxyCompactList}\small\item\em Unlocks one reader lock. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRWMutex_ac977d0b492c040e36a77b55ee3ae9c04}{lock\+Write}} ()
+\begin{DoxyCompactList}\small\item\em Locks write mutex. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRWMutex_a2f145529b60c90b3eba0ac0fd547f2b2}\label{classRWMutex_a2f145529b60c90b3eba0ac0fd547f2b2}} 
+void \mbox{\hyperlink{classRWMutex_a2f145529b60c90b3eba0ac0fd547f2b2}{unlock\+Write}} ()
+\begin{DoxyCompactList}\small\item\em Unlocks write mutex. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Read/\+Write mutex class. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classRWMutex_ab76f003469059259e2a48e9ed6643c25}\label{classRWMutex_ab76f003469059259e2a48e9ed6643c25}} 
+\index{R\+W\+Mutex@{R\+W\+Mutex}!lock\+Read@{lock\+Read}}
+\index{lock\+Read@{lock\+Read}!R\+W\+Mutex@{R\+W\+Mutex}}
+\subsubsection{\texorpdfstring{lock\+Read()}{lockRead()}}
+{\footnotesize\ttfamily void R\+W\+Mutex\+::lock\+Read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Locks this mutex for reading. This is a shared lock. 
+
+This is a shared mutex and it\textquotesingle{}s implemented as a counter that is incremented on lock and decremented on unlock. This class also implements an anti-\/writer-\/starvation mechanism (write-\/preferring RW lock). \mbox{\Hypertarget{classRWMutex_ac977d0b492c040e36a77b55ee3ae9c04}\label{classRWMutex_ac977d0b492c040e36a77b55ee3ae9c04}} 
+\index{R\+W\+Mutex@{R\+W\+Mutex}!lock\+Write@{lock\+Write}}
+\index{lock\+Write@{lock\+Write}!R\+W\+Mutex@{R\+W\+Mutex}}
+\subsubsection{\texorpdfstring{lock\+Write()}{lockWrite()}}
+{\footnotesize\ttfamily void R\+W\+Mutex\+::lock\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Locks write mutex. 
+
+This is an exclusive mutex. It is a write-\/preferring lock. \mbox{\Hypertarget{classRWMutex_aa71e2ce4d243c3d4c471a7fe55381b2f}\label{classRWMutex_aa71e2ce4d243c3d4c471a7fe55381b2f}} 
+\index{R\+W\+Mutex@{R\+W\+Mutex}!unlock\+Read@{unlock\+Read}}
+\index{unlock\+Read@{unlock\+Read}!R\+W\+Mutex@{R\+W\+Mutex}}
+\subsubsection{\texorpdfstring{unlock\+Read()}{unlockRead()}}
+{\footnotesize\ttfamily void R\+W\+Mutex\+::unlock\+Read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Unlocks one reader lock. 
+
+Decrements internal reader counter. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Misc/R\+W\+Mutex.\+h\item 
+Misc/R\+W\+Mutex.\+cpp\end{DoxyCompactItemize}
