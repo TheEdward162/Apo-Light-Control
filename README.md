@@ -1,6 +1,5 @@
 ## APO Light Control
 
-The ultimate solution for your home or office lighting needs using mesh networking and the awesome MZ_APO boards.  
-Starting at $249.99!
+The ultimate solution for your home or office lighting needs using mesh networking and the awesome [MZ_APO](https://cw.fel.cvut.cz/wiki/courses/b35apo/documentation/mz_apo/start) boards.
 
-For more info, check out the [wiki](https://gitlab.fel.cvut.cz/lavusedu/APO_SEM/wikis/home).
+Made in collaboration with [a panda](https://github.com/klarajanouskova) as a semster homework.
