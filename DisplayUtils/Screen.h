@@ -7,6 +7,7 @@
 #include <vector>
 #include <string>
 #include <memory>
+#include <array>
 
 #include "../MZApi/Display.h"
 
@@ -64,6 +65,8 @@ protected:
 		*/
 		LineElement(int marginLeft, int marginRight, bool alignRight=false);
 
+		virtual ~LineElement() {};
+
 		/**
 			@brief Renders itself at position x, y to display.
 			@param[in] display Display to render to.
@@ -97,6 +100,8 @@ protected:
 		*/
 		SpaceLineElement(int size, bool alignRight=false);
 
+		~SpaceLineElement() {};
+
 		int renderSelf(Display* display, int x, int y);
 	};
 	/** @brief Color square */
@@ -117,6 +122,8 @@ protected:
 			@param[in] alignRight
 		*/
 		ColorSquareLineElement(uint16_t color, int marginLeft, int marginRight, bool alignRight=false);
+
+		~ColorSquareLineElement() {};
 
 		int renderSelf(Display* display, int x, int y);
 	protected:
@@ -145,6 +152,8 @@ protected:
 			@param[in] alignRight
 		*/
 		TextLineElement(std::string text, uint16_t color, int marginLeft, int marginRight, bool alignRight=false);
+
+		~TextLineElement() {};
 
 		int renderSelf(Display* display, int x, int y);
 	protected:
@@ -177,6 +186,8 @@ protected:
 			@param[in] alignRight
 		*/
 		IconLineElement(uint16_t* pIcon, int scaleExponent, int marginLeft, int marginRight, bool alignRight=false);
+
+		~IconLineElement() {};
 
 		int renderSelf(Display* display, int x, int y);
 	protected:

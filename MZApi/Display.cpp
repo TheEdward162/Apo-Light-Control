@@ -86,6 +86,7 @@ void Display::redraw() {
 				case SDLK_KP_1:
 					sdl_knobDeltas[0] = -1;
 				break;
+				case SDLK_b:
 				case SDLK_KP_2:
 					sdl_knobPresses[0] = true;
 				break;
@@ -97,6 +98,7 @@ void Display::redraw() {
 				case SDLK_KP_4:
 					sdl_knobDeltas[1] = -1;
 				break;
+				case SDLK_n:
 				case SDLK_KP_5:
 					sdl_knobPresses[1] = true;
 				break;
@@ -108,6 +110,7 @@ void Display::redraw() {
 				case SDLK_KP_7:
 					sdl_knobDeltas[2] = -1;
 				break;
+				case SDLK_m:
 				case SDLK_KP_8:
 					sdl_knobPresses[2] = true;
 				break;
